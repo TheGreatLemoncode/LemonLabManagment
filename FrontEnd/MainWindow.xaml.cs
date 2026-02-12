@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using FrontEnd.Vues;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,19 @@ namespace FrontEnd
         public MainWindow()
         {
             InitializeComponent();
+            Connexion.CreationEvent += ChargerCreationCompte;
+            CreationCompte.CreationCompteComplete += ChargerMenuPrincipal;
+            Main_Content.Content = new Connexion();
+        }
+
+        public void ChargerCreationCompte(object sender, EventArgs e)
+        {
+            Main_Content.Content = new CreationCompte();
+        }
+
+        public void ChargerMenuPrincipal(object sender, EventArgs e)
+        {
+
         }
     }
 }
