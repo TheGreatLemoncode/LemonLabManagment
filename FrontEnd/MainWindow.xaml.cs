@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BackEnd.API;
 
 namespace FrontEnd
 {
@@ -20,6 +21,7 @@ namespace FrontEnd
         public MainWindow()
         {
             InitializeComponent();
+            API.Initialisation();
             Connexion.CreationEvent += ChargerCreationCompte;
             CreationCompte.CreationCompteComplete += ChargerMenuPrincipal;
             Main_Content.Content = new Connexion();
@@ -33,6 +35,11 @@ namespace FrontEnd
         public void ChargerMenuPrincipal(object sender, EventArgs e)
         {
 
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            API.SaveUserInformation();
         }
     }
 }

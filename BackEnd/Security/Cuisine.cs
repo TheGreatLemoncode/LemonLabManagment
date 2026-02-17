@@ -12,12 +12,12 @@ namespace BackEnd.Security
     {
         private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
 
-        public static bool CompareHashClear(string clear, byte[] hash ,byte[] salt)
+        internal static bool CompareHashClear(string clear, byte[] hash ,byte[] salt)
         {
             return HashPassword(clear, salt).SequenceEqual(hash);
         }
 
-        private static byte[] HashPassword(string pwd, byte[] salt)
+        internal static byte[] HashPassword(string pwd, byte[] salt)
         {
             Argon2id crypto = new Argon2id(Encoding.UTF8.GetBytes(pwd));
             crypto.Salt = salt;
@@ -26,7 +26,7 @@ namespace BackEnd.Security
             crypto.DegreeOfParallelism = 8;
             return crypto.GetBytes(32);
         }
-        public static byte[] CreateSalt()
+        internal static byte[] CreateSalt()
         {
             byte[] buffer = new byte[32];
             rng.GetBytes(buffer);

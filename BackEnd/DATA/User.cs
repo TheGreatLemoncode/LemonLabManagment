@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DATA
 {
-    internal class User
+    internal class User(string pName, string? pData)
     {
-        public string Name { get; set; }
-        public string Data { get; set; }
+        public string Name { get; set; } = pName;
+        public string Data { get; set; } = pData;
     }
 }

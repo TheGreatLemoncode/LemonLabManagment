@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Text.RegularExpressions;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BackEnd.API;
 
 namespace FrontEnd.Vues
 {
@@ -61,9 +63,22 @@ namespace FrontEnd.Vues
 
         private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
+            string mail = txt_mail.Text;
+            string name = txt_displayname.Text;
+            string password = pwd_password.Password;
 
-
+            API.UserCreation(name, mail, password);
         }
+
+        //private bool InputFieldCheck()
+        //{
+        //    bool bMail = false;
+        //    bool bPassword = false;
+        //    bool bName = false;
+
+        //    bMail = txt_mail.Text.Contains("")
+        //    return true;
+        //}
         #endregion
     }
 }

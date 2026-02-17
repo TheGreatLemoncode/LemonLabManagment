@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BackEnd\BackEnd.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Vues\CreationCompte.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
