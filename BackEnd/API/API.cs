@@ -6,7 +6,7 @@ namespace BackEnd.API
 {
     public static class API
     {
-        private static User? ConnectedUser;
+        private static Account? ConnectedUser;
         private static DataController dataController; 
         public static void Initialisation()
         {
@@ -18,9 +18,9 @@ namespace BackEnd.API
             if (!dataController.Salts.ContainsKey(pMail))
             {
                 byte[] nSalt = Cuisine.CreateSalt();
-                User nUser = new User(pName, Cuisine.HashPassword(pPassword, nSalt), null);
+                Account nUser = new Account(pName, Cuisine.HashPassword(pPassword, nSalt), null);
                 dataController.Salts.Add(pMail, nSalt);
-                dataController.Users.Add(pMail, nUser);
+                dataController.Accounts.Add(pMail, nUser);
                 ConnectedUser = nUser;
                 return true;
             }
@@ -32,7 +32,7 @@ namespace BackEnd.API
             if (dataController.Salts.ContainsKey(pMail))
             {
                 byte[] nsalt = dataController.Salts[pMail];
-                User nUser = dataController.Users[pMail];
+                Account nUser = dataController.Accounts[pMail];
                 if (Cuisine.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
                     MessageBox.Show($"Hello fucking world \n{nUser.Name}");
                 }

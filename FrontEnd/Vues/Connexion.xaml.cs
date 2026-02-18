@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using FrontEnd.Interfaces;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -19,15 +20,16 @@ namespace FrontEnd.Vues
     /// <summary>
     /// Logique d'interaction pour Authentification.xaml
     /// </summary>
-    public partial class Connexion : UserControl
+    public partial class Connexion : UserControl, IUserControlEvent
     {
-        public static event EventHandler CreationEvent;
+        internal static event EventHandler CreationEvent;
+        internal static event EventHandler ControlUsed;
         public Connexion()
         {
             InitializeComponent();
         }
 
-        #region evenement input fields
+        #region event input fields
         private void txt_mail_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txt_mail.Text))

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.DATA
 {
-    internal class User(string pName, string pPwd ,string? pData)
+    internal class Account(string pName, string pPwd ,string? pData)
     {
         public string Name { get; set; } = pName;
         public string Password { get; set; } = pPwd;

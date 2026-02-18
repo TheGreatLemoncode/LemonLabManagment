@@ -1,6 +1,9 @@
 ﻿using FrontEnd.Vues;
 using System.Text;
 using System.Windows;
+using ToastNotifications;
+using ToastNotifications.Position;
+using ToastNotifications.Lifetime;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -10,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BackEnd.API;
+using System.Security.Policy;
 
 namespace FrontEnd
 {
@@ -18,13 +22,25 @@ namespace FrontEnd
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Notifier _notifier;
         public MainWindow()
         {
             InitializeComponent();
             API.Initialisation();
             Connexion.CreationEvent += ChargerCreationCompte;
+            Connexion.ControlUsed += ChargerMenuPrincipal;
             CreationCompte.CreationCompteComplete += ChargerMenuPrincipal;
-            Main_Content.Content = new Connexion();
+            Main_Content.Content = new MainMenu();
+            _notifier = new(cfg =>
+            {
+                cfg.PositionProvider = new WindowPositionProvider(
+                    Application.Current.MainWindow,
+                    Corner.BottomLeft,
+                    10, 
+                    10);
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(2), MaximumNotificationCount.FromCount(2));
+                cfg.Dispatcher = Application.Current.Dispatcher;
+            });
         }
 
         public void ChargerCreationCompte(object sender, EventArgs e)

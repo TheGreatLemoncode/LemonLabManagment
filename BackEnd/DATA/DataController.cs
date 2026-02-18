@@ -12,7 +12,7 @@ namespace BackEnd.DATA
 {
     internal class DataController
     {
-        public Dictionary<string, User> Users = [];
+        public Dictionary<string, Account> Accounts = [];
         public Dictionary<string, byte[]> Salts = [];
 
         public DataController()
@@ -25,9 +25,9 @@ namespace BackEnd.DATA
             {
                 string json = rd.ReadToEnd();
                 if(!string.IsNullOrEmpty(json))
-                    Users = JsonConvert.DeserializeObject<Dictionary<string, User>>(json);
+                    Accounts = JsonConvert.DeserializeObject<Dictionary<string, Account>>(json);
                 else
-                    Users = [];
+                    Accounts = [];
             }
 
             using(StreamReader slt = new("salts.lemon"))
@@ -44,7 +44,7 @@ namespace BackEnd.DATA
         {
             using (StreamWriter wr = new StreamWriter("users.lemon"))
             {
-                string json = JsonConvert.SerializeObject(Users);
+                string json = JsonConvert.SerializeObject(Accounts);
                 wr.Write(json);
             }
 
