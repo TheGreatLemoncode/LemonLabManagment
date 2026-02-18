@@ -14,17 +14,20 @@ namespace BackEnd.Security
 
         internal static bool CompareHashClear(string clear, byte[] hash ,byte[] salt)
         {
-            return HashPassword(clear, salt).SequenceEqual(hash);
+            string nHash = HashPassword(clear, salt);
+            return Encoding.UTF8.GetBytes(nHash).SequenceEqual(hash);
         }
 
-        internal static byte[] HashPassword(string pwd, byte[] salt)
+        internal static string HashPassword(string pwd, byte[] salt)
         {
-            Argon2id crypto = new Argon2id(Encoding.UTF8.GetBytes(pwd));
-            crypto.Salt = salt;
-            crypto.MemorySize = 1024 * 1024;
-            crypto.Iterations = 4;
-            crypto.DegreeOfParallelism = 8;
-            return crypto.GetBytes(32);
+            Argon2id crypto = new Argon2id(Encoding.UTF8.GetBytes(pwd))
+            {
+                Salt = salt,
+                MemorySize = 1024 * 1024,
+                Iterations = 4,
+                DegreeOfParallelism = 8
+            };
+            return Encoding.UTF8.GetString(crypto.GetBytes(16));
         }
         internal static byte[] CreateSalt()
         {

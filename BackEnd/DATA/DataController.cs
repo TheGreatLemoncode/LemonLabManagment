@@ -12,7 +12,7 @@ namespace BackEnd.DATA
 {
     internal class DataController
     {
-        public Dictionary<byte[], User> Users = [];
+        public Dictionary<string, User> Users = [];
         public Dictionary<string, byte[]> Salts = [];
 
         public DataController()
@@ -25,7 +25,7 @@ namespace BackEnd.DATA
             {
                 string json = rd.ReadToEnd();
                 if(!string.IsNullOrEmpty(json))
-                    Users = JsonConvert.DeserializeObject<Dictionary<byte[], User>>(json);
+                    Users = JsonConvert.DeserializeObject<Dictionary<string, User>>(json);
                 else
                     Users = [];
             }

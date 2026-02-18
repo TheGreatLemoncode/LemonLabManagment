@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackEnd.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,6 +54,9 @@ namespace FrontEnd.Vues
 
         private void connexion_btn_clk(object sender, RoutedEventArgs arg)
         {
+            string mail = txt_mail.Text;
+            string pword = pwd_password.Password;
+            API.Connexion(mail, pword);
 
         }
 
