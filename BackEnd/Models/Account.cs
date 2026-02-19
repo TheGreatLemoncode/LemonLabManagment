@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BackEnd.DATA
+namespace BackEnd.Models
 {
     internal class Account(string pName, string pPwd ,string? pData)
     {

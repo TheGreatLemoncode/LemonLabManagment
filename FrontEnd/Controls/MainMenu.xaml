@@ -65,7 +65,7 @@
     </UserControl.Resources>
     <Grid>
         <StackPanel Background="#FFB2ABAB" Margin="10,10,584,10">
-            <Button Style="{DynamicResource RoundButton}" Content="Button" Height="50" Margin="0,85,0,0" Width="140"/>
+            <Button Style="{DynamicResource RoundButton}" Content="Join " Height="50" Margin="0,85,0,0" Width="140"/>
             <Button Style="{DynamicResource RoundButton}" Content="Button" Height="50" Margin="0,5,0,0" Width="140"/>
             <Button Style="{DynamicResource RoundButton}" Content="Button" Height="50" Margin="0,5,0,0" Width="140"/>
             <Button Style="{DynamicResource RoundButton}" Content="Button" Height="50" Margin="0,5,0,0" Width="140"/>
