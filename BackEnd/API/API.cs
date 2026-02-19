@@ -17,8 +17,8 @@ namespace BackEnd.API
         {
             if (!dataController.Salts.ContainsKey(pMail))
             {
-                byte[] nSalt = Cuisine.CreateSalt();
-                Account nUser = new Account(pName, Cuisine.HashPassword(pPassword, nSalt), null);
+                byte[] nSalt = Kitchen.CreateSalt();
+                Account nUser = new Account(pName, Kitchen.HashPassword(pPassword, nSalt), null);
                 dataController.Salts.Add(pMail, nSalt);
                 dataController.Accounts.Add(pMail, nUser);
                 ConnectedUser = nUser;
@@ -33,7 +33,7 @@ namespace BackEnd.API
             {
                 byte[] nsalt = dataController.Salts[pMail];
                 Account nUser = dataController.Accounts[pMail];
-                if (Cuisine.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
+                if (Kitchen.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
                     MessageBox.Show($"Hello fucking world \n{nUser.Name}");
                 }
             }

@@ -21,23 +21,23 @@ namespace BackEnd.DATA
         }
         private void load() 
         {
-            using(StreamReader rd = new StreamReader("users.lemon"))
-            {
-                string json = rd.ReadToEnd();
-                if(!string.IsNullOrEmpty(json))
-                    Accounts = JsonConvert.DeserializeObject<Dictionary<string, Account>>(json);
-                else
-                    Accounts = [];
-            }
+            //using(StreamReader rd = new StreamReader("users.lemon"))
+            //{
+            //    string json = rd.ReadToEnd();
+            //    if(!string.IsNullOrEmpty(json))
+            //        Accounts = JsonConvert.DeserializeObject<Dictionary<string, Account>>(json);
+            //    else
+            //        Accounts = [];
+            //}
 
-            using(StreamReader slt = new("salts.lemon"))
-            {
-                string text = slt.ReadToEnd();
-                if (!string.IsNullOrEmpty(text))
-                    Salts = JsonConvert.DeserializeObject<Dictionary<string, byte[]>>(text);
-                else
-                    Salts = [];
-            }
+            //using(StreamReader slt = new("salts.lemon"))
+            //{
+            //    string text = slt.ReadToEnd();
+            //    if (!string.IsNullOrEmpty(text))
+            //        Salts = JsonConvert.DeserializeObject<Dictionary<string, byte[]>>(text);
+            //    else
+            //        Salts = [];
+            //}
         }
 
         public void Save()

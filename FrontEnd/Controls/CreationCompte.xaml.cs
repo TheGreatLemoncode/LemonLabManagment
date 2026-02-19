@@ -1,12 +1,11 @@
-﻿using BackEnd.API;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using FrontEnd.Interfaces;
+using System.Text.RegularExpressions;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -14,22 +13,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BackEnd.API;
 
-namespace FrontEnd.Vues
+namespace FrontEnd.Controls
 {
     /// <summary>
     /// Logique d'interaction pour Authentification.xaml
     /// </summary>
-    public partial class Connexion : UserControl, IUserControlEvent
+    public partial class CreationCompte : UserControl
     {
-        internal static event EventHandler CreationEvent;
-        internal static event EventHandler ControlUsed;
-        public Connexion()
+        public static event EventHandler CreationCompteComplete;
+        public CreationCompte()
         {
             InitializeComponent();
         }
 
-        #region event input fields
+        #region evenement input fields
         private void txt_mail_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (!string.IsNullOrEmpty(txt_mail.Text))
@@ -45,27 +44,41 @@ namespace FrontEnd.Vues
             else
                 txtblock_pwd.Visibility = Visibility.Visible;
         }
-        #endregion
 
+        private void txt_displayname_changed(object sender, TextChangedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_displayname.Text))
+                txtblock_code.Visibility = Visibility.Hidden;
+            else
+                txtblock_code.Visibility = Visibility.Visible;
+        }
+        #endregion
         #region evenement de boutton
         private void reset_btn_clk(object sender, RoutedEventArgs e)
         {
             txt_mail.Text = string.Empty;
             pwd_password.Password = string.Empty;
+            txt_displayname.Text = string.Empty;
         }
 
-        private void connexion_btn_clk(object sender, RoutedEventArgs arg)
+        private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
             string mail = txt_mail.Text;
-            string pword = pwd_password.Password;
-            API.Connexion(mail, pword);
+            string name = txt_displayname.Text;
+            string password = pwd_password.Password;
 
+            API.UserCreation(name, mail, password);
         }
 
-        private void btn_creation_clk(object sender, RoutedEventArgs arg)
-        {
-            CreationEvent?.Invoke(this, EventArgs.Empty);
-        }
+        //private bool InputFieldCheck()
+        //{
+        //    bool bMail = false;
+        //    bool bPassword = false;
+        //    bool bName = false;
+
+        //    bMail = txt_mail.Text.Contains("")
+        //    return true;
+        //}
         #endregion
     }
 }

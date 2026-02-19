@@ -1,4 +1,4 @@
-﻿using FrontEnd.Vues;
+﻿using FrontEnd.Controls;
 using System.Text;
 using System.Windows;
 using ToastNotifications;
@@ -23,14 +23,16 @@ namespace FrontEnd
     public partial class MainWindow : Window
     {
         public Notifier _notifier;
+        public UserControl CurrentView;
         public MainWindow()
         {
             InitializeComponent();
             API.Initialisation();
-            Connexion.CreationEvent += ChargerCreationCompte;
-            Connexion.ControlUsed += ChargerMenuPrincipal;
-            CreationCompte.CreationCompteComplete += ChargerMenuPrincipal;
-            Main_Content.Content = new MainMenu();
+            Connexion.CreationEvent += LoadAccountCreation;
+            Connexion.ControlUsed += LoadMainMenu;
+            CreationCompte.CreationCompteComplete += LoadMainMenu;
+            MainView.Content = new MainMenu();
+
             _notifier = new(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
@@ -43,12 +45,12 @@ namespace FrontEnd
             });
         }
 
-        public void ChargerCreationCompte(object sender, EventArgs e)
+        public void LoadAccountCreation(object sender, EventArgs e)
         {
-            Main_Content.Content = new CreationCompte();
+            MainView.Content = new CreationCompte();
         }
 
-        public void ChargerMenuPrincipal(object sender, EventArgs e)
+        public void LoadMainMenu(object sender, EventArgs e)
         {
 
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Security
 {
-    internal static class Cuisine
+    internal static class Kitchen
     {
         private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
 
@@ -29,6 +29,7 @@ namespace BackEnd.Security
             };
             return Encoding.UTF8.GetString(crypto.GetBytes(16));
         }
+
         internal static byte[] CreateSalt()
         {
             byte[] buffer = new byte[32];

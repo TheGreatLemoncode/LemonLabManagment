@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FrontEnd.Vues
+namespace FrontEnd.Controls
 {
     /// <summary>
     /// Logique d'interaction pour MainMenu.xaml

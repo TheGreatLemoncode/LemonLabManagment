@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Vues\CreationCompte.xaml.cs">
+    <Compile Update="Controls\CreationCompte.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
