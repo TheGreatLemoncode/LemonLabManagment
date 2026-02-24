@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BackEnd.API;
+using System.ComponentModel;
+using System.Security.Authentication;
 
 namespace FrontEnd.Controls
 {
@@ -23,9 +25,13 @@ namespace FrontEnd.Controls
     public partial class CreationCompte : UserControl
     {
         public static event EventHandler CreationCompteComplete;
+        public TextBox MailBox { get; set; } = new();
+        public TextBox PasswordBox { get; set; } = new();
         public CreationCompte()
         {
             InitializeComponent();
+            MailBox.Text = "Hello world";
+            DataContext = this;
         }
 
         #region evenement input fields
@@ -80,5 +86,29 @@ namespace FrontEnd.Controls
         //    return true;
         //}
         #endregion
+    }
+
+    public class TextBox : INotifyPropertyChanged
+    {
+        public string? Text;
+        public string Content
+        {
+            get { return Text;}
+            set
+            {
+                Text = value;
+                NotifyPropertyChanged(nameof(Content));
+            }
+        }
+
+        public bool IsCorrect { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string PropertyName)
+        {
+            if(PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+        }
     }
 }

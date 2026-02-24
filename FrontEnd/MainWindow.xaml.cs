@@ -31,7 +31,7 @@ namespace FrontEnd
             Connexion.CreationEvent += LoadAccountCreation;
             Connexion.ControlUsed += LoadMainMenu;
             CreationCompte.CreationCompteComplete += LoadMainMenu;
-            MainView.Content = new Connexion();
+            MainView.Content = new CreationCompte();
 
             _notifier = new(cfg =>
             {
