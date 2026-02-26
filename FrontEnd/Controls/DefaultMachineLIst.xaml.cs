@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace FrontEnd.Controls
 {
     /// <summary>
-    /// Logique d'interaction pour MainMenu.xaml
+    /// Logique d'interaction pour DefaultMachineLIst.xaml
     /// </summary>
-    public partial class MainMenu : UserControl
+    public partial class DefaultMachineLIst : UserControl
     {
-        public MainMenu()
+        public DefaultMachineLIst()
         {
             InitializeComponent();
-            Load_default_machine_list();
         }
-
-        public void account_btn_clk(object sender, RoutedEventArgs args)
-        {
-            MainMenuDisplay.Content = new MainMenuControls.Compte();
-        }
-
-        public void Load_default_machine_list()
-        {
-            MainMenuDisplay.Content = new DefaultMachineLIst();
-        }
-            
     }
 }

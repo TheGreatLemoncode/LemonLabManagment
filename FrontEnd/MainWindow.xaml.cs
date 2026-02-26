@@ -22,7 +22,7 @@ namespace FrontEnd
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Notifier _notifier;
+        public Notifier _notifier { get; set; }
         public UserControl CurrentView;
         public MainWindow()
         {
@@ -30,7 +30,7 @@ namespace FrontEnd
             API.Initialisation();
             Connexion.CreationEvent += LoadAccountCreation;
             Connexion.ControlUsed += LoadMainMenu;
-            CreationCompte.CreationCompteComplete += LoadMainMenu;
+            CreationCompte.ControlUsed += LoadMainMenu;
             MainView.Content = new CreationCompte();
 
             _notifier = new(cfg =>
@@ -52,7 +52,12 @@ namespace FrontEnd
 
         public void LoadMainMenu(object sender, EventArgs e)
         {
+            MainView.Content = new MainMenu();
+        }
 
+        public void LoadAccountConnexion()
+        {
+            MainView.Content = new Connexion();
         }
 
         private void Window_Closed(object sender, EventArgs e)

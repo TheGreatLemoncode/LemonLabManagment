@@ -5,24 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FrontEnd.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="800">
+             d:DesignHeight="400" d:DesignWidth="800"
+             Background="#FFB2ABAB">
     <Grid>
         <StackPanel Background="#FFB2ABAB" Margin="10,10,626,10">
-            <Button Style="{StaticResource BaseButton}" Content="Compte" Height="50" Margin="0,85,0,0" Width="140"/>
+            <Button Style="{StaticResource BaseButton}" Click="account_btn_clk" Content="Compte" Height="50" Margin="0,85,0,0" Width="140"/>
             <Button Style="{StaticResource BaseButton}" Content="Ajout machine" Height="50" Margin="0,5,0,0" Width="140"/>
             <Button Style="{StaticResource BaseButton}" Content="Toutes les machines" Height="50" Margin="0,5,0,0" Width="140"/>
             <Button Style="{StaticResource BaseButton}" Content="Plan de circuit" Height="50" Margin="0,5,0,0" Width="140"/>
-        </StackPanel>
 
-        <StackPanel Margin="179,10,10,10">
-            <Expander Height="68" Header="ROUTER" Width="552" FontSize="24">
-                <ListBox HorizontalContentAlignment="Center" Margin="0,0,0,-16">
-                    <Button Height="40" Width="400" Content="116"/>
-                    <Button Height="40" Width="400" Content="16"/>
-                    <Button Height="40" Width="400" Content="16"/>
-                </ListBox>
-            </Expander>
-            <ContentControl x:Name="MachineControls" Background="#FFF9ECEC" Height="260" Margin="0,33,0,0"/>
         </StackPanel>
+        <ContentControl x:Name="MainMenuDisplay" Margin="189,10,0,10"/>
     </Grid>
 </UserControl>

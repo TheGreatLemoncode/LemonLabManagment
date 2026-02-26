@@ -13,12 +13,14 @@
             <TextBox x:Name="txt_mail" Background="#FFC6C2C2" Width="449" Margin="0,10,0,0" FontSize="36" TextChanged="txt_mail_TextChanged"/>
             <PasswordBox x:Name="pwd_password" Background="#FFC6C2C2" Width="450" Margin="0,10,0,0" FontSize="36" PasswordChanged="pwd_password_PasswordChanged"/>
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="562">
-                <Button x:Name="btn_reset" Content="Reset" Height="80" Width="120" Margin="45,0,0,0" Click="reset_btn_clk" FontSize="16"/>
-                <Button x:Name="btn_connexion" Content="Connexion" Height="80" Width="131" Margin="45,0,0,0" FontSize="16" Click="connexion_btn_clk"/>
-                <Button x:Name="btn_creation" Content="create account" Height="80" Width="117" Margin="40,0,0,0" FontSize="16" Click="btn_creation_clk"/>
+                <Button x:Name="btn_reset" Content="reinitialiser" Height="80" Width="120" Margin="45,0,0,0" Click="reset_btn_clk" FontSize="16"/>
+                <Button x:Name="btn_connexion" Content="connection" Height="80" Width="131" Margin="45,0,0,0" FontSize="16" Click="connexion_btn_clk"/>
+                <Button x:Name="btn_creation" Height="80" Width="117" Margin="40,0,0,0" FontSize="16" Click="btn_creation_clk">
+                    <TextBlock Text="Création de compte" FontSize="16" TextWrapping="Wrap"/>
+                </Button>
             </StackPanel>
         </StackPanel>
-        <TextBlock x:Name="txtblock_mail" HorizontalAlignment="Left" Margin="540,164,0,0" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" FontSize="36"/>
-        <TextBlock x:Name="txtblock_pwd" HorizontalAlignment="Left" Margin="459,217,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="txtblock_mail" HorizontalAlignment="Left" Margin="530,118,0,0" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="txtblock_pwd" HorizontalAlignment="Left" Margin="390,186,0,0" TextWrapping="Wrap" Text="Mot de passe" VerticalAlignment="Top" FontSize="36"/>
     </Grid>
 </UserControl>

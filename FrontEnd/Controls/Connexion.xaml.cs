@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.Controls
 {
@@ -58,8 +59,13 @@ namespace FrontEnd.Controls
         {
             string mail = txt_mail.Text;
             string pword = pwd_password.Password;
-            API.Connexion(mail, pword);
-
+            if (API.Connexion(mail, pword))
+            {
+                ControlUsed?.Invoke(this, new EventArgs());
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name}");
+            }
+            else
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Connection refusée");
         }
 
         private void btn_creation_clk(object sender, RoutedEventArgs arg)

@@ -36,5 +36,16 @@ namespace BackEnd.Security
             rng.GetBytes(buffer);
             return buffer;
         }
+
+        internal static string GetRandomString(byte size)
+        {
+            string chararray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            string returnstring = "";
+            for(byte i = 0; i < size; i++)
+            {
+                returnstring += chararray[RandomNumberGenerator.GetInt32(chararray.Length)];
+            }
+            return returnstring;
+        }
     }
 }

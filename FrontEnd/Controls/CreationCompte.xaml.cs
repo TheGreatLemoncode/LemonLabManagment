@@ -16,28 +16,28 @@ using System.Windows.Shapes;
 using BackEnd.API;
 using System.ComponentModel;
 using System.Security.Authentication;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.Controls
 {
     /// <summary>
     /// Logique d'interaction pour Authentification.xaml
     /// </summary>
-    public partial class CreationCompte : UserControl
+    public partial class CreationCompte : UserControl, Interfaces.IUserControlEvent
     {
-        public static event EventHandler CreationCompteComplete;
+        public static event EventHandler ControlUsed;
         public TextBox MailBox { get; set; } = new();
-        public TextBox PasswordBox { get; set; } = new();
+        public TextBox NameBox { get; set; } = new();
         public CreationCompte()
         {
             InitializeComponent();
-            MailBox.Text = "Hello world";
             DataContext = this;
         }
 
         #region evenement input fields
         private void txt_mail_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_mail.Text))
+            if (!string.IsNullOrEmpty(MailBox.Content))
                 txtblock_mail.Visibility = Visibility.Hidden;
             else
                 txtblock_mail.Visibility = Visibility.Visible;
@@ -60,48 +60,78 @@ namespace FrontEnd.Controls
         }
         #endregion
         #region evenement de boutton
-        private void reset_btn_clk(object sender, RoutedEventArgs e)
+        private void connexion_btn_clk(object sender, RoutedEventArgs e)
         {
-            txt_mail.Text = string.Empty;
-            pwd_password.Password = string.Empty;
-            txt_displayname.Text = string.Empty;
+            ((MainWindow)Application.Current.MainWindow).LoadAccountConnexion();
         }
 
         private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
-            string mail = txt_mail.Text;
-            string name = txt_displayname.Text;
             string password = pwd_password.Password;
 
-            API.UserCreation(name, mail, password);
+            if (MailFieldCheck(MailBox.Content))
+                MailBox.IsCorrect = true;
+            else
+            {
+                MailBox.IsCorrect = false;
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le mail n'est pas valide");
+            }
+
+            if (string.IsNullOrEmpty(NameBox.Content) || NameBox.Content.Length < 3)
+            {
+                NameBox.IsCorrect = false;
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le nom n'est pas valide");
+            }
+
+            if(MailBox.IsCorrect && NameBox.IsCorrect)
+            {
+                if(API.UserCreation(NameBox.Content, MailBox.Content, password))
+                {
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {NameBox.Content}");
+                    ControlUsed?.Invoke(this, new EventArgs());
+                }
+                else
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowError($"Le compte {MailBox.Content} existe déjà");
+            }
+                
+
+            
         }
 
-        //private bool InputFieldCheck()
-        //{
-        //    bool bMail = false;
-        //    bool bPassword = false;
-        //    bool bName = false;
+        private bool MailFieldCheck(string pText)
+        {
+            if (!pText.Contains('@'))
+                return false;
 
-        //    bMail = txt_mail.Text.Contains("")
-        //    return true;
-        //}
+            string[] MailFormat = pText.Split('@');
+            return (!string.IsNullOrEmpty(MailFormat[0]) && MailFormat[1].Contains('.') && !string.IsNullOrEmpty(MailFormat[1].Split('.')[1]));
+        }
         #endregion
     }
 
     public class TextBox : INotifyPropertyChanged
     {
-        public string? Text;
+        private string? Text;
+        private bool Valid = true;
         public string Content
         {
-            get { return Text;}
+            get
+            {
+                if (string.IsNullOrEmpty(Text))
+                    return string.Empty;
+                return Text;
+            }
             set
             {
                 Text = value;
                 NotifyPropertyChanged(nameof(Content));
             }
         }
-
-        public bool IsCorrect { get; set; }
+        public bool IsCorrect
+        {
+            get { return Valid; }
+            set { Valid = value; NotifyPropertyChanged(nameof(IsCorrect)); } 
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

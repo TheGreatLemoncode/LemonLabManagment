@@ -18,28 +18,24 @@
                 </DataTrigger>
 
                 <DataTrigger Binding="{Binding IsCorrect}" Value="True">
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect Color="#FF2CCF2A" Opacity="0.8" BlurRadius="10" ShadowDepth="10"/>
-                        </Setter.Value>
-                    </Setter>
+                    <Setter Property="Effect" Value="{x:Null}"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
     <Grid>
-        <StackPanel Width="560" Height="360">
-            <Label Content="Création de compte" HorizontalAlignment="Center" FontSize="48" Background="{x:Null}"/>
-            <TextBox DataContext="{Binding MailBox}" Text="{Binding Content}" Style="{DynamicResource ErrorField}" x:Name="txt_mail" Background="#FFC6C2C2" Width="470" Margin="0,10,0,0" FontSize="36" TextChanged="txt_mail_TextChanged"/>
+        <StackPanel>
+            <Label Content="Création de compte" HorizontalAlignment="Center" FontSize="48" Background="{x:Null}" Margin="0,32,0,0"/>
+            <TextBox DataContext="{Binding MailBox}" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource ErrorField}" x:Name="txt_mail" Background="#FFC6C2C2" Width="470" Margin="0,10,0,0" FontSize="36" TextChanged="txt_mail_TextChanged"/>
             <PasswordBox x:Name="pwd_password" Background="#FFC6C2C2" Width="470" Margin="0,10,0,0" FontSize="36" PasswordChanged="pwd_password_PasswordChanged"/>
-            <TextBox x:Name="txt_displayname" Background="#FFC6C2C2" Width="470" Margin="0,10,0,0" FontSize="36" TextChanged="txt_displayname_changed"/>
+            <TextBox DataContext="{Binding NameBox}" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource ErrorField}" x:Name="txt_displayname" Background="#FFC6C2C2" Width="470" Margin="0,10,0,0" FontSize="36" TextChanged="txt_displayname_changed"/>
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <Button x:Name="btn_reset" Content="Reset" Height="80" Width="197" Margin="45,0,0,0" Click="reset_btn_clk"/>
-                <Button x:Name="btn_creation" Content="Creation" Height="80" Width="196" Margin="80,0,0,0" Click="creation_btn_clk"/>
+                <Button Style="{StaticResource BaseButton}" x:Name="btn_connetion" Content="Connection" Height="80" Width="196" Margin="163,0,0,0" Click="connexion_btn_clk"/>
+                <Button Style="{StaticResource BaseButton}" x:Name="btn_creation" Content="Creation" Height="80" Width="196" Margin="80,0,0,0" Click="creation_btn_clk"/>
             </StackPanel>
         </StackPanel>
-        <TextBlock x:Name="txtblock_mail" HorizontalAlignment="Left" Margin="556,127,0,0" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" FontSize="36"/>
-        <TextBlock x:Name="txtblock_pwd" HorizontalAlignment="Left" Margin="475,186,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" FontSize="36"/>
-        <TextBlock x:Name="txtblock_code" HorizontalAlignment="Left" Margin="529,245,0,0" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="txtblock_mail" HorizontalAlignment="Left" Margin="556,65,0,0" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="txtblock_pwd" HorizontalAlignment="Left" Margin="411,131,0,0" TextWrapping="Wrap" Text="Mot de passe" VerticalAlignment="Top" FontSize="36"/>
+        <TextBlock x:Name="txtblock_code" HorizontalAlignment="Left" Margin="545,23,0,0" TextWrapping="Wrap" Text="Nom" VerticalAlignment="Center" FontSize="36"/>
     </Grid>
 </UserControl>
