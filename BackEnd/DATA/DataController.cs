@@ -8,13 +8,12 @@ using Newtonsoft.Json;
 using Konscious.Security.Cryptography;
 using System.IO;
 
-namespace BackEnd.Models
+namespace BackEnd.DATA
 {
     internal class DataController
     {
-        public Dictionary<string, Account> Accounts = [];
+        public Dictionary<string, object> Accounts = [];
         public Dictionary<string, byte[]> Salts = [];
-        public Dictionary<string, Organisation> Organisations = [];
 
         public DataController()
         {
@@ -22,13 +21,13 @@ namespace BackEnd.Models
         }
         private void load() 
         {
-            if (File.Exists("DATA/Accounts.lemon"))
+            if (File.Exists("Accounts.lemon"))
             {
-                using (StreamReader rd = new StreamReader("DATA/Accounts.lemon"))
+                using (StreamReader rd = new StreamReader("Accounts.lemon"))
                 {
                     string json = rd.ReadToEnd();
                     if (!string.IsNullOrEmpty(json))
-                        Accounts = JsonConvert.DeserializeObject<Dictionary<string, Account>>(json);
+                        Accounts = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
                     else
                         Accounts = [];
                 }
@@ -36,9 +35,9 @@ namespace BackEnd.Models
             else
                 Accounts = [];
 
-            if (File.Exists("DATA/Salts.lemon"))
+            if (File.Exists("Salts.lemon"))
             {
-                using (StreamReader slt = new("DATA/Salts.lemon"))
+                using (StreamReader slt = new("Salts.lemon"))
                 {
                     string text = slt.ReadToEnd();
                     if (!string.IsNullOrEmpty(text))
@@ -49,40 +48,21 @@ namespace BackEnd.Models
             }
             else
                 Salts = [];
-
-            if (File.Exists("DATA/Organisations.lemon"))
-            {
-                using (StreamReader orgs = new("DATA/Organisations.lemon"))
-                {
-                    string text = orgs.ReadToEnd();
-                    if (!string.IsNullOrEmpty(text))
-                        Organisations = JsonConvert.DeserializeObject<Dictionary<string, Organisation>>(text);
-                    else
-                        Organisations = [];
-                }
-            }
             
         }
 
         public void Save()
         {
-            DirectoryInfo di = Directory.CreateDirectory("DATA");
-            using (StreamWriter wr = new StreamWriter("DATA/Accounts.lemon"))
+            using (StreamWriter wr = new StreamWriter("Accounts.lemon"))
             {
                 string json = JsonConvert.SerializeObject(Accounts);
                 wr.Write(json);
             }
 
-            using (StreamWriter wr2 = new("DATA/Salts.lemon"))
+            using (StreamWriter wr2 = new("salts.lemon"))
             {
                 string text = JsonConvert.SerializeObject(Salts);
                 wr2.Write(text);
-            }
-
-            using (StreamWriter wr3 = new StreamWriter("DATA/Organisations.lemon"))
-            {
-                string text = JsonConvert.SerializeObject(Organisations);
-                wr3.Write(text);
             }
         }
     }

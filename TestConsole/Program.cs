@@ -5,10 +5,12 @@ namespace TestConsole
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             Console.WriteLine(GetRandomString(6));
+            DirectoryInfo di = Directory.CreateDirectory("DATA");
             Console.ReadKey();
+            return 9;
         }
 
         private static string GetRandomString(byte size)

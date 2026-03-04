@@ -56,4 +56,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="BoxShadow" TargetType="Border">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect Color="#FF6F6969" Opacity="0.8" BlurRadius="10"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

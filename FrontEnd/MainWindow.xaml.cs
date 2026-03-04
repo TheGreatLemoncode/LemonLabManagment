@@ -27,11 +27,9 @@ namespace FrontEnd
         public MainWindow()
         {
             InitializeComponent();
-            API.Initialisation();
-            Connexion.CreationEvent += LoadAccountCreation;
-            Connexion.ControlUsed += LoadMainMenu;
+            //API.Initialisation();
             CreationCompte.ControlUsed += LoadMainMenu;
-            MainView.Content = new CreationCompte();
+            MainView.Content = new Connexion();
 
             _notifier = new(cfg =>
             {
@@ -62,7 +60,7 @@ namespace FrontEnd
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            API.SaveUserInformation();
+            //API.SaveUserInformation();
         }
     }
 }

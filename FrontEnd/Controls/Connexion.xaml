@@ -5,22 +5,26 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FrontEnd.Controls"
              mc:Ignorable="d" 
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Canvas>
+        <StackPanel Background="#FFC9DAEC" Canvas.Left="175" Canvas.Top="52" Height="290" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Label HorizontalAlignment="Center"  Height="37" Width="232" Margin="0,13,0,0">
+                <ui:TextBlock FontSize="20" FontFamily="Cascadia Code" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="232" Height="40" Text="Connexion au compte" Foreground="#FF0F172A"/>
+            </Label>
 
-        <StackPanel Height="360" Margin="118,76,139,14">
-            <Label Content="CONNEXION" HorizontalAlignment="Center" FontSize="48"/>
-            <TextBox x:Name="txt_mail" Background="#FFC6C2C2" Width="449" Margin="0,10,0,0" FontSize="36" TextChanged="txt_mail_TextChanged"/>
-            <PasswordBox x:Name="pwd_password" Background="#FFC6C2C2" Width="450" Margin="0,10,0,0" FontSize="36" PasswordChanged="pwd_password_PasswordChanged"/>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Width="562">
-                <Button x:Name="btn_reset" Content="reinitialiser" Height="80" Width="120" Margin="45,0,0,0" Click="reset_btn_clk" FontSize="16"/>
-                <Button x:Name="btn_connexion" Content="connection" Height="80" Width="131" Margin="45,0,0,0" FontSize="16" Click="connexion_btn_clk"/>
-                <Button x:Name="btn_creation" Height="80" Width="117" Margin="40,0,0,0" FontSize="16" Click="btn_creation_clk">
-                    <TextBlock Text="Création de compte" FontSize="16" TextWrapping="Wrap"/>
-                </Button>
+            <StackPanel Margin="0,12,0,0">
+                <Label FontSize="18" Content="Mail" Width="357" Foreground="#FF0F172A"/>
+                <ui:TextBox Width="357"/>
             </StackPanel>
+            <StackPanel Margin="0,18,0,0">
+                <Label FontSize="18" Content="Mot de passe" Width="357" Foreground="#FF0F172A"/>
+                <ui:TextBox Width="357"/>
+            </StackPanel>
+            <ui:Button Margin="0,19,0,0" HorizontalAlignment="Center" Width="106" Height="36" Background="#FF3B82F6">
+                <ui:TextBlock Text="Connexion" Foreground="#FF0F172A"/>
+            </ui:Button>
         </StackPanel>
-        <TextBlock x:Name="txtblock_mail" HorizontalAlignment="Left" Margin="530,118,0,0" TextWrapping="Wrap" Text="Mail" VerticalAlignment="Top" FontSize="36"/>
-        <TextBlock x:Name="txtblock_pwd" HorizontalAlignment="Left" Margin="390,186,0,0" TextWrapping="Wrap" Text="Mot de passe" VerticalAlignment="Top" FontSize="36"/>
-    </Grid>
+        <Rectangle Fill="#FF4B4C4C" Canvas.Left="191" Canvas.Top="67" Height="290" Width="450" Panel.ZIndex="-1" Opacity="0.63" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+    </Canvas>
 </UserControl>
