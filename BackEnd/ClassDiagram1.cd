@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BackEnd.API.API">
+    <Position X="5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAABAAIAACAAAAgAQCAIQA=</HashCode>
+      <FileName>API\API.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Models.Account" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAIAAIAAAAAwAgAAAABACAAAAEQAAAAA=</HashCode>
+      <FileName>Models\Account.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.222" Collapsed="true" />
+  </Class>
+  <Class Name="BackEnd.Models.DataController">
+    <Position X="6.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAIAAAIAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\DataController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Models.Organisation">
+    <Position X="5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAgAAQAAQAAAAAAAAAEAAAAACA=</HashCode>
+      <FileName>Models\Organisation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Security.Kitchen">
+    <Position X="3.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAABAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Security\Kitchen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
