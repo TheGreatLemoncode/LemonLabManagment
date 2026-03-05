@@ -28,14 +28,13 @@ namespace BackEnd.API
             return false;
         }
 
-        public static bool Connexion(string pMail, string pPword)
+        public static bool Connection(string pMail, string pPword)
         {
             if (dataController.Salts.ContainsKey(pMail))
             {
                 byte[] nsalt = dataController.Salts[pMail];
                 Account nUser = dataController.Accounts[pMail];
                 if (Kitchen.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
-                    MessageBox.Show($"Hello fucking world \n{nUser.Name}");
                     ConnectedUser = nUser;
                     return true;
                 }

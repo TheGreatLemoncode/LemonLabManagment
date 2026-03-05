@@ -1,11 +1,15 @@
-﻿using System;
+﻿using BackEnd.API;
+using FrontEnd.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Authentication;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Text.RegularExpressions;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -13,9 +17,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BackEnd.API;
-using System.ComponentModel;
-using System.Security.Authentication;
 using ToastNotifications.Messages;
 
 namespace FrontEnd.Controls
@@ -26,37 +27,21 @@ namespace FrontEnd.Controls
     public partial class CreationCompte : UserControl, Interfaces.IUserControlEvent
     {
         public static event EventHandler ControlUsed;
-        public TextBox MailBox { get; set; } = new();
-        public TextBox NameBox { get; set; } = new();
         public CreationCompte()
         {
             InitializeComponent();
-            DataContext = this;
+            StackField.DataContext = new MailViewModel();
+            txt_name.DataContext = new InputViewModel();
         }
 
         #region evenement input fields
-        private void txt_mail_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(MailBox.Content))
-                txtblock_mail.Visibility = Visibility.Hidden;
-            else
-                txtblock_mail.Visibility = Visibility.Visible;
+            ((MailViewModel)txt_mail.DataContext).CheckContent();
         }
-
-        private void pwd_password_PasswordChanged(object sender, RoutedEventArgs e)
+        private void Name_TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
-            if (!string.IsNullOrEmpty(pwd_password.Password))
-                txtblock_pwd.Visibility = Visibility.Hidden;
-            else
-                txtblock_pwd.Visibility = Visibility.Visible;
-        }
-
-        private void txt_displayname_changed(object sender, TextChangedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txt_displayname.Text))
-                txtblock_code.Visibility = Visibility.Hidden;
-            else
-                txtblock_code.Visibility = Visibility.Visible;
+            ((InputViewModel)txt_name.DataContext).CheckContent();
         }
         #endregion
         #region evenement de boutton
@@ -67,44 +52,22 @@ namespace FrontEnd.Controls
 
         private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
-            string password = pwd_password.Password;
 
-            if (MailFieldCheck(MailBox.Content))
-                MailBox.IsCorrect = true;
+            if (!((MailViewModel)StackField.DataContext).isCorrect)
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le format du courriel n'est pas valide");
+            else if (string.IsNullOrEmpty(txt_name.Text) || string.IsNullOrEmpty(pwd_user.Password))
+            {
+
+            }
             else
             {
-                MailBox.IsCorrect = false;
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le mail n'est pas valide");
-            }
-
-            if (string.IsNullOrEmpty(NameBox.Content) || NameBox.Content.Length < 3)
-            {
-                NameBox.IsCorrect = false;
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le nom n'est pas valide");
-            }
-
-            if(MailBox.IsCorrect && NameBox.IsCorrect)
-            {
-                if(API.UserCreation(NameBox.Content, MailBox.Content, password))
+                if (API.UserCreation(txt_name.Text, txt_mail.Text, pwd_user.Password))
                 {
-                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {NameBox.Content}");
                     ControlUsed?.Invoke(this, new EventArgs());
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name}");
                 }
-                else
-                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowError($"Le compte {MailBox.Content} existe déjà");
             }
-                
 
-            
-        }
-
-        private bool MailFieldCheck(string pText)
-        {
-            if (!pText.Contains('@'))
-                return false;
-
-            string[] MailFormat = pText.Split('@');
-            return (!string.IsNullOrEmpty(MailFormat[0]) && MailFormat[1].Contains('.') && !string.IsNullOrEmpty(MailFormat[1].Split('.')[1]));
         }
         #endregion
     }

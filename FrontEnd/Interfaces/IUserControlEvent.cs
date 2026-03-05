@@ -8,6 +8,6 @@ namespace FrontEnd.Interfaces
 {
     internal interface IUserControlEvent
     {
-        internal static event EventHandler ControlUsed;
+        internal abstract static event EventHandler ControlUsed;
     }
 }
