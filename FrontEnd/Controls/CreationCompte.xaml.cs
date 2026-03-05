@@ -32,6 +32,7 @@ namespace FrontEnd.Controls
             InitializeComponent();
             StackField.DataContext = new MailViewModel();
             txt_name.DataContext = new InputViewModel();
+            txt_mail.Focus();
         }
 
         #region evenement input fields

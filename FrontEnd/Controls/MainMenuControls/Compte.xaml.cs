@@ -65,5 +65,17 @@ namespace FrontEnd.Controls.MainMenuControls
             else
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Organisation déjà existante");
         }
+
+        private void copy_btn_clk(object sender,  RoutedEventArgs args)
+        {
+            Clipboard.SetText(API.ConnectedUser.Organisation.Code);
+            ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Code copié");
+        }
+
+        private void disconnect_btn_clk(object sender, RoutedEventArgs e)
+        {
+            API.Deconnection();
+            ((MainWindow)Application.Current.MainWindow).LoadAccountConnexion();
+        }
     }
 }

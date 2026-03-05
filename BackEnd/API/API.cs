@@ -28,7 +28,7 @@ namespace BackEnd.API
             return false;
         }
 
-        public static bool Connection(string pMail, string pPword)
+        public static bool Connection( string pPword, string pMail = "")
         {
             if (dataController.Salts.ContainsKey(pMail))
             {
@@ -62,6 +62,12 @@ namespace BackEnd.API
                     return true;
             }
             return false;
+        }
+
+        public static void Deconnection()
+        {
+            SaveUserInformation();
+            ConnectedUser = null;
         }
 
         public static bool NewOrganisation(Organisation pOrg)
