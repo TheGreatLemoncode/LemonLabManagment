@@ -16,6 +16,9 @@ using System.Windows.Shapes;
 using Microsoft.VisualBasic;
 using BackEnd.Models;
 using ToastNotifications.Messages;
+using Wpf.Ui;
+using FrontEnd.Dialogs;
+using FrontEnd.ViewModels;
 
 namespace FrontEnd.Controls.MainMenuControls
 {
@@ -24,46 +27,65 @@ namespace FrontEnd.Controls.MainMenuControls
     /// </summary>
     public partial class Compte : UserControl
     {
+        public AccountViewModel Buttons { get; set; } = new AccountViewModel();
         public Compte()
         {
             InitializeComponent();
             DataContext = API.ConnectedUser;
+            Lst_buttons.ItemsSource = Buttons.AccountButtons;
+            Buttons.AccountButtons[0].Click += join_btn_clk;
+            Buttons.AccountButtons[1].Click += create_btn_clk;
+            Buttons.AccountButtons[2].Click += disconnect_btn_clk;
         }
 
         public void join_btn_clk(object sender, RoutedEventArgs args)
         {
             string code = Interaction.InputBox("Entrer le code de l'organisation", Title: "Rejoindre une organisation");
-            if (API.OrganisationExist(code))
+            if (!string.IsNullOrEmpty(code))
             {
-                Organisation org = API.GetOrganisation(code);
-                MessageBoxResult result = MessageBox.Show($"Rejoindre {org.Name} ?", "Rejoindre une organisation", MessageBoxButton.YesNo);
-                if (result == MessageBoxResult.Yes)
+                if (API.OrganisationExist(code))
                 {
-                    org.AddMember(API.ConnectedUser);
-                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenue dans le groupe {org.Name}");
-                    ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
+                    Organisation org = API.GetOrganisation(code);
+                    MessageBoxResult result = MessageBox.Show($"Rejoindre {org.Name} ?", "Rejoindre une organisation", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        org.AddMember(API.ConnectedUser);
+                        ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenue dans le groupe {org.Name}");
+                        ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
+                    }
+
                 }
-                    
-            }
-            else
-                MessageBox.Show("Ce code n'existe pas", "Rejoindre une organisation");
+                else
+                    MessageBox.Show("Ce code n'existe pas", "Rejoindre une organisation");
+            }  
         }
 
         public void create_btn_clk(object sender, RoutedEventArgs args)
         {
-            string pName = Interaction.InputBox("Entrer le nom de l'organisation", Title: "Créer une organisation");
-            Organisation org = new(pName);
-            org.CreateCode();
-            org.Owner = API.ConnectedUser.Mail;
-            if (API.NewOrganisation(org))
-            {
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess("Organisation ajouté");
-                ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
-            }
-                
 
-            else
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Organisation déjà existante");
+            //string pName = Interaction.InputBox("Entrer le nom de l'organisation", Title: "Créer une organisation");
+            IntakeBox Box = new("création d'une organisation", "Entrez le nom de l'organisation");
+            Box.Owner = Application.Current.MainWindow;
+            
+            if ((bool)Box.ShowDialog())
+            {
+                string pName = Box.Result;
+                MessageBox.Show(pName + " Voici le resultat");
+            }
+            
+            //if (!string.IsNullOrEmpty(pName))
+            //{
+            //    Organisation org = new(pName);
+            //    org.CreateCode();
+            //    org.Owner = API.ConnectedUser.Mail;
+            //    if (API.NewOrganisation(org))
+            //    {
+            //        ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess("Organisation ajouté");
+            //        ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
+            //    }
+            //    else
+            //        ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Organisation déjà existante");
+            //}       
         }
 
         private void copy_btn_clk(object sender,  RoutedEventArgs args)
@@ -76,6 +98,7 @@ namespace FrontEnd.Controls.MainMenuControls
         {
             API.Deconnection();
             ((MainWindow)Application.Current.MainWindow).LoadAccountConnexion();
+            //Color.fr
         }
     }
 }

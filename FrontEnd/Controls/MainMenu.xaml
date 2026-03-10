@@ -13,7 +13,6 @@
             <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Content="Ajout machine" Height="50" Margin="10,5,0,0" Width="140" />
             <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Content="Toutes les machines" Height="50" Margin="10,5,0,0" Width="140"/>
             <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Content="Plan de circuit" Height="50" Margin="10,5,0,0" Width="140"/>
-
         </StackPanel>
         <ContentControl x:Name="MainMenuDisplay" Margin="189,10,0,10"/>
     </Grid>

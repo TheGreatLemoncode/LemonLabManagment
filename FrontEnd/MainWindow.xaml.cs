@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BackEnd.API;
 using System.Security.Policy;
+using FrontEnd.Controls.MainMenuControls;
 
 namespace FrontEnd
 {
@@ -30,7 +31,7 @@ namespace FrontEnd
             API.Initialisation();
             CreationCompte.ControlUsed += LoadMainMenu;
             Connection.ControlUsed += LoadMainMenu;
-            MainView.Content = new CreationCompte();
+            MainView.Content = new MainMenu();
 
             _notifier = new(cfg =>
             {

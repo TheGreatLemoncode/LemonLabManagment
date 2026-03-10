@@ -15,7 +15,7 @@
                     <Button Height="40" Width="400" Content="16"/>
                 </ListBox>
             </Expander>
-            <ContentControl x:Name="MachineControls" Background="#FFF9ECEC" Height="260" Margin="0,33,0,0"/>
+            <ContentControl x:Name="MachineControls" Background="#FFBF3535" Height="260" Margin="0,33,0,0" Width="552"/>
         </StackPanel>
     </Grid>
 </UserControl>
