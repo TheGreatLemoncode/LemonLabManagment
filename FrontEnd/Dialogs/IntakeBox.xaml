@@ -7,10 +7,10 @@
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
         Title="IntakeBox" Height="250" Width="350" ResizeMode="NoResize"
-        Background="#FFF3FBE6">
+        Background="#FFF3FBE6" Closed="Window_Closed">
     <Canvas>
-        <ui:TextBlock TextAlignment="Center" x:Name="txtBlock_message" TextWrapping="Wrap" FontFamily="Cascadia Code" FontSize="14" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="240" Height="60" Canvas.Top="10" Canvas.Left="47"/>
-        <ui:TextBox FontSize="18" FontFamily="Cascadia Code" x:Name="txt_content" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Width="240" Height="34" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430" HorizontalAlignment="Center" Canvas.Top="83" VerticalAlignment="Top" Canvas.Left="47"/>
+        <ui:TextBlock TextAlignment="Center" x:Name="txtBlock_message" TextWrapping="Wrap" FontFamily="Cascadia Code" FontSize="14" Text="{Binding Message}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="240" Height="60" Canvas.Top="10" Canvas.Left="47"/>
+        <ui:TextBox FontSize="18" FontFamily="Cascadia Code" x:Name="txt_content" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Width="240" Height="47" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430" HorizontalAlignment="Center" Canvas.Top="75" VerticalAlignment="Top" Canvas.Left="47"/>
         <DockPanel Height="46" Width="234" HorizontalAlignment="Left" Canvas.Top="141" VerticalAlignment="Top" Canvas.Left="50" >
             <ui:Button Click="Btn_confirmer_clk" DockPanel.Dock="Right" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Width="100" Height="30">
                 <ui:TextBlock FontFamily="Cascadia Code" Text="Confirmer" Foreground="#2E2E2E" FontSize="14" Height="17" Width="75"/>

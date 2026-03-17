@@ -4,18 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FrontEnd.Controls"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+             xmlns:model="clr-namespace:BackEnd.Models;assembly=BackEnd"
              mc:Ignorable="d" 
              d:DesignHeight="380" d:DesignWidth="611">
-    <Grid>
-        <StackPanel>
-            <Expander Height="68" Header="ROUTER" Width="552" FontSize="24">
-                <ListBox HorizontalContentAlignment="Center" Margin="0,0,0,-16">
-                    <Button Height="40" Width="400" Content="116"/>
-                    <Button Height="40" Width="400" Content="16"/>
-                    <Button Height="40" Width="400" Content="16"/>
-                </ListBox>
-            </Expander>
-            <ContentControl x:Name="MachineControls" Background="#FFBF3535" Height="260" Margin="0,33,0,0" Width="552"/>
+    <UserControl.Resources>
+        <DataTemplate DataType="model:Machine" x:Key="LayoutA">
+            <StackPanel MaxHeight="150">
+                <ui:TextBlock Text="{Binding Name}"/>
+                <ui:TextBlock Text="{Binding Locataire}"/>
+                <ui:TextBlock Text="{Binding Status}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate DataType="model:Machine" x:Key="LayoutB">
+            <StackPanel MaxHeight="150">
+                <ui:TextBlock Text="{Binding Name}"/>
+                <ui:TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
+                <ui:TextBlock Text="{Binding Status}"/>
+            </StackPanel>
+        </DataTemplate>
+        <local:TemplateSelector x:Key="MySelector" x:Name="TheSelector" CurrentLayout="Welcome" TemplateA="{StaticResource LayoutA}" TemplateB="{StaticResource LayoutB}"/>
+    </UserControl.Resources>
+    <Canvas>
+        <StackPanel Panel.ZIndex="0" Canvas.Left="14" Canvas.Top="10" HorizontalAlignment="Left" Height="360" VerticalAlignment="Center" Width="587">
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="55" Width="552" Background="#FFEC6060">
+                <ui:TextBox x:Name="SearchBarContent" Width="500" Background="White"/>
+                <ui:Button Content="Src" Height="50" Width="49" Background="White"/>
+            </StackPanel>
+            <ui:TextBlock TextAlignment="Center" Panel.ZIndex="0" FontFamily="Cascadia Code" FontSize="32" Text="{Binding PageName, FallbackValue=Acceuil}" Width="330" Margin="0,1,0,0"/>
+            <ListBox ItemTemplateSelector="{StaticResource MySelector}" x:Name="MachineControls" Background="#FFBF3535" Height="230" Width="543">
+                <model:Machine Name="uneMachine" Status="Disponible" Locataire="Gerome" Description="une super machine" />
+            </ListBox>
         </StackPanel>
-    </Grid>
+        <ui:DynamicScrollViewer Canvas.Left="32" Canvas.Top="76" MaxHeight="150" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel x:Name="ScollerViewerContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Width="550" Background="#FF9E9E9E"/>
+        </ui:DynamicScrollViewer>
+        <ui:Button Content="AJOUTER" Panel.ZIndex="1" Canvas.Left="501" Canvas.Top="320" VerticalAlignment="Top" Height="50" Width="100" Click="Button_Click"/>
+        <ui:Button Content="FLR" Panel.ZIndex="1" Canvas.Left="532" Canvas.Top="81" Height="30" Width="50"/>
+    </Canvas>
 </UserControl>

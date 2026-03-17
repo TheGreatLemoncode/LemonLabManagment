@@ -40,7 +40,14 @@ namespace FrontEnd.Controls.MainMenuControls
 
         public void join_btn_clk(object sender, RoutedEventArgs args)
         {
-            string code = Interaction.InputBox("Entrer le code de l'organisation", Title: "Rejoindre une organisation");
+            string code = string.Empty;
+            IntakeBox Box = new("Rejoindre une organisation", "Entrez le code de l'organisation");
+            Box.Owner = Application.Current.MainWindow;
+            if ((bool)Box.ShowDialog())
+            {
+                code = Box.Result;
+            }
+
             if (!string.IsNullOrEmpty(code))
             {
                 if (API.OrganisationExist(code))
@@ -66,26 +73,25 @@ namespace FrontEnd.Controls.MainMenuControls
             //string pName = Interaction.InputBox("Entrer le nom de l'organisation", Title: "Créer une organisation");
             IntakeBox Box = new("création d'une organisation", "Entrez le nom de l'organisation");
             Box.Owner = Application.Current.MainWindow;
-            
+            string pName = string.Empty;
             if ((bool)Box.ShowDialog())
             {
-                string pName = Box.Result;
-                MessageBox.Show(pName + " Voici le resultat");
+                pName = Box.Result;
             }
-            
-            //if (!string.IsNullOrEmpty(pName))
-            //{
-            //    Organisation org = new(pName);
-            //    org.CreateCode();
-            //    org.Owner = API.ConnectedUser.Mail;
-            //    if (API.NewOrganisation(org))
-            //    {
-            //        ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess("Organisation ajouté");
-            //        ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
-            //    }
-            //    else
-            //        ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Organisation déjà existante");
-            //}       
+
+            if (!string.IsNullOrEmpty(pName))
+            {
+                Organisation org = new(pName);
+                org.CreateCode();
+                org.Owner = API.ConnectedUser.Mail;
+                if (API.NewOrganisation(org))
+                {
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess("Organisation ajouté");
+                    ((MainWindow)Application.Current.MainWindow).LoadMainMenu(this, new EventArgs());
+                }
+                else
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Organisation déjà existante");
+            }
         }
 
         private void copy_btn_clk(object sender,  RoutedEventArgs args)

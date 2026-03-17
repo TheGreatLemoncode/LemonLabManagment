@@ -48,5 +48,10 @@ namespace FrontEnd.Dialogs
         {
             DialogResult = true;
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            DialogResult = false;
+        }
     }
 }

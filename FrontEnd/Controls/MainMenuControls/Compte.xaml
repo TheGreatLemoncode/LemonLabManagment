@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:FrontEnd.Controls.MainMenuControls"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="FrontEnd.Controls.MainMenuControls.Compte"
              mc:Ignorable="d" 
-             d:DesignHeight="380" d:DesignWidth="611">
+             d:DesignHeight="380" d:DesignWidth="601">
     <UserControl.Resources>
         <Style x:Key="CopyTrigger" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
             <Setter Property="Visibility" Value="Visible"/>

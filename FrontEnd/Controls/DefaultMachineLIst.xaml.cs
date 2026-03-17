@@ -20,9 +20,16 @@ namespace FrontEnd.Controls
     /// </summary>
     public partial class DefaultMachineLIst : UserControl
     {
+        public LayoutMode Layout { get; set; } = LayoutMode.Welcome;
         public DefaultMachineLIst()
         {
             InitializeComponent();
+            ((TemplateSelector)this.Resources["MySelector"]).CurrentLayout = LayoutMode.All;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((TemplateSelector)this.Resources["MySelector"]).CurrentLayout = LayoutMode.Welcome;
         }
     }
 }
