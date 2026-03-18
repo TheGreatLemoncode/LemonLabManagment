@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,18 +19,41 @@ namespace FrontEnd.Controls
     /// <summary>
     /// Logique d'interaction pour DefaultMachineLIst.xaml
     /// </summary>
-    public partial class DefaultMachineLIst : UserControl
+    public partial class DefaultMachineLIst : UserControl, INotifyPropertyChanged
     {
-        public LayoutMode Layout { get; set; } = LayoutMode.Welcome;
+        public event PropertyChangedEventHandler PropertyChanged;
+        private LayoutMode _layout = LayoutMode.Default;
+        private int conter = 0;
+        public LayoutMode CurrentLayout
+        {
+            get {  return _layout; }
+            set
+            {
+                _layout = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CurrentLayout)));
+            }
+        }
+
         public DefaultMachineLIst()
         {
             InitializeComponent();
-            ((TemplateSelector)this.Resources["MySelector"]).CurrentLayout = LayoutMode.All;
+            MachineControls.DataContext = this;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((TemplateSelector)this.Resources["MySelector"]).CurrentLayout = LayoutMode.Welcome;
+            MessageBox.Show(CurrentLayout.ToString());
+            if (conter < 1)
+            {
+                CurrentLayout = LayoutMode.All;
+                conter++;
+            }
+            else
+            {
+                CurrentLayout = LayoutMode.Default;
+                conter--;
+            }
+            MessageBox.Show(CurrentLayout.ToString());
         }
     }
 }

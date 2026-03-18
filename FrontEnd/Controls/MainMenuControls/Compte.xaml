@@ -30,9 +30,10 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </StackPanel>
+        <Label Content="Affiliation" Canvas.Left="400" Canvas.Top="9"/>
         <DockPanel Canvas.Left="400" Canvas.Top="37" Height="45" Width="187" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FFF3FBE6">
             <ui:Button Click="copy_btn_clk" Style="{StaticResource CopyTrigger}" Content="O" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Copier le code"/>
-            <ui:TextBlock TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" Text="{Binding Organisation.Name, FallbackValue=Indépendant, StringFormat=Organisation: \{0\}}" Width="152"/>
+            <ui:TextBlock TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" Text="{Binding Organisation.Name, FallbackValue=Affiliation: \ Indépendant, StringFormat=Organisation: \{0\}}" Width="152"/>
         </DockPanel>
 
     </Canvas>

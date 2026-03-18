@@ -16,13 +16,13 @@ namespace FrontEnd.Controls
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            return (CurrentLayout == LayoutMode.Welcome)? TemplateA : TemplateB;
+            return (CurrentLayout == LayoutMode.Default)? TemplateA : TemplateB;
         }
     }
 
     public enum LayoutMode
     {
-        Welcome,
+        Default,
         All
     }
 }

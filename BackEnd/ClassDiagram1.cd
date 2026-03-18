@@ -1,40 +1,90 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="BackEnd.API.API">
-    <Position X="5" Y="1.5" Width="1.5" />
+    <Position X="8" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAAAIAAAAAAAABAAIAACAAAAgAQCAIQA=</HashCode>
+      <HashCode>AAAAAIAAAAAAEAEIAAAAAAAABAAIAAAAAAAgAQCAIQA=</HashCode>
       <FileName>API\API.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="BackEnd.DATA.DataController">
+    <Position X="9.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAIAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>DATA\DataController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="BackEnd.Models.Account" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="4.75" Width="1.5" />
+    <Position X="6.25" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAIAAIAAAAAwAgAAAABACAAAAEQAAAAA=</HashCode>
       <FileName>Models\Account.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.222" Collapsed="true" />
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="BackEnd.Models.Computer">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Computer.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Class Name="BackEnd.Models.DataController">
-    <Position X="6.75" Y="2" Width="1.5" />
+    <Position X="8.25" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAIAAAIAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Models\DataController.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="BackEnd.Models.Machine">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAKAAEAAAgAAAEAAAAAAQAIAAAAAAAAAAAAABAACA=</HashCode>
+      <FileName>Models\Machine.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="BackEnd.Models.Organisation">
-    <Position X="5" Y="4.75" Width="1.5" />
+    <Position X="11.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAgAAQAAQAAAAAAAAAEAAAAACA=</HashCode>
       <FileName>Models\Organisation.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="BackEnd.Models.Router">
+    <Position X="4.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAQABAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\Router.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackEnd.Models.Server">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\Server.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="BackEnd.Security.Kitchen">
-    <Position X="3.25" Y="3.75" Width="1.5" />
+    <Position X="10" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAEAAAAABAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Security\Kitchen.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Interface Name="BackEnd.Interface.ILocation">
+    <Position X="6.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Interface\ILocation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="BackEnd.Models.Status">
+    <Position X="6.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAgAAA=</HashCode>
+      <FileName>Models\Machine.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

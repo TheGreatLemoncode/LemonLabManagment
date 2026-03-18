@@ -1,0 +1,18 @@
+<ListBox x:Name="MachineControls" Background="#FFBF3535" Height="230" Width="543">
+    <ListBox.Style>
+        <Style TargetType="ListBox">
+            <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                        
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding CurrentLayout}" Value="Default">
+                    <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding CurrentLayout}" Value="All">
+                    <Setter Property="ItemTemplate" Value="{StaticResource LayoutB}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </ListBox.Style>
+    <model:Machine Description="une petite machine" Locataire="alphonse" Name="volvo"/>
+    <model:Machine Description="une grande machine" Locataire="Gilbert" Name="Cars" Status="Indisponible"/>
+</ListBox>

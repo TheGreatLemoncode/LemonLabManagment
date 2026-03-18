@@ -16,7 +16,7 @@ namespace BackEnd.Models
             _marque = pMarque;
         }
         public Machine() { }
-        public string? Locataire { get; set; }
+        public string Locataire { get; set; } = string.Empty;
 
         private Status _status = Status.Disponible;
         public Status Status { get { return _status; } set{ _status = value; }  }

@@ -37,7 +37,7 @@
 
     </UserControl.Resources>
     <Canvas>
-        <StackPanel x:Name="StackField" Background="#FFF3FBE6" Canvas.Left="175" Canvas.Top="52" Height="290" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <StackPanel x:Name="StackField" Background="#FFFDF5DC" Canvas.Left="175" Canvas.Top="52" Height="290" Width="450" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Label HorizontalAlignment="Center"  Height="37" Width="262" Margin="0,13,0,0">
                 <ui:TextBlock FontSize="22" FontFamily="Cascadia Code" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Top" Width="258" Height="40" Text="Connexion au compte" Foreground="#FF2E2E2E"/>
             </Label>
@@ -47,7 +47,7 @@
                 <ui:TextBox FontSize="18" Style="{DynamicResource CheckMail}" FontFamily="Cascadia Code" x:Name="txt_mail" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Width="358" LostKeyboardFocus="TextBox_LostKeyboardFocus" Height="40" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
             </StackPanel>
             <StackPanel Margin="0,18,0,0">
-                <Label FontFamily="Cascadia Code" FontSize="18" Content="Mot de passe" Width="357" Foreground="#FF6C7563" Opacity="0.9"/>
+                <Label FontFamily="Cascadia Code" FontSize="18" Content="Mot de passe" Width="357" Foreground="#FFDCC396" Opacity="0.9"/>
                 <ui:PasswordBox x:Name="pwd_user" FontSize="18" FontFamily="Cascadia Code" Width="358" Height="40" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
             </StackPanel>
             <DockPanel Margin="0,10,0,0" Height="50" Width="289" >
@@ -55,7 +55,7 @@
                     <ui:TextBlock FontFamily="Cascadia Code" Text="Inscription" Foreground="#F4C430" Width="95" Height="18"/>
                 </ui:Button>
                 <ui:Button Click="Btn_Connection_clk" DockPanel.Dock="Right" Width="113" Height="33" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" HorizontalAlignment="Right">
-                    <ui:TextBlock FontFamily="Cascadia Code" Text="Connexion" Foreground="#2E2E2E"/>
+                    <ui:TextBlock FontFamily="Courier New" Text="Connexion" Foreground="#FFFCF8F8" FontWeight="Bold" Height="23"/>
                 </ui:Button>
             </DockPanel>
 

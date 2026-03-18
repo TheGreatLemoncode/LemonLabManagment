@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,17 +8,17 @@ using System.Windows.Media.Animation;
 
 namespace FrontEnd
 {
-    public class RelayCommand: ICommand
+    public class RelayCommand<T>: ICommand
     {
-        public readonly Action<object> _execute;
+        public readonly Action<T> _execute;
         public readonly Func<object, bool> _canExecute;
 
-        public RelayCommand(Action<object> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action<T> execute, Func<object, bool> canExecute = null)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
-
+        
         public bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
@@ -26,7 +26,7 @@ namespace FrontEnd
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            _execute((T)parameter);
         }
 
         public event EventHandler CanExecuteChanged
