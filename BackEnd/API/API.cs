@@ -7,21 +7,20 @@ namespace BackEnd.API
     public static class API
     {
         public static Account? ConnectedUser;
-        private static DataController dataController; 
         public static void Initialisation()
         {
-            dataController = new DataController();
+            DataController.load();
         }
 
         public static bool UserCreation(string pName, string pMail, string pPassword)
         {
-            if (!dataController.Salts.ContainsKey(pMail))
+            if (!DataController.Salts.ContainsKey(pMail))
             {
                 byte[] nSalt = Kitchen.CreateSalt();
                 Account nUser = new Account(pName, Kitchen.HashPassword(pPassword, nSalt), null);
                 nUser.Mail = pMail;
-                dataController.Salts.Add(pMail, nSalt);
-                dataController.Accounts.Add(pMail, nUser);
+                DataController.Salts.Add(pMail, nSalt);
+                DataController.Accounts.Add(pMail, nUser);
                 ConnectedUser = nUser;
                 return true;
             }
@@ -30,10 +29,10 @@ namespace BackEnd.API
 
         public static bool Connection( string pPword, string pMail = "")
         {
-            if (dataController.Salts.ContainsKey(pMail))
+            if (DataController.Salts.ContainsKey(pMail))
             {
-                byte[] nsalt = dataController.Salts[pMail];
-                Account nUser = dataController.Accounts[pMail];
+                byte[] nsalt = DataController.Salts[pMail];
+                Account nUser = DataController.Accounts[pMail];
                 if (Kitchen.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
                     ConnectedUser = nUser;
                     return true;
@@ -46,17 +45,17 @@ namespace BackEnd.API
 
         public static bool OrganisationExist(string pCode)
         {
-            return dataController.Organisations.ContainsKey(pCode);
+            return DataController.Organisations.ContainsKey(pCode);
         }
 
         public static Organisation GetOrganisation(string pCode)
         {
-            return dataController.Organisations[pCode];
+            return DataController.Organisations[pCode];
         }
 
         public static bool OrganisationExistByName(string pName)
         {
-            foreach(Organisation p in dataController.Organisations.Values)
+            foreach(Organisation p in DataController.Organisations.Values)
             {
                 if (p.Name == pName)
                     return true;
@@ -75,12 +74,12 @@ namespace BackEnd.API
             if (OrganisationExist(pOrg.Code) || OrganisationExistByName(pOrg.Name))
                 return false;
             pOrg.AddMember(ConnectedUser);
-            dataController.Organisations.Add(pOrg.Code, pOrg);
+            DataController.Organisations.Add(pOrg.Code, pOrg);
             return true;
         }
         public static void SaveUserInformation()
         {
-            dataController.Save();
+            DataController.Save();
         }
     }
 

@@ -10,17 +10,14 @@ using System.IO;
 
 namespace BackEnd.Models
 {
-    internal class DataController
+    internal static class DataController
     {
-        public Dictionary<string, Account> Accounts = [];
-        public Dictionary<string, byte[]> Salts = [];
-        public Dictionary<string, Organisation> Organisations = [];
+        public static Dictionary<string, Account> Accounts = [];
+        public static Dictionary<string, byte[]> Salts = [];
+        public static Dictionary<string, Organisation> Organisations = [];
+        public static Dictionary<string, Machine> MachineDB = [];
 
-        public DataController()
-        {
-            load();
-        }
-        private void load() 
+        public static void load() 
         {
             if (File.Exists("DATA/Accounts.lemon"))
             {
@@ -61,10 +58,22 @@ namespace BackEnd.Models
                         Organisations = [];
                 }
             }
-            
+
+            if (File.Exists("DATA/Machines.lemon"))
+            {
+                using (StreamReader orgs = new("DATA/Machines.lemon"))
+                {
+                    string text = orgs.ReadToEnd();
+                    if (!string.IsNullOrEmpty(text))
+                        MachineDB = JsonConvert.DeserializeObject<Dictionary<string, Machine>>(text);
+                    else
+                        MachineDB = [];
+                }
+            }
+
         }
 
-        public void Save()
+        public static void Save()
         {
             DirectoryInfo di = Directory.CreateDirectory("DATA");
             using (StreamWriter wr = new StreamWriter("DATA/Accounts.lemon"))
@@ -83,6 +92,12 @@ namespace BackEnd.Models
             {
                 string text = JsonConvert.SerializeObject(Organisations);
                 wr3.Write(text);
+            }
+
+            using (StreamWriter wr4 = new StreamWriter("DATA/Machines.lemon"))
+            {
+                string text = JsonConvert.SerializeObject(MachineDB);
+                wr4.Write(text);
             }
         }
     }

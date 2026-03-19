@@ -9,20 +9,66 @@
         Title="Window1" Height="450" Width="800">
 
     <Canvas>
-        <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" BorderBrush="#FFC68A00" Canvas.Left="325" Canvas.Top="142" HorizontalAlignment="Center" Height="131" VerticalAlignment="Top">
-            <StackPanel Width="150" Height="108" >
-                <DockPanel Height="43" Margin="0,5,0,5" Width="173">
-                    <TextBlock DockPanel.Dock="Left" Text="Routeur" Width="78" TextAlignment="Center" Height="27" Foreground="#FF1A1A1A" FontSize="16" FontFamily="Cascadia Code"/>
-                    <Ellipse DockPanel.Dock="Right" Width="37" Height="36" Fill="Red"/>
-                </DockPanel>
-                <DockPanel Height="24"  Background="#FF825252" Width="120">
-                    <TextBlock DockPanel.Dock="Left" FontFamily="Cascadia Code" TextAlignment="Center" Text="192.168.0.111" Width="117" Height="24" Foreground="#FF1A1A1A"/>
-                </DockPanel> 
-                <DockPanel Height="29" Margin="0,6,0,0" >
-                    <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Im an alien" Width="85" Height="24" Foreground="#FF1A1A1A"/>
-                </DockPanel>
-            </StackPanel>
-        </ui:Button>
+
+
+        <WrapPanel Orientation="Horizontal" Canvas.Left="10" Canvas.Top="10" Height="417" Width="612" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" BorderBrush="#FFC68A00"  Margin="10" Height="131" VerticalAlignment="Top">
+                <StackPanel Width="150" Height="108" >
+                    <DockPanel Height="43" Margin="0,5,0,5" Width="173">
+                        <TextBlock DockPanel.Dock="Left" Text="Routeur" Width="78" TextAlignment="Center" Height="27" Foreground="#FF1A1A1A" FontSize="16" FontFamily="Cascadia Code"/>
+                        <Ellipse DockPanel.Dock="Right" Width="37" Height="36" Fill="Red"/>
+                    </DockPanel>
+                    <DockPanel Height="24"  Background="#FF825252" Width="120">
+                        <TextBlock DockPanel.Dock="Left" FontFamily="Cascadia Code" TextAlignment="Center" Text="192.168.0.111" Width="117" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                    <DockPanel Height="29" Margin="0,6,0,0" >
+                        <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Im an alien" Width="85" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                </StackPanel>
+            </ui:Button>
+            <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" BorderBrush="#FFC68A00"  Margin="10" Height="131" VerticalAlignment="Top">
+                <StackPanel Width="150" Height="108" >
+                    <DockPanel Height="43" Margin="0,5,0,5" Width="173">
+                        <TextBlock DockPanel.Dock="Left" Text="Routeur" Width="78" TextAlignment="Center" Height="27" Foreground="#FF1A1A1A" FontSize="16" FontFamily="Cascadia Code"/>
+                        <Ellipse DockPanel.Dock="Right" Width="37" Height="36" Fill="Red"/>
+                    </DockPanel>
+                    <DockPanel Height="24"  Background="#FF825252" Width="120">
+                        <TextBlock DockPanel.Dock="Left" FontFamily="Cascadia Code" TextAlignment="Center" Text="192.168.0.111" Width="117" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                    <DockPanel Height="29" Margin="0,6,0,0" >
+                        <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Im an alien" Width="85" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                </StackPanel>
+            </ui:Button>
+            <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" BorderBrush="#FFC68A00"  Margin="10" Height="131" VerticalAlignment="Top">
+                <StackPanel Width="150" Height="108" >
+                    <DockPanel Height="43" Margin="0,5,0,5" Width="173">
+                        <TextBlock DockPanel.Dock="Left" Text="Routeur" Width="78" TextAlignment="Center" Height="27" Foreground="#FF1A1A1A" FontSize="16" FontFamily="Cascadia Code"/>
+                        <Ellipse DockPanel.Dock="Right" Width="37" Height="36" Fill="Red"/>
+                    </DockPanel>
+                    <DockPanel Height="24"  Background="#FF825252" Width="120">
+                        <TextBlock DockPanel.Dock="Left" FontFamily="Cascadia Code" TextAlignment="Center" Text="192.168.0.111" Width="117" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                    <DockPanel Height="29" Margin="0,6,0,0" >
+                        <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Im an alien" Width="85" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                </StackPanel>
+            </ui:Button>
+            <ui:Button Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" BorderBrush="#FFC68A00" Margin="10" Height="124" Width="184" HorizontalAlignment="Center">
+                <StackPanel Width="150" Height="108" >
+                    <DockPanel Height="43" Margin="0,5,0,5" Width="173">
+                        <TextBlock DockPanel.Dock="Left" Text="Routeur" Width="78" TextAlignment="Center" Height="27" Foreground="#FF1A1A1A" FontSize="16" FontFamily="Cascadia Code"/>
+                        <Ellipse DockPanel.Dock="Right" Width="37" Height="36" Fill="Red"/>
+                    </DockPanel>
+                    <DockPanel Height="24"  Background="#FF825252" Width="120">
+                        <TextBlock DockPanel.Dock="Left" FontFamily="Cascadia Code" TextAlignment="Center" Text="192.168.0.111" Width="117" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                    <DockPanel Height="29" Margin="0,6,0,0" >
+                        <TextBlock DockPanel.Dock="Left" TextAlignment="Center" Text="Im an alien" Width="85" Height="24" Foreground="#FF1A1A1A"/>
+                    </DockPanel>
+                </StackPanel>
+            </ui:Button>
+        </WrapPanel>
 
     </Canvas>
 </Window>

@@ -1,0 +1,43 @@
+﻿<Window x:Class="FrontEnd.Dialogs.MachineDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEnd.Dialogs"
+        mc:Ignorable="d"
+        Title="MachineDetails"  Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE8F6CE">
+    <Canvas>
+        <DockPanel HorizontalAlignment="Left" Canvas.Left="309" VerticalAlignment="Center" Width="480">
+            <Button Content="..." DockPanel.Dock="Right" Background="#00000000"/>
+            <Label Content="{Binding Code, FallbackValue=ABCDEFG}" FontSize="20" Width="436"/>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Left" LastChildFill="False" Canvas.Left="9" VerticalAlignment="Top" Width="780" Canvas.Top="68" Height="75">
+            <ComboBox x:Name="cbox_status" SelectedItem="{Binding Status}" DockPanel.Dock="Right" Width="160"/>
+            <Label DockPanel.Dock="Left" FontSize="20" Width="242">
+                <TextBlock Text="{Binding NameFormat, FallbackValue=hello &#x0a; jfjfjfjjffj}" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Height="65" Width="180" Margin="0,6,0,0"/>
+            </Label>
+        </DockPanel>
+        <Label  Canvas.Left="29" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center" Width="215" Height="47">
+            <TextBlock FontSize="20" Text="{Binding Locataire, FallbackValue=Locataire: Personne, StringFormat=Locataire : {0}}"/>
+        </Label>
+        <Label  Canvas.Left="29" Canvas.Top="190" HorizontalAlignment="Center" VerticalAlignment="Top" Width="187" Height="27">
+            <TextBlock FontSize="18" Text="Description:" Width="177" Height="27"/>
+        </Label>
+        <TextBlock FontSize="18" Background="#FFEEF5E1" Text="{Binding Description, FallbackValue=une super giga longue description}" Canvas.Left="29" Canvas.Top="222" HorizontalAlignment="Center" VerticalAlignment="Top" Width="607" Height="99"/>
+        <Button Content="Reservation" Canvas.Left="309" Canvas.Top="363" Width="139" HorizontalAlignment="Center" Height="48" VerticalAlignment="Top">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Content" Value="Rendre"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Disponible">
+                            <Setter Property="Content" Value="Réservation"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Utilisé">
+                            <Setter Property="Content" Value="Rendre"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Canvas>
+</Window>

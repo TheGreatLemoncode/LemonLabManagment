@@ -8,21 +8,21 @@ namespace BackEnd.Models
 {
     public class Router(string pName, string pMarque) : Machine(pName, pMarque)
     {
-        private readonly List<Machine> Devices = [];
+        private readonly List<string> DevicesKeys = [];
         public bool ConnectDevice(Machine pDevice)
         {
-            if (Devices.Contains(pDevice))
+            if (DevicesKeys.Contains(pDevice.Code))
                 return true;
-            Devices.Add(pDevice);
-            return Devices.Contains(pDevice);
+            DevicesKeys.Add(pDevice.Code);
+            return DevicesKeys.Contains(pDevice.Code);
         }
 
         public bool DisconnectDevice(Machine pDevice)
         {
-            Devices.Remove(pDevice);
-            return Devices.Contains(pDevice);
+            DevicesKeys.Remove(pDevice.Code);
+            return DevicesKeys.Contains(pDevice.Code);
         }
 
-        public List<Machine> GetDevices() { return  Devices; }
+        public List<string> GetDevices() { return DevicesKeys; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BackEnd.Models;
+using FrontEnd.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Windows.Input;
 
 namespace FrontEnd.ViewModels
 {
-    internal class MachineViewModel : BaseViewModel
+    public class MachineViewModel : BaseViewModel
     {
         public Machine machine { get; set; } = new Machine();
         public ICommand Command {get;}
@@ -37,15 +38,33 @@ namespace FrontEnd.ViewModels
             set { machine.Locataire = value; }
         }
 
+        public string Marque
+        {
+            get { return machine.Marque; }
+            set { machine.Marque = value; }
+        }
+
         public Status Status
         {
             get { return machine.Status; }
             set { machine.Status = value; }
         }
 
+        public string Code
+        {
+            get { return machine.Code; }
+            set { machine.Code = value; }
+        }
+
+        public string NameFormat
+        {
+            get { return Name + "\n" + Marque; }
+        }
+
         private void ActionToTake(string message)
         {
-            MessageBox.Show($"Message de {Name}\n message");
+            MachineDetails details = new MachineDetails(this);
+            details.Show();
         }
     }
 }

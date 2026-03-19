@@ -21,7 +21,7 @@
         <StackPanel HorizontalAlignment="Center" Canvas.Left="150" VerticalAlignment="Center">
             <ui:Image Height="100" Width="154" Margin="0,20,0,0" Source="/Assets/Images/placeholder-image.png"/>
             <ui:TextBlock Text="{Binding Name}" FontSize="24" HorizontalAlignment="Center"/>
-            
+
             <ItemsControl x:Name="Lst_buttons">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -30,9 +30,10 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </StackPanel>
-        <Label Content="Affiliation" Canvas.Left="400" Canvas.Top="9"/>
-        <DockPanel Canvas.Left="400" Canvas.Top="37" Height="45" Width="187" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FFF3FBE6">
-            <ui:Button Click="copy_btn_clk" Style="{StaticResource CopyTrigger}" Content="O" DockPanel.Dock="Right" HorizontalAlignment="Right" ToolTip="Copier le code"/>
+        <DockPanel Canvas.Left="400" Canvas.Top="37" Height="45" Width="187" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FFF3FBE6" >
+            <ui:Button Width="38" Click="copy_btn_clk" Style="{StaticResource CopyTrigger}" DockPanel.Dock="Right" ToolTip="Copier le code" Height="31">
+                <ui:Image Source="/Assets/Images/copy-icon.png" Height="19"/>
+            </ui:Button>
             <ui:TextBlock TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" Text="{Binding Organisation.Name, FallbackValue=Affiliation: \ Indépendant, StringFormat=Organisation: \{0\}}" Width="152"/>
         </DockPanel>
 

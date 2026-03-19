@@ -35,6 +35,10 @@ namespace FrontEnd.Controls
         {
             MainMenuDisplay.Content = new DefaultMachineLIst();
         }
-            
+
+        private void acceuil_btn_clk(object sender, RoutedEventArgs e)
+        {
+            Load_default_machine_list();
+        }
     }
 }

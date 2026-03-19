@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FrontEnd.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BackEnd.Models;
 
 namespace FrontEnd.Controls
 {
@@ -24,6 +27,13 @@ namespace FrontEnd.Controls
         public event PropertyChangedEventHandler PropertyChanged;
         private LayoutMode _layout = LayoutMode.Default;
         private int conter = 0;
+        public ObservableCollection<MachineViewModel> Items { get; } = 
+        [
+            new MachineViewModel(new Machine { Description = "instanced by me", Locataire= "Joseph", Name= "Prada", Status = Status.Disponible, Marque = "Hp" }),
+            new MachineViewModel(new Machine { Description = "instanced by me 2", Locataire= "pabl;o", Name= "beach", Status = Status.Indisponible, Marque = "Asus" }),
+            new MachineViewModel(new Machine { Description = "instanced by me 3", Locataire= "rohane", Name= "homme", Status = Status.Utilisé, Marque = "Rogue" }),
+            new MachineViewModel(new Machine { Description = "instanced by me 4", Locataire= "pamola", Name= "globe", Status = Status.Disponible, Marque = "Alien" })
+        ];
         public LayoutMode CurrentLayout
         {
             get {  return _layout; }

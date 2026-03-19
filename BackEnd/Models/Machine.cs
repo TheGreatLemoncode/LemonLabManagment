@@ -1,4 +1,5 @@
 ﻿using BackEnd.Interface;
+using BackEnd.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,22 @@ namespace BackEnd.Models
             _marque = pMarque;
         }
         public Machine() { }
+
+        private string _code;
+        public string Code
+        {
+            get { return _code; }
+            set
+            {
+                if(!string.IsNullOrEmpty(value) && _code != value && value.Length == 12)
+                {
+                    DataController.MachineDB.Remove(Code);
+                    DataController.MachineDB.Add(value, this);
+                    _code = value;
+                }   
+            }
+        }
+
         public string Locataire { get; set; } = string.Empty;
 
         private Status _status = Status.Disponible;
@@ -27,8 +44,8 @@ namespace BackEnd.Models
         private string _description = string.Empty;
         public string Description { get { return _description; } set { _description = value; } }
 
-        private readonly string _marque = string.Empty;
-        public string Marque { get { return _marque; } }
+        private string _marque;
+        public string Marque { get { return _marque; } set{ _marque = value; } }
 
         private string _ipAddress = string.Empty;
         public string IP { get { if (_ipAddress != null) return _ipAddress; else { return string.Empty; } } }

@@ -11,79 +11,83 @@
              d:DesignHeight="380" d:DesignWidth="611">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutA">
-            <Button Height="92" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Width="208" Padding="0,0,0,0">
-                <StackPanel Margin="10" Width="Auto"  Background="White">
+            <Button Command="{Binding Command}" Margin="2" Height="92" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Width="161" Padding="0,0,0,0">
+                <StackPanel Width="Auto" Background="White">
                     <ui:TextBlock Text="{Binding Name}"/>
                     <ui:TextBlock Text="{Binding Locataire}"/>
                     <ui:TextBlock Text="{Binding Status}"/>
                 </StackPanel>
             </Button>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type model:Machine}" x:Key="LayoutB">
-            <StackPanel Margin="10"  MaxHeight="150" Orientation="Horizontal" Background="Blue">
-                <ui:TextBlock Text="{Binding Name}"/>
-                <ui:TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-                <ui:TextBlock Text="{Binding Status}"/>
-            </StackPanel>
+        <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutB">
+            <Button Command="{Binding Command}" Width="545" Background="Blue" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                <DockPanel MaxHeight="150">
+                    <ui:TextBlock MinWidth="150" Text="{Binding Name}" DockPanel.Dock="Left" TextAlignment="Center"/>
+                    <ui:TextBlock MinWidth="150" Text="{Binding Status}" DockPanel.Dock="Right" TextAlignment="Center"/>
+                    <ui:TextBlock Text="{Binding Marque, FallbackValue=hellol}" TextWrapping="Wrap"  MaxWidth="150" TextAlignment="Center"/>
+                </DockPanel>
+            </Button>
+
         </DataTemplate>
     </UserControl.Resources>
     <Canvas>
         <StackPanel Panel.ZIndex="0" Canvas.Left="14" Canvas.Top="10" HorizontalAlignment="Left" Height="360" VerticalAlignment="Center" Width="587">
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="55" Width="552" Background="#FFEC6060">
-                <ui:TextBox x:Name="SearchBarContent" Width="500" Background="White"/>
+                <ui:TextBox x:Name="SearchBarContent" Width="500" FontSize="20" Background="White" Height="50"/>
                 <ui:Button Content="Src" Height="50" Width="49" Background="White"/>
             </StackPanel>
-            <ui:TextBlock TextAlignment="Center" Panel.ZIndex="0" FontFamily="Cascadia Code" FontSize="32" Text="{Binding PageName, FallbackValue=Acceuil}" Width="330" Margin="0,1,0,0"/>
-            <ItemsControl x:Name="MachineControls" Width="545" Height="180">
+            <ui:TextBlock TextAlignment="Center" Panel.ZIndex="0" FontFamily="Cascadia Code" FontSize="32" Text="{Binding PageName, FallbackValue=Acceuil}" Width="330" Margin="0,3,0,0" Height="43"/>
+            <ItemsControl ItemsSource="{Binding Items}" x:Name="MachineControls" Width="545" Height="205" Margin="0,7,0,0">
                 <ItemsControl.Template>
-                    <ControlTemplate TargetType="ItemsControl">
-                        <ScrollViewer CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <ControlTemplate TargetType="{x:Type ItemsControl}">
+                        <ScrollViewer Margin="0,15,0,0" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                             <ItemsPresenter/>
                         </ScrollViewer>
                     </ControlTemplate>
                 </ItemsControl.Template>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel>
-                            <StackPanel.Style> 
-                                <Style TargetType="StackPanel">
-                                    <Setter Property="Orientation" Value="Vertical"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding CurrentLayout}" Value="Default">
-                                            <Setter Property="Orientation" Value="Vertical"/>
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding CurrentLayout}" Value="All">
-                                            <Setter Property="Orientation" Value="Horizontal"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
-                        </StackPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
+
                 <ItemsControl.Style>
-                    <Style TargetType="ItemsControl">
+                    <Style TargetType="{x:Type ItemsControl}">
                         <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                        <Setter Property="ItemsPanel">
+                            <Setter.Value>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding CurrentLayout}" Value="Default">
                                 <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                                <Setter Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </DataTrigger>
                             <DataTrigger Binding="{Binding CurrentLayout}" Value="All">
                                 <Setter Property="ItemTemplate" Value="{StaticResource LayoutB}"/>
+                                <Setter Property="ItemsPanel">
+                                    <Setter.Value>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel/>
+                                        </ItemsPanelTemplate>
+                                    </Setter.Value>
+                                </Setter>
                             </DataTrigger>
+
                         </Style.Triggers>
                     </Style>
                 </ItemsControl.Style>
-                <model:Machine Description="une description" Locataire="gerard" Name="volvo"/>
-                <model:Machine Description="une deuxieme description" Locataire="paul" Name="baul" Status="Utilisé"/>
-                <model:Machine Description="une deuxieme description" Locataire="tom" Name="rolf" Status="Indisponible"/>
             </ItemsControl>
         </StackPanel>
-        
+
         <ui:DynamicScrollViewer Canvas.Left="32" Canvas.Top="76" MaxHeight="150" HorizontalAlignment="Center" VerticalAlignment="Top">
             <StackPanel x:Name="ScollerViewerContainer" HorizontalAlignment="Center" VerticalAlignment="Top" Width="550" Background="#FF9E9E9E"/>
         </ui:DynamicScrollViewer>
-        <ui:Button Content="AJOUTER" Panel.ZIndex="1" Canvas.Left="501" Canvas.Top="320" VerticalAlignment="Top" Height="50" Width="100" Click="Button_Click"/>
-        <ui:Button Content="FLR" Panel.ZIndex="1" Canvas.Left="532" Canvas.Top="81" Height="30" Width="50"/>
+        <ui:Button Content="AJOUTER" Panel.ZIndex="1" Canvas.Left="485" Canvas.Top="320" Height="50" Width="95" Click="Button_Click"/>
+        <ui:Button Content="FLR" Panel.ZIndex="1" Canvas.Left="530" Canvas.Top="81" Height="30" Width="50"/>
     </Canvas>
 </UserControl>

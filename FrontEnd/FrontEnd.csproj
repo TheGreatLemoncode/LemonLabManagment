@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\copy-icon.png" />
     <None Remove="Assets\Images\LemonNoBg.png" />
     <None Remove="Assets\Images\placeholder-image.png" />
   </ItemGroup>
@@ -25,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Images\copy-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\LemonNoBg.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

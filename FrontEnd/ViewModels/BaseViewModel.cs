@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.ViewModels
 {
-    internal abstract class BaseViewModel: INotifyPropertyChanged
+    public abstract class BaseViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string PropertyName)
