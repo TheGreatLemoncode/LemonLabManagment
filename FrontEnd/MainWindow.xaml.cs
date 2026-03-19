@@ -31,7 +31,7 @@ namespace FrontEnd
             API.Initialisation();
             CreationCompte.ControlUsed += LoadMainMenu;
             Connection.ControlUsed += LoadMainMenu;
-            MainView.Content = new MainMenu();
+            MainView.Content = new Connection();
 
             _notifier = new(cfg =>
             {

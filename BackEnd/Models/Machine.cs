@@ -1,10 +1,12 @@
-﻿using BackEnd.Interface;
+﻿using BackEnd.API;
+using BackEnd.Interface;
 using BackEnd.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackEnd.API;
 
 namespace BackEnd.Models
 {
@@ -15,10 +17,11 @@ namespace BackEnd.Models
         {
             _name = pName;
             _marque = pMarque;
+            Code = Kitchen.GetRandomString(7);
         }
         public Machine() { }
 
-        private string _code;
+        private string _code = Kitchen.GetRandomString(7);
         public string Code
         {
             get { return _code; }
@@ -33,7 +36,20 @@ namespace BackEnd.Models
             }
         }
 
-        public string Locataire { get; set; } = string.Empty;
+        public void Reservation()
+        {
+            if(API.API.ConnectedUser != null)
+            {
+                Locataire = API.API.ConnectedUser.Name;
+            }
+            else
+            {
+                Locataire = "Test location";
+            }
+            Status = Status.Utilisé;
+        }
+
+        public string? Locataire { get; set; } = string.Empty;
 
         private Status _status = Status.Disponible;
         public Status Status { get { return _status; } set{ _status = value; }  }
