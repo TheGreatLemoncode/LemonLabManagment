@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BackEnd.API;
+using BackEnd.DATA;
 
 namespace BackEnd.Models
 {
@@ -69,8 +70,8 @@ namespace BackEnd.Models
 
     public enum Status
     {
-        Disponible,
         Utilisé,
+        Disponible,
         Indisponible
     }
 }

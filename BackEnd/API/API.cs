@@ -1,5 +1,7 @@
+using BackEnd.DATA;
 using BackEnd.Models;
 using BackEnd.Security;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 namespace BackEnd.API
@@ -29,7 +31,7 @@ namespace BackEnd.API
 
         public static bool Connection( string pPword, string pMail = "")
         {
-            if (DataController.Salts.ContainsKey(pMail))
+            if (pMail != null && DataController.Salts.ContainsKey(pMail))
             {
                 byte[] nsalt = DataController.Salts[pMail];
                 Account nUser = DataController.Accounts[pMail];
@@ -77,6 +79,48 @@ namespace BackEnd.API
             DataController.Organisations.Add(pOrg.Code, pOrg);
             return true;
         }
+
+        public static List<Machine> RequestAllMachines()
+        {
+            return OrderListByStatusName(DataController.MachineDB.Values.ToList());
+        }
+
+        public static List<Machine> RequestMachineByStatus(Status pStatus)
+        {
+            List<Machine> toreturn = [];
+            foreach(Machine m in DataController.MachineDB.Values)
+            {
+                if(m.Status == pStatus)
+                {
+                    toreturn.Add(m);
+                }
+            }
+            return OrderListByStatusName(toreturn);
+        }
+
+        public static Machine? RequestByName(string pName)
+        {
+            foreach (Machine m in DataController.MachineDB.Values)
+            {
+                if (m.Name == pName)
+                {
+                    return m;
+                }
+            }
+            return null;
+        }
+
+        public static Machine? ResquestByCode(string code)
+        {
+            return DataController.MachineDB.ContainsKey(code) ? DataController.MachineDB[code] : null;
+        }
+
+        private static List<Machine> OrderListByStatusName(List<Machine> pList)
+        {
+            List<Machine> nList = pList.OrderBy(m => m.Status).ThenBy(m => m.Name).ToList();
+            return nList;
+        }
+
         public static void SaveUserInformation()
         {
             DataController.Save();

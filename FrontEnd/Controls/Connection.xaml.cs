@@ -43,7 +43,7 @@ namespace FrontEnd.Controls
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le courriel n'est pas valide");
             else
             {
-                if(API.Connection(pwd_user.Password, ((MailViewModel)txt_mail.DataContext).Content))
+                if( ((MailViewModel)txt_mail.DataContext).Content != null && API.Connection(pwd_user.Password, ((MailViewModel)txt_mail.DataContext).Content))
                 {
                     ControlUsed?.Invoke(this, EventArgs.Empty);
                     ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name ??= "Compte vide"}");

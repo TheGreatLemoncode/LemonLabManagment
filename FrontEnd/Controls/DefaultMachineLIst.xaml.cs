@@ -1,4 +1,7 @@
-﻿using FrontEnd.ViewModels;
+﻿using BackEnd.API;
+using BackEnd.Models;
+using FrontEnd.Dialogs;
+using FrontEnd.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BackEnd.Models;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.Controls
 {
@@ -25,15 +28,14 @@ namespace FrontEnd.Controls
     public partial class DefaultMachineLIst : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         private LayoutMode _layout = LayoutMode.Default;
-        private int conter = 0;
-        public ObservableCollection<MachineViewModel> Items { get; } = 
-        [
-            new MachineViewModel(new Machine { Description = "instanced by me", Locataire= "Joseph", Name= "Prada", Status = Status.Disponible, Marque = "Hp" }),
-            new MachineViewModel(new Machine { Description = "instanced by me 2", Locataire= "pabl;o", Name= "beach", Status = Status.Indisponible, Marque = "Asus" }),
-            new MachineViewModel(new Machine { Description = "instanced by me 3", Locataire= "rohane", Name= "homme", Status = Status.Utilisé, Marque = "Rogue" }),
-            new MachineViewModel(new Machine { Description = "instanced by me 4", Locataire= "pamola", Name= "globe", Status = Status.Disponible, Marque = "Alien" })
-        ];
+
+        public int conter = 0;
+
+        public ObservableCollection<MachineViewModel> AllItems { get; } = [];
+        public ObservableCollection<MachineViewModel> UsedItems { get; } = [];
+
         public LayoutMode CurrentLayout
         {
             get {  return _layout; }
@@ -48,22 +50,44 @@ namespace FrontEnd.Controls
         {
             InitializeComponent();
             MachineControls.DataContext = this;
+
+            foreach(Machine m in API.RequestAllMachines())
+            {
+                AllItems.Add(new MachineViewModel(m));
+            }
+
+            foreach(Machine n in API.RequestMachineByStatus(Status.Utilisé))
+            {
+                UsedItems.Add(new MachineViewModel(n));
+            }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public void Search_btn_clk(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(CurrentLayout.ToString());
-            if (conter < 1)
+            MachineDetails DetailsWindow;
+            if( string.IsNullOrEmpty(SearchBarContent.Text))
             {
-                CurrentLayout = LayoutMode.All;
-                conter++;
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Object introuvable, réessayez");
+                return;
+            }
+
+            if(API.RequestByName(SearchBarContent.Text) != null)
+            {
+                DetailsWindow = new MachineDetails(new(API.RequestByName(SearchBarContent.Text)));
+                DetailsWindow.Show();
+            }
+            else if(API.ResquestByCode(SearchBarContent.Text) != null)
+            {
+                DetailsWindow = new MachineDetails(new(API.RequestByName(SearchBarContent.Text)));
+                DetailsWindow.Show();
             }
             else
             {
-                CurrentLayout = LayoutMode.Default;
-                conter--;
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Object introuvable, réessayez");
             }
-            MessageBox.Show(CurrentLayout.ToString());
+
         }
+
+        
     }
 }

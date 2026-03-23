@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,21 @@ namespace FrontEnd.Controls
         private void acceuil_btn_clk(object sender, RoutedEventArgs e)
         {
             Load_default_machine_list();
+        }
+
+        private void All_display_btn_clk(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout.ToString());
+            if (((DefaultMachineLIst)MainMenuDisplay.Content).conter < 1)
+            {
+                ((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout = LayoutMode.All;
+                ((DefaultMachineLIst)MainMenuDisplay.Content).conter++;
+            }
+            else
+            {
+                ((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout = LayoutMode.Default;
+                ((DefaultMachineLIst)MainMenuDisplay.Content).conter--;
+            }
         }
     }
 }

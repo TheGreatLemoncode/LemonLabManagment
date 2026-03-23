@@ -32,7 +32,6 @@ namespace FrontEnd.Controls
             InitializeComponent();
             StackField.DataContext = new MailViewModel();
             txt_name.DataContext = new InputViewModel();
-            txt_mail.Focus();
         }
 
         #region evenement input fields
@@ -53,12 +52,13 @@ namespace FrontEnd.Controls
 
         private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
-
+               
             if (!((MailViewModel)StackField.DataContext).isCorrect)
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le format du courriel n'est pas valide");
-            else if (string.IsNullOrEmpty(txt_name.Text) || string.IsNullOrEmpty(pwd_user.Password))
-            {
 
+            if (string.IsNullOrEmpty(txt_name.Text) || string.IsNullOrEmpty(pwd_user.Password))
+            {
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Inscription refusée");
             }
             else
             {
@@ -68,41 +68,9 @@ namespace FrontEnd.Controls
                     ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name}");
                 }
             }
-
         }
         #endregion
     }
 
-    public class TextBox : INotifyPropertyChanged
-    {
-        private string? Text;
-        private bool Valid = true;
-        public string Content
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Text))
-                    return string.Empty;
-                return Text;
-            }
-            set
-            {
-                Text = value;
-                NotifyPropertyChanged(nameof(Content));
-            }
-        }
-        public bool IsCorrect
-        {
-            get { return Valid; }
-            set { Valid = value; NotifyPropertyChanged(nameof(IsCorrect)); } 
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string PropertyName)
-        {
-            if(PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-        }
-    }
+    
 }
