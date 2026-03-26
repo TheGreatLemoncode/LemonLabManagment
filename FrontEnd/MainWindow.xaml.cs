@@ -32,6 +32,8 @@ namespace FrontEnd
             CreationCompte.ControlUsed += LoadMainMenu;
             Connection.ControlUsed += LoadMainMenu;
             MainView.Content = new MainMenu();
+            //Window1 test = new();
+            //test.Show();
 
             _notifier = new(cfg =>
             {

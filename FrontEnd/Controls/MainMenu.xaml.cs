@@ -42,6 +42,12 @@ namespace FrontEnd.Controls
             Load_default_machine_list();
         }
 
+        private void add_machine_clk(object sender, RoutedEventArgs args)
+        {
+            Dialogs.MachineCreationType box = new();
+            box.ShowDialog();
+        }
+
         private void All_display_btn_clk(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout.ToString());

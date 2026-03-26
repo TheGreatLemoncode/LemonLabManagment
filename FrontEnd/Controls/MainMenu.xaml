@@ -11,7 +11,7 @@
         <StackPanel HorizontalAlignment="Left" Canvas.Left="10" Canvas.Top="10" VerticalAlignment="Center" Height="384" Width="173">
             <ui:Button FontFamily="Cascadia Code" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Click="acceuil_btn_clk" Content="Acceuil" Height="50" Margin="10,65,0,0" Width="153"/>
             <ui:Button FontFamily="Cascadia Code" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Click="account_btn_clk" Content="Compte" Height="50" Margin="10,5,0,0" Width="153"/>
-            <ui:Button FontFamily="Cascadia Code" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Content="Ajout machine" Height="50" Margin="10,5,0,0" Width="153" />
+            <ui:Button Click="add_machine_clk" FontFamily="Cascadia Code" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" Content="Ajout machine" Height="50" Margin="10,5,0,0" Width="153" />
             <ui:Button Click="All_display_btn_clk" FontFamily="Cascadia Code" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304"  Height="50" Margin="10,5,0,0" Width="153">
                 <ui:TextBlock Text="Toutes les machines" TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" FontSize="14" Height="40" Width="130"/>
             </ui:Button>
