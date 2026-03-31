@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BackEnd.API;
+using FrontEnd.Dialogs;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -25,6 +27,8 @@ namespace FrontEnd.Controls
         {
             InitializeComponent();
             Load_default_machine_list();
+            ServerCreation box = new();
+            box.Show();
         }
 
         public void account_btn_clk(object sender, RoutedEventArgs args)
@@ -46,6 +50,10 @@ namespace FrontEnd.Controls
         {
             Dialogs.MachineCreationType box = new();
             box.ShowDialog();
+            if ((bool)box.DialogResult)
+            {
+                API.CreateMachine(box.Value);
+            }
         }
 
         private void All_display_btn_clk(object sender, RoutedEventArgs e)

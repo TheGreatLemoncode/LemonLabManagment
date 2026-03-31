@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using BackEnd.API;
 using System.Security.Policy;
 using FrontEnd.Controls.MainMenuControls;
+using BackEnd.Models;
 
 namespace FrontEnd
 {
@@ -45,6 +46,27 @@ namespace FrontEnd
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(2), MaximumNotificationCount.FromCount(2));
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
+        }
+
+        public void ServerCreation(Machine nMachine)
+        {
+
+        }
+        public void RouterCreation(Machine nMachine)
+        {
+
+        }
+        public void MachineCreation(Machine nMachine)
+        {
+
+        }
+        public void PrinterCreation(Machine nMachine)
+        {
+
+        }
+        public void ComputerCreation(Machine nMachine)
+        {
+
         }
 
         public void LoadAccountCreation(object sender, EventArgs e)

@@ -15,20 +15,13 @@ using System.Windows.Shapes;
 namespace FrontEnd.Dialogs
 {
     /// <summary>
-    /// Logique d'interaction pour MachineCreationType.xaml
+    /// Logique d'interaction pour ServerCreation.xaml
     /// </summary>
-    public partial class MachineCreationType : Window
+    public partial class ServerCreation : Window
     {
-        public int Value { get; set; }
-        public MachineCreationType()
+        public ServerCreation()
         {
             InitializeComponent();
-        }
-
-        private void confirmation_btn_clk(object sender, RoutedEventArgs e)
-        {
-            Value = Lst_options.SelectedIndex;
-            DialogResult = true;
         }
     }
 }

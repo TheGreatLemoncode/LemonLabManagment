@@ -21,8 +21,7 @@ namespace BackEnd.API
                 byte[] nSalt = Kitchen.CreateSalt();
                 Account nUser = new Account(pName, Kitchen.HashPassword(pPassword, nSalt), null);
                 nUser.Mail = pMail;
-                DataController.Salts.Add(pMail, nSalt);
-                DataController.Accounts.Add(pMail, nUser);
+                DataController.AddAccount(nUser, nSalt);
                 ConnectedUser = nUser;
                 return true;
             }
@@ -123,6 +122,27 @@ namespace BackEnd.API
         {
             List<Machine> nList = pList.OrderBy(m => m.Status).ThenBy(m => m.Name).ToList();
             return nList;
+        }
+
+        public static void CreateMachine(int TypeIndex)
+        {
+            Machine nMachine = new();
+            switch (TypeIndex)
+            {
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
+            }
+            DataController.AddMachine(nMachine);
         }
 
         public static void SaveUserInformation()

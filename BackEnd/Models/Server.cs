@@ -23,5 +23,13 @@ namespace BackEnd.Models
                 else { Services.Add(value); ServcicePrincipal = value; }
             }
         }
+
+        public void AddService(string pService)
+        {
+            if (!Services.Contains(pService))
+            {
+                Services.Add(pService);
+            }
+        }
     }
 }

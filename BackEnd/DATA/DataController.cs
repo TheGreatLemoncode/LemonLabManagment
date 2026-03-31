@@ -18,7 +18,23 @@ namespace BackEnd.DATA
         public static Dictionary<string, Organisation> Organisations = [];
         public static Dictionary<string, Machine> MachineDB = [];
 
-        public static void load() 
+        internal static void AddMachine(Machine pMachine)
+        {
+            if(!MachineDB.ContainsKey(pMachine.Code))
+                MachineDB.Add(pMachine.Code, pMachine);
+        } 
+
+        internal static void AddAccount(Account pAccount, byte[] pSalt)
+        {
+            if (!Accounts.ContainsKey(pAccount.Mail))
+            {
+                Accounts.Add(pAccount.Mail, pAccount);
+                Salts.Add(pAccount.Mail, pSalt);
+            }
+                
+        }
+
+        internal static void load() 
         {
             if (File.Exists("DATA/Accounts.lemon"))
             {
@@ -73,7 +89,7 @@ namespace BackEnd.DATA
 
         }
 
-        public static void Save()
+        internal static void Save()
         {
             DirectoryInfo di = Directory.CreateDirectory("DATA");
             using (StreamWriter wr = new StreamWriter("DATA/Accounts.lemon"))
