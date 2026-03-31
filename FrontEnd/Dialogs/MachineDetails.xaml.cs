@@ -31,10 +31,6 @@ namespace FrontEnd.Dialogs
             InitializeComponent();
             _machine = pMachine;
             DataContext = Machine;
-            for(int i = 0; i < 3; i++)
-            {
-                cbox_status.Items.Add((Status)i);
-            }
         }
     }
 }

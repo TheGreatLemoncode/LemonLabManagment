@@ -39,7 +39,7 @@ namespace BackEnd.Security
 
         internal static string GetRandomString(byte size)
         {
-            string chararray = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw1234567890";
+            string chararray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             string returnstring = "";
             for(byte i = 0; i < size; i++)
             {

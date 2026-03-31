@@ -65,7 +65,7 @@ namespace FrontEnd.Controls
         public void Search_btn_clk(object sender, RoutedEventArgs e)
         {
             MachineDetails DetailsWindow;
-            if( string.IsNullOrEmpty(SearchBarContent.Text))
+            if(string.IsNullOrEmpty(SearchBarContent.Text))
             {
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Object introuvable, réessayez");
                 return;
@@ -76,9 +76,9 @@ namespace FrontEnd.Controls
                 DetailsWindow = new MachineDetails(new(API.RequestByName(SearchBarContent.Text)));
                 DetailsWindow.Show();
             }
-            else if(API.ResquestByCode(SearchBarContent.Text) != null)
+            else if(API.RequestByCode(SearchBarContent.Text) != null)
             {
-                DetailsWindow = new MachineDetails(new(API.RequestByName(SearchBarContent.Text)));
+                DetailsWindow = new MachineDetails(new(API.RequestByCode(SearchBarContent.Text)));
                 DetailsWindow.Show();
             }
             else

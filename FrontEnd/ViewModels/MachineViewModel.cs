@@ -1,4 +1,5 @@
-﻿using BackEnd.Models;
+﻿using BackEnd.API;
+using BackEnd.Models;
 using FrontEnd.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -7,20 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.ViewModels
 {
     public class MachineViewModel : BaseViewModel
     {
         public Machine machine { get; set; } = new Machine();
+        public Array StatusValues { get; } = Enum.GetValues(typeof(Status));
         public ICommand Command {get;}
-        public ICommand ReservationCommand { get; }
+        public ICommand DefaultButtonCommand { get; }
         
         public MachineViewModel(Machine pMachine)
         {
             machine = pMachine;
             Command = new RelayCommand<string>(ShowDetails);
-            ReservationCommand = new RelayCommand<object>(Reservation);
+            DefaultButtonCommand = new RelayCommand<object>(DefaultButtonCommandEvent);
 
         }
 
@@ -70,10 +73,18 @@ namespace FrontEnd.ViewModels
             details.Show();
         }
 
-        private void Reservation(object parameter)
+        private void DefaultButtonCommandEvent(object parameter)
         {
-            machine.Reservation();
-            MessageBox.Show("Reservation Terminer");
+            if(Status == Status.Disponible)
+            {
+                machine.Reservation();
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine réservée");
+            }
+            else
+            {
+                machine.Remise();
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine remise");
+            }
         }
     }
 }

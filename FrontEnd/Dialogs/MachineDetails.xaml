@@ -12,7 +12,7 @@
             <Label Content="{Binding Code, FallbackValue=ABCDEFG}" FontSize="20" Width="436"/>
         </DockPanel>
         <DockPanel HorizontalAlignment="Left" LastChildFill="False" Canvas.Left="29" VerticalAlignment="Center" Width="743" Canvas.Top="68" Height="75">
-            <ComboBox x:Name="cbox_status" SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" Width="160"/>
+            <ComboBox x:Name="cbox_status" ItemsSource="{Binding StatusValues}" SelectedItem="{Binding Status, Mode=TwoWay}" DockPanel.Dock="Right" Width="160"/>
             <Label DockPanel.Dock="Left" FontSize="20" Width="242">
                 <TextBlock Text="{Binding NameFormat, FallbackValue=hello &#x0a; jfjfjfjjffj}" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Height="65" Width="180" Margin="0,6,0,0"/>
             </Label>
@@ -24,7 +24,7 @@
             <TextBlock FontSize="18" Text="Description:" Width="177" Height="27"/>
         </Label>
         <TextBlock FontSize="18" Background="#FFEEF5E1" Text="{Binding Description, FallbackValue=une super giga longue description}" Canvas.Left="29" Canvas.Top="222" HorizontalAlignment="Center" VerticalAlignment="Top" Width="607" Height="99"/>
-        <Button Command="{Binding ReservationCommand}" Content="Reservation" Canvas.Left="309" Canvas.Top="363" Width="139" HorizontalAlignment="Center" Height="48" VerticalAlignment="Top">
+        <Button Command="{Binding DefaultButtonCommand}" Canvas.Left="309" Canvas.Top="363" Width="139" HorizontalAlignment="Center" Height="48" VerticalAlignment="Top">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Content" Value="Rendre"/>

@@ -110,8 +110,12 @@ namespace BackEnd.API
             return null;
         }
 
-        public static Machine? ResquestByCode(string code)
+        public static Machine? RequestByCode(string code)
         {
+            if (DataController.MachineDB.ContainsKey(code))
+            {
+                MessageBox.Show("Hello world");
+            }
             return DataController.MachineDB.ContainsKey(code) ? DataController.MachineDB[code] : null;
         }
 

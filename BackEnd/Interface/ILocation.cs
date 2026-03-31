@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BackEnd.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace BackEnd.Interface
         string? Locataire { get; set; }
 
         public void Reservation();
+        public void Remise();
     }
 }

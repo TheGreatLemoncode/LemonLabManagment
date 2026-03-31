@@ -22,24 +22,26 @@ namespace BackEnd.Models
         }
         public Machine() { }
 
-        private string _code = Kitchen.GetRandomString(7);
+        private string _code = string.Empty;
         public string Code
         {
             get { return _code; }
             set
             {
-                if(!string.IsNullOrEmpty(value) && _code != value && value.Length == 12)
+                if(!string.IsNullOrEmpty(value) && _code != value && value.Length == 7)
                 {
-                    DataController.MachineDB.Remove(Code);
-                    DataController.MachineDB.Add(value, this);
+                    if (DataController.MachineDB != null && DataController.MachineDB.ContainsKey(Code))
+                    {
+                        DataController.MachineDB.Remove(Code);
+                        DataController.MachineDB.Add(value, this);
+                    } 
                     _code = value;
                 }   
             }
         }
-
         public void Reservation()
         {
-            if(API.API.ConnectedUser != null)
+            if (API.API.ConnectedUser != null)
             {
                 Locataire = API.API.ConnectedUser.Name;
             }
@@ -48,6 +50,17 @@ namespace BackEnd.Models
                 Locataire = "Test location";
             }
             Status = Status.Utilisé;
+        }
+
+        public void Remise()
+        {
+            Locataire = null;
+            Status = Status.Disponible;
+        }
+
+        public void SetUp()
+        {
+            Code = Kitchen.GetRandomString(7);
         }
 
         public string? Locataire { get; set; } = string.Empty;
