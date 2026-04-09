@@ -9,22 +9,22 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using ToastNotifications.Messages;
+using FrontEnd;
 
 namespace FrontEnd.ViewModels
 {
     public class MachineViewModel : BaseViewModel
     {
-        public Machine machine { get; set; } = new Machine();
+        public Machine machine { get; set; }
         public Array StatusValues { get; } = Enum.GetValues(typeof(Status));
-        public ICommand Command {get;}
         public ICommand DefaultButtonCommand { get; }
+        public ICommand Command { get; }
         
         public MachineViewModel(Machine pMachine)
         {
             machine = pMachine;
-            Command = new RelayCommand<string>(ShowDetails);
-            DefaultButtonCommand = new RelayCommand<object>(DefaultButtonCommandEvent);
-
+            DefaultButtonCommand = new RelayCommand(DefaultButtonCommandEvent);
+            Command = new RelayCommand(ShowDetails);
         }
 
         public string Name
@@ -44,12 +44,6 @@ namespace FrontEnd.ViewModels
             set { machine.Locataire = value; OnPropertyChanged(nameof(Locataire)); }
         }
 
-        public string Marque
-        {
-            get { return machine.Marque; }
-            set { machine.Marque = value; }
-        }
-
         public Status Status
         {
             get { return machine.Status; }
@@ -62,18 +56,13 @@ namespace FrontEnd.ViewModels
             set { machine.Code = value; }
         }
 
-        public string NameFormat
+        public string TypeFormat
         {
-            get { return Name + "\n" + Marque; }
+            get { return machine.GetType().Name; }
         }
 
-        private void ShowDetails(string message)
-        {
-            MachineDetails details = new MachineDetails(this);
-            details.Show();
-        }
 
-        private void DefaultButtonCommandEvent(object parameter)
+        private void DefaultButtonCommandEvent()
         {
             if(Status == Status.Disponible)
             {
@@ -85,6 +74,13 @@ namespace FrontEnd.ViewModels
                 machine.Remise();
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine remise");
             }
+        }
+
+        private void ShowDetails()
+        {
+            MachineDetails detailbox = new(this);
+            detailbox.Owner = Application.Current.MainWindow;
+            detailbox.Show();
         }
     }
 }

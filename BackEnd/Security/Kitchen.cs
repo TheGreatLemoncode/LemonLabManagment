@@ -2,8 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BackEnd.Security
@@ -11,6 +13,7 @@ namespace BackEnd.Security
     internal static class Kitchen
     {
         private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
+        private static string IpPatern = @"^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$";
 
         internal static bool CompareHashClear(string clear, byte[] hash ,byte[] salt)
         {
@@ -46,6 +49,15 @@ namespace BackEnd.Security
                 returnstring += chararray[RandomNumberGenerator.GetInt32(chararray.Length)];
             }
             return returnstring;
+        }
+
+        internal static bool CheckIpFormat(string content)
+        {
+            if (string.IsNullOrEmpty(content))
+            {
+                return false;
+            }
+            return Regex.IsMatch(content, IpPatern);
         }
     }
 }

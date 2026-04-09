@@ -5,7 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Closed="Window_Closed"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE8F6CE">
+        Title="L·L·M — Lemon Lab Management"
+        Height="450" Width="800"
+        Closed="Window_Closed"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="#0E0F0E">
     <ContentControl x:Name="MainView" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
 </Window>

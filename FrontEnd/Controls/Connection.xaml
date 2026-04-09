@@ -55,7 +55,7 @@
                     <ui:TextBlock FontFamily="Cascadia Code" Text="Inscription" Foreground="#F4C430" Width="95" Height="18"/>
                 </ui:Button>
                 <ui:Button Click="Btn_Connection_clk" DockPanel.Dock="Right" Width="113" Height="33" Background="#F4C430" MouseOverBackground="#FFE6B800" PressedBackground="#FFB79304" HorizontalAlignment="Right">
-                    <ui:TextBlock FontFamily="Courier New" Text="Connexion" Foreground="#FFFCF8F8" FontWeight="Bold" Height="23"/>
+                    <ui:TextBlock FontFamily="Courier New" Text="Connexion" Foreground="#FFFCF8F8" FontWeight="Bold" Height="13"/>
                 </ui:Button>
             </DockPanel>
 

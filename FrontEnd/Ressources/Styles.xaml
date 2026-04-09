@@ -13,9 +13,9 @@
     <SolidColorBrush x:Key="LLM.TextPrimary" Color="#E8EDE8"/>
     <SolidColorBrush x:Key="LLM.TextSecondary" Color="#7A8A7A"/>
     <SolidColorBrush x:Key="LLM.TextMuted" Color="#445044"/>
-    <SolidColorBrush x:Key="LLM.StatusOk"  Color="#4ADE80"/>
-    <SolidColorBrush x:Key="LLM.StatusWarn"  Color="#FACC15"/>
-    <SolidColorBrush x:Key="LLM.StatusErr"  Color="#F87171"/>
+    <SolidColorBrush x:Key="LLM.StatusOk" Color="#4ADE80"/>
+    <SolidColorBrush x:Key="LLM.StatusWarn" Color="#FACC15"/>
+    <SolidColorBrush x:Key="LLM.StatusErr" Color="#F87171"/>
     <SolidColorBrush x:Key="LLM.Transparent" Color="#00000000"/>
 
     <Style x:Key="LLM.NavButton" TargetType="Button">

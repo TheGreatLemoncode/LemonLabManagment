@@ -43,7 +43,7 @@ namespace FrontEnd
                     Corner.BottomLeft,
                     10, 
                     10);
-                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(2), MaximumNotificationCount.FromCount(2));
+                cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(1), MaximumNotificationCount.FromCount(2));
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
         }

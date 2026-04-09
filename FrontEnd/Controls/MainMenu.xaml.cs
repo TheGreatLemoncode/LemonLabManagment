@@ -1,5 +1,6 @@
 ﻿using BackEnd.API;
 using FrontEnd.Dialogs;
+using FrontEnd.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -27,8 +28,6 @@ namespace FrontEnd.Controls
         {
             InitializeComponent();
             Load_default_machine_list();
-            ServerCreation box = new();
-            box.Show();
         }
 
         public void account_btn_clk(object sender, RoutedEventArgs args)
@@ -48,27 +47,51 @@ namespace FrontEnd.Controls
 
         private void add_machine_clk(object sender, RoutedEventArgs args)
         {
-            Dialogs.MachineCreationType box = new();
+            MachineCreationType box = new();
             box.ShowDialog();
             if ((bool)box.DialogResult)
             {
-                API.CreateMachine(box.Value);
+                switch (box.Value)
+                {
+                    case 0:
+                        //nMachine = new Machine();
+                        API.CreateMachine((byte)box.Value, DefaultMachineCreation());
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        break;
+                }
             }
         }
 
         private void All_display_btn_clk(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout.ToString());
+            Load_default_machine_list();
+
             if (((DefaultMachineLIst)MainMenuDisplay.Content).conter < 1)
             {
                 ((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout = LayoutMode.All;
                 ((DefaultMachineLIst)MainMenuDisplay.Content).conter++;
             }
-            else
-            {
-                ((DefaultMachineLIst)MainMenuDisplay.Content).CurrentLayout = LayoutMode.Default;
-                ((DefaultMachineLIst)MainMenuDisplay.Content).conter--;
-            }
+            
         }
+
+        private static Dictionary<string,string> DefaultMachineCreation()
+        {
+            MachineCreation InfoDialog = new();
+            if((bool)InfoDialog.ShowDialog())
+            {
+                return InfoDialog.viewModel.GetProperties();
+            }
+            else
+                return new Dictionary<string, string>{ };
+        } 
     }
 }

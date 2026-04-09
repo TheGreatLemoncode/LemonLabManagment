@@ -5,39 +5,149 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
-        Title="MachineDetails"  Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE8F6CE">
-    <Canvas>
-        <DockPanel HorizontalAlignment="Left" Canvas.Left="309" VerticalAlignment="Center" Width="463">
-            <Button Content="..." DockPanel.Dock="Right" Background="#00000000"/>
-            <Label Content="{Binding Code, FallbackValue=ABCDEFG}" FontSize="20" Width="436"/>
-        </DockPanel>
-        <DockPanel HorizontalAlignment="Left" LastChildFill="False" Canvas.Left="29" VerticalAlignment="Center" Width="743" Canvas.Top="68" Height="75">
-            <ComboBox x:Name="cbox_status" ItemsSource="{Binding StatusValues}" SelectedItem="{Binding Status, Mode=TwoWay}" DockPanel.Dock="Right" Width="160"/>
-            <Label DockPanel.Dock="Left" FontSize="20" Width="242">
-                <TextBlock Text="{Binding NameFormat, FallbackValue=hello &#x0a; jfjfjfjjffj}" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Height="65" Width="180" Margin="0,6,0,0"/>
-            </Label>
-        </DockPanel>
-        <Label  Canvas.Left="29" Canvas.Top="148" HorizontalAlignment="Left" VerticalAlignment="Center" Width="215" Height="47">
-            <TextBlock FontSize="20" Text="{Binding Locataire, FallbackValue=Locataire: Personne, StringFormat=Locataire : {0}}"/>
-        </Label>
-        <Label  Canvas.Left="29" Canvas.Top="190" HorizontalAlignment="Center" VerticalAlignment="Top" Width="187" Height="27">
-            <TextBlock FontSize="18" Text="Description:" Width="177" Height="27"/>
-        </Label>
-        <TextBlock FontSize="18" Background="#FFEEF5E1" Text="{Binding Description, FallbackValue=une super giga longue description}" Canvas.Left="29" Canvas.Top="222" HorizontalAlignment="Center" VerticalAlignment="Top" Width="607" Height="99"/>
-        <Button Command="{Binding DefaultButtonCommand}" Canvas.Left="309" Canvas.Top="363" Width="139" HorizontalAlignment="Center" Height="48" VerticalAlignment="Top">
-            <Button.Style>
-                <Style TargetType="Button">
-                    <Setter Property="Content" Value="Rendre"/>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Status}" Value="Disponible">
-                            <Setter Property="Content" Value="Réservation"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Status}" Value="Utilisé">
+        Title="Détails machine"
+        Height="450" Width="680"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#0E0F0E">
+
+    <Window.Resources>
+        <ResourceDictionary Source="/Ressources/Styles.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="64"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0"
+                Background="{StaticResource LLM.Surface}"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,0,0,1"
+                Padding="20,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding Code, FallbackValue=ABCDEFG}"
+                               FontFamily="Cascadia Code, Consolas"
+                               FontSize="11"
+                               Foreground="{StaticResource LLM.Accent}"
+                               VerticalAlignment="Center"
+                               Margin="0,0,12,0"/>
+                    <TextBlock Text="{Binding Name, FallbackValue=Machine}"
+                               FontFamily="Cascadia Code, Consolas"
+                               FontSize="15" FontWeight="Bold"
+                               Foreground="{StaticResource LLM.TextPrimary}"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                <ComboBox Grid.Column="1"
+                          x:Name="cbox_status"
+                          SelectedItem="{Binding Status, UpdateSourceTrigger=PropertyChanged}"
+                          Width="140" Height="35"
+                          Background="{StaticResource LLM.Surface2}"
+                          Foreground="{StaticResource LLM.TextPrimary}"
+                          BorderBrush="{StaticResource LLM.Border}"
+                          FontFamily="Cascadia Code, Consolas"
+                          FontSize="12" IsReadOnly="True"/>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Margin="20,16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="LOCATAIRE"
+                           FontFamily="Cascadia Code, Consolas"
+                           FontSize="9" FontWeight="Bold"
+                           Foreground="{StaticResource LLM.TextMuted}"
+                           Margin="0,0,0,4"/>
+                <TextBlock Text="{Binding Locataire, FallbackValue=—}"
+                           FontFamily="Cascadia Code, Consolas"
+                           FontSize="14"
+                           Foreground="{StaticResource LLM.TextPrimary}"
+                           Margin="0,0,0,20"/>
+
+                <TextBlock Text="TYPE"
+                           FontFamily="Cascadia Code, Consolas"
+                           FontSize="9" FontWeight="Bold"
+                           Foreground="{StaticResource LLM.TextMuted}"
+                           Margin="0,0,0,4"/>
+                <Border Background="{StaticResource LLM.Surface2}"
+                        BorderBrush="{StaticResource LLM.Border}"
+                        BorderThickness="1"
+                        CornerRadius="2"
+                        Padding="8,4"
+                        HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding TypeFormat}"
+                               FontFamily="Cascadia Code, Consolas"
+                               FontSize="12"
+                               Foreground="{StaticResource LLM.Accent}"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2">
+                <TextBlock Text="DESCRIPTION"
+                           FontFamily="Cascadia Code, Consolas"
+                           FontSize="9" FontWeight="Bold"
+                           Foreground="{StaticResource LLM.TextMuted}"
+                           Margin="0,0,0,4"/>
+                <Border Background="{StaticResource LLM.Surface2}"
+                        BorderBrush="{StaticResource LLM.Border}"
+                        BorderThickness="1"
+                        CornerRadius="3"
+                        Padding="12,10"
+                        MinHeight="120">
+                    <TextBlock Text="{Binding Description, FallbackValue=Aucune description.}"
+                               FontFamily="Cascadia Code, Consolas"
+                               FontSize="12"
+                               Foreground="{StaticResource LLM.TextSecondary}"
+                               TextWrapping="Wrap"/>
+                </Border>
+            </StackPanel>
+        </Grid>
+
+
+        <Border Grid.Row="2"
+                Background="{StaticResource LLM.Surface}"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,1,0,0"
+                Padding="20,0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+                <Button Click="annuler_btn_clk"
+                        Content="Fermer"
+                        Width="90" Height="36"
+                        Margin="0,0,8,0"
+                        Style="{StaticResource LLM.Button.Ghost}"/>
+                <Button Command="{Binding DefaultButtonCommand}"
+                        Height="36" Width="130"
+                        >
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource LLM.Button.Primary}">
                             <Setter Property="Content" Value="Rendre"/>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Button.Style>
-        </Button>
-    </Canvas>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Status}" Value="Disponible">
+                                    <Setter Property="Content" Value="Réservation"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Status}" Value="Utilisé">
+                                    <Setter Property="Content" Value="Rendre"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>

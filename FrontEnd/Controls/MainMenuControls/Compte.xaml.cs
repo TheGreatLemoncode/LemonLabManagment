@@ -19,15 +19,17 @@ using ToastNotifications.Messages;
 using Wpf.Ui;
 using FrontEnd.Dialogs;
 using FrontEnd.ViewModels;
+using FrontEnd.Interfaces;
 
 namespace FrontEnd.Controls.MainMenuControls
 {
     /// <summary>
     /// Logique d'interaction pour Compte.xaml
     /// </summary>
-    public partial class Compte : UserControl
+    public partial class Compte : UserControl, IUserControlEvent
     {
         public AccountViewModel Buttons { get; set; } = new AccountViewModel();
+        public static event EventHandler ControlUsed;
         public Compte()
         {
             InitializeComponent();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Models
 {
-    public class Router(string pName, string pMarque) : Machine(pName, pMarque)
+    public class Router(string pName, string pMarque) : Machine(pName)
     {
         private readonly List<string> DevicesKeys = [];
         public bool ConnectDevice(Machine pDevice)

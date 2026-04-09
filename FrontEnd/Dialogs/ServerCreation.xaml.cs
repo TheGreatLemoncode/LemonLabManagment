@@ -19,9 +19,12 @@ namespace FrontEnd.Dialogs
     /// </summary>
     public partial class ServerCreation : Window
     {
+        public Dictionary<string, string> MachineInfoContainer { get; set; } = [];
         public ServerCreation()
         {
             InitializeComponent();
         }
+
+
     }
 }

@@ -14,10 +14,9 @@ namespace BackEnd.Models
     public class Machine : ILocation
     {
 
-        public Machine(string pName, string pMarque)
+        public Machine(string pName)
         {
             _name = pName;
-            _marque = pMarque;
             Code = Kitchen.GetRandomString(7);
         }
         public Machine() { }
@@ -73,12 +72,8 @@ namespace BackEnd.Models
 
         private string _description = string.Empty;
         public string Description { get { return _description; } set { _description = value; } }
-
-        private string _marque;
-        public string Marque { get { return _marque; } set{ _marque = value; } }
-
         private string _ipAddress = string.Empty;
-        public string IP { get { if (_ipAddress != null) return _ipAddress; else { return string.Empty; } } }
+        public string IP { get { if (_ipAddress != null) return _ipAddress; else { return string.Empty; } }  set { if (Kitchen.CheckIpFormat(value)) _ipAddress = value;} }
     }
 
     public enum Status

@@ -89,7 +89,7 @@ namespace BackEnd.API
             List<Machine> toreturn = [];
             foreach(Machine m in DataController.MachineDB.Values)
             {
-                if(m.Status == pStatus)
+                if(m.Status == pStatus && m.Locataire == ConnectedUser?.Name)
                 {
                     toreturn.Add(m);
                 }
@@ -124,12 +124,23 @@ namespace BackEnd.API
             return nList;
         }
 
-        public static void CreateMachine(int TypeIndex)
+        public static void CreateMachine(byte TypeIndex, Dictionary<string, string> MachineInfo)
         {
             Machine nMachine = new();
+
+            if(!(MachineInfo.Keys.Count > 0)) { return; }
+
             switch (TypeIndex)
             {
                 case 0:
+                    nMachine = new Machine();
+                    nMachine.Name = MachineInfo["MachineName"];
+                    MessageBox.Show(MachineInfo["MachineName"]);
+                    nMachine.IP = MachineInfo["MachineIpAddress"];
+                    MessageBox.Show(MachineInfo["MachineIpAddress"]);
+                    nMachine.Description = MachineInfo["MachineDescription"];
+                    MessageBox.Show(MachineInfo["MachineDescription"]);
+                    MessageBox.Show(nMachine.Code);
                     break;
                 case 1:
                     break;

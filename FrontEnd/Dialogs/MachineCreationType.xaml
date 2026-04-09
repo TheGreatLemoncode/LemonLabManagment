@@ -6,38 +6,120 @@
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="MainWindow" Height="270" Width="370"
-        ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FFE8F6CE">
-    <Canvas>
-        <Label HorizontalContentAlignment="Center" Canvas.Left="64" Canvas.Top="10" Height="50" Width="242" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <ui:TextBlock TextAlignment="Center" FontSize="32" Text="Type de machine"/>
-        </Label>
-        <ListBox x:Name="Lst_options" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled" Canvas.Top="65" Canvas.Left="24" HorizontalAlignment="Left" VerticalAlignment="Top" Width="322" Height="102" SelectedIndex="-1">
+        Title="Type de machine"
+        Height="280" Width="380"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#0E0F0E">
+
+    <Window.Resources>
+        <ResourceDictionary Source="/Ressources/Styles.xaml"/>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Background="{StaticResource LLM.Surface}"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,0,0,1"
+                Padding="20,0">
+            <TextBlock Text="TYPE DE MACHINE"
+                       FontFamily="Cascadia Code, Consolas"
+                       FontSize="11" FontWeight="Bold"
+                       Foreground="{StaticResource LLM.TextMuted}"
+                       VerticalAlignment="Center"/>
+        </Border>
+
+        <ListBox Grid.Row="1"
+                 x:Name="Lst_options"
+                 Background="Transparent"
+                 BorderThickness="0"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 Margin="16,12"
+                 SelectedIndex="-1">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <WrapPanel />
+                    <WrapPanel/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-            <ui:TextBlock Background="LimeGreen" Height="24" Width="80" TextAlignment="Center" Text="Serveur"/>
-            <ui:TextBlock Background="LimeGreen" Height="24" Width="80" TextAlignment="Center" Text="Routeur"/>
-            <ui:TextBlock Background="LimeGreen" Height="24" Width="80" TextAlignment="Center" Text="Machine"/>
-            <ui:TextBlock Background="LimeGreen" Height="24" Width="80" TextAlignment="Center" Text="Imprimante" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ui:TextBlock Background="LimeGreen" Text="Ordinateur" TextAlignment="Center" Width="80" Height="24"/>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Background"      Value="{StaticResource LLM.Surface2}"/>
+                    <Setter Property="Foreground"      Value="{StaticResource LLM.TextSecondary}"/>
+                    <Setter Property="BorderBrush"     Value="{StaticResource LLM.Border}"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Padding"         Value="0"/>
+                    <Setter Property="Margin"          Value="4"/>
+                    <Setter Property="Cursor"          Value="Hand"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListBoxItem">
+                                <Border x:Name="Bd" CornerRadius="3"
+                                        Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Width="88" Height="40">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="{StaticResource LLM.Surface3}"/>
+                                        <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource LLM.AccentDim}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource LLM.TextPrimary}"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Bd" Property="Background" Value="{StaticResource LLM.Surface3}"/>
+                                        <Setter TargetName="Bd" Property="BorderBrush" Value="{StaticResource LLM.Accent}"/>
+                                        <Setter Property="Foreground" Value="{StaticResource LLM.Accent}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Machine"    TextAlignment="Center"/>
+            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Ordinateur" TextAlignment="Center"/>
+            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Serveur"    TextAlignment="Center"/>
+            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Routeur"    TextAlignment="Center"/>
+            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Imprimante" TextAlignment="Center"/>
         </ListBox>
-        <DockPanel Canvas.Left="35" Canvas.Top="186" HorizontalAlignment="Left" Width="300" VerticalAlignment="Top">
-            <ui:Button DockPanel.Dock="Right" Content="Confirmer" Height="30" Width="90">
-                <ui:Button.Style>
-                    <Style BasedOn="{StaticResource {x:Type ui:Button}}" TargetType="{x:Type ui:Button}">
-                        <Setter Property="IsEnabled"  Value="True"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SelectedItem, ElementName=Lst_options}" Value="{x:Null}">
-                                <Setter Property="IsEnabled"  Value="False"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ui:Button.Style>
-            </ui:Button>
-            <ui:Button Content="Annuler" DockPanel.Dock="Right" Height="30" Width="90"/>
-        </DockPanel>
-    </Canvas>
+
+        <Border Grid.Row="2"
+                Background="{StaticResource LLM.Surface}"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,1,0,0"
+                Padding="16,0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center">
+
+                <Button Content="Annuler"
+                        Click="annuler_btn_clk"
+                        Width="100" Height="32"
+                        Style="{StaticResource LLM.Button.Ghost}"/>
+                <Button Content="Confirmer"
+                        Click="confirmation_btn_clk"
+                        Width="115" Height="32"
+                        Margin="8,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource LLM.Button.Primary}">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedItem, ElementName=Lst_options}" Value="{x:Null}">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
 </Window>

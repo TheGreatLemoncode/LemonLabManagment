@@ -9,7 +9,7 @@ namespace BackEnd.Models
 {
     public class Computer: Machine
     {
-        public Computer(string pName, string pMarque) : base(pName, pMarque) { }
+        public Computer(string pName, string pMarque) : base(pName) { }
         
     }
 }

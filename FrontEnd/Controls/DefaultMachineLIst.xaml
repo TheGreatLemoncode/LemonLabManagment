@@ -1,91 +1,183 @@
 ﻿<UserControl x:Class="FrontEnd.Controls.DefaultMachineLIst"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:FrontEnd.Controls"
              xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             xmlns:model="clr-namespace:BackEnd.Models;assembly=BackEnd"
              xmlns:viewmodel="clr-namespace:FrontEnd.ViewModels"
-             mc:Ignorable="d" 
-             d:DesignHeight="380" d:DesignWidth="611">
+             mc:Ignorable="d"
+             d:DesignHeight="380" d:DesignWidth="620">
+
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutA">
-            <Button Command="{Binding Command}" Margin="2" Height="92" Background="{x:Null}" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Width="161" Padding="0,0,0,0">
-                <StackPanel Width="Auto" Background="White">
-                    <ui:TextBlock Text="{Binding Name}"/>
-                    <ui:TextBlock Text="{Binding Locataire}"/>
-                    <ui:TextBlock Text="{Binding Status}"/>
-                </StackPanel>
-            </Button>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutB">
-            <Button Command="{Binding Command}" Width="545" Background="Blue" BorderBrush="{x:Null}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
-                <DockPanel MaxHeight="150">
-                    <ui:TextBlock MinWidth="150" Text="{Binding Name}" DockPanel.Dock="Left" TextAlignment="Center"/>
-                    <ui:TextBlock MinWidth="150" Text="{Binding Status}" DockPanel.Dock="Right" TextAlignment="Center"/>
-                    <ui:TextBlock Text="{Binding Marque, FallbackValue=hellol}" TextWrapping="Wrap"  MaxWidth="150" TextAlignment="Center"/>
-                </DockPanel>
-            </Button>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Ressources/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
 
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutA">
+                <Button Command="{Binding Command}"
+                        Style="{StaticResource LLM.MachineCard}">
+                    <Grid Margin="12,10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Ellipse Width="6" Height="6" Margin="0,0,6,0"
+                                     Fill="{StaticResource LLM.StatusOk}"
+                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding Status}"
+                                       FontFamily="Cascadia Code, Consolas"
+                                       FontSize="9"
+                                       Foreground="{StaticResource LLM.TextMuted}"/>
+                        </StackPanel>
+                        <TextBlock Grid.Row="1"
+                                   Text="{Binding Name}"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="13" FontWeight="Bold"
+                                   Foreground="{StaticResource LLM.TextPrimary}"
+                                   TextTrimming="CharacterEllipsis"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="2"
+                                   Text="{Binding Locataire}"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="10"
+                                   Foreground="{StaticResource LLM.TextSecondary}"
+                                   TextTrimming="CharacterEllipsis"/>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewmodel:MachineViewModel}" x:Key="LayoutB">
+                <Button Command="{Binding Command}"
+                        Style="{StaticResource LLM.ListRow}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="140"/>
+                            <ColumnDefinition Width="100"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
+                                   Text="{Binding Name}"
+                                   FontFamily="Cascadia Code, Consolas"
+                                   FontSize="13"
+                                   Foreground="{StaticResource LLM.TextPrimary}"
+                                   VerticalAlignment="Center"/>
+                        <Border Grid.Column="2" CornerRadius="2" Padding="8,3"
+                                Background="{StaticResource LLM.Surface2}"
+                                VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <TextBlock Text="{Binding Status}"
+                                       FontFamily="Cascadia Code, Consolas"
+                                       FontSize="10"
+                                       Foreground="{StaticResource LLM.Accent}"/>
+                        </Border>
+                    </Grid>
+                </Button>
+            </DataTemplate>
+        </ResourceDictionary>
     </UserControl.Resources>
-    <Canvas>
-        <StackPanel Panel.ZIndex="0" Canvas.Left="14" Canvas.Top="10" HorizontalAlignment="Left" Height="360" VerticalAlignment="Center" Width="587">
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" Height="55" Width="552" Background="#FFEC6060">
-                <ui:TextBox x:Name="SearchBarContent" Width="500" FontSize="20" Background="White" Height="50"/>
-                <ui:Button Click="Search_btn_clk" Content="Src" Height="50" Width="49" Background="White"/>
-            </StackPanel>
-            <ui:TextBlock TextAlignment="Center" Panel.ZIndex="0" FontFamily="Cascadia Code" FontSize="32" Text="{Binding PageName, FallbackValue=Acceuil}" Width="330" Margin="0,3,0,0" Height="43"/>
-            <ItemsControl x:Name="MachineControls" Width="545" Height="205" Margin="0,7,0,0">
-                <ItemsControl.Template>
-                    <ControlTemplate TargetType="{x:Type ItemsControl}">
-                        <ScrollViewer Margin="0,15,0,0" CanContentScroll="True" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                            <ItemsPresenter/>
-                        </ScrollViewer>
-                    </ControlTemplate>
-                </ItemsControl.Template>
 
-                <ItemsControl.Style>
-                    <Style TargetType="{x:Type ItemsControl}">
-                        <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
-                        <Setter Property="ItemsPanel">
-                            <Setter.Value>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Setter Property="ItemsSource" Value="{Binding UsedItems}"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding CurrentLayout}" Value="Default">
-                                <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
-                                <Setter Property="ItemsSource" Value="{Binding UsedItems}"/>
-                                <Setter Property="ItemsPanel">
-                                    <Setter.Value>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding CurrentLayout}" Value="All">
-                                <Setter Property="ItemTemplate" Value="{StaticResource LayoutB}"/>
-                                <Setter Property="ItemsSource" Value="{Binding AllItems}"/>
-                                <Setter Property="ItemsPanel">
-                                    <Setter.Value>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel/>
-                                        </ItemsPanelTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </DataTrigger>
+    <Grid Background="{StaticResource LLM.Base}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="52"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                        </Style.Triggers>
-                    </Style>
-                </ItemsControl.Style>
-            </ItemsControl>
-        </StackPanel>
-        <ui:Button Content="FLR" Panel.ZIndex="1" Canvas.Left="530" Canvas.Top="81" Height="30" Width="50"/>
-    </Canvas>
+        <Border Grid.Row="0"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,0,0,1"
+                Padding="16,0">
+            <Grid Margin="0,0,-6,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="0"
+                           Text="{Binding PageName, FallbackValue=Accueil}"
+                           FontFamily="Cascadia Code, Consolas"
+                           FontSize="15" FontWeight="Bold"
+                           Foreground="{StaticResource LLM.TextPrimary}"
+                           VerticalAlignment="Center" Margin="0,0,24,0"/>
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1"
+                Padding="16,10"
+                BorderBrush="{StaticResource LLM.Border}"
+                BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="44"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         x:Name="SearchBarContent"
+                         Style="{StaticResource LLM.TextBox}"
+                         Height="34"
+                         FontSize="13"/>
+                <Button Grid.Column="1"
+                        Click="Search_btn_clk"
+                        Content="↵"
+                        Height="34" Width="40"
+                        Margin="4,0,0,0"
+                        Style="{StaticResource LLM.Button.Primary}"/>
+            </Grid>
+        </Border>
+        <ItemsControl Grid.Row="2"
+                      x:Name="MachineControls"
+                      Margin="12,8">
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                    <ScrollViewer CanContentScroll="True"
+                                  HorizontalScrollBarVisibility="Disabled"
+                                  VerticalScrollBarVisibility="Auto">
+                        <ItemsPresenter/>
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+
+            <ItemsControl.Style>
+                <Style TargetType="{x:Type ItemsControl}">
+                    <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                    <Setter Property="ItemsSource"  Value="{Binding UsedItems}"/>
+                    <Setter Property="ItemsPanel">
+                        <Setter.Value>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding CurrentLayout}" Value="Default">
+                            <Setter Property="ItemTemplate" Value="{StaticResource LayoutA}"/>
+                            <Setter Property="ItemsSource"  Value="{Binding UsedItems}"/>
+                            <Setter Property="ItemsPanel">
+                                <Setter.Value>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentLayout}" Value="All">
+                            <Setter Property="ItemTemplate" Value="{StaticResource LayoutB}"/>
+                            <Setter Property="ItemsSource"  Value="{Binding AllItems}"/>
+                            <Setter Property="ItemsPanel">
+                                <Setter.Value>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel/>
+                                    </ItemsPanelTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ItemsControl.Style>
+        </ItemsControl>
+
+    </Grid>
 </UserControl>

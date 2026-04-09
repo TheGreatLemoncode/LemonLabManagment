@@ -8,12 +8,12 @@ using System.Windows.Media.Animation;
 
 namespace FrontEnd
 {
-    public class RelayCommand<T>: ICommand
+    public class RelayCommand: ICommand
     {
-        public readonly Action<T> _execute;
+        public readonly Action _execute;
         public readonly Func<object, bool> _canExecute;
 
-        public RelayCommand(Action<T> execute, Func<object, bool> canExecute = null)
+        public RelayCommand(Action execute, Func<object, bool> canExecute = null)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
@@ -26,7 +26,7 @@ namespace FrontEnd
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            _execute();
         }
 
         public event EventHandler CanExecuteChanged

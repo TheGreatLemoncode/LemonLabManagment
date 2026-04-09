@@ -31,6 +31,12 @@ namespace FrontEnd.Dialogs
             InitializeComponent();
             _machine = pMachine;
             DataContext = Machine;
+            cbox_status.ItemsSource = Enum.GetValues(typeof(Status));
+        }
+
+        public void annuler_btn_clk(object sender, EventArgs e)
+        {
+
         }
     }
 }

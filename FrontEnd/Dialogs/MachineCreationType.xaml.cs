@@ -19,7 +19,7 @@ namespace FrontEnd.Dialogs
     /// </summary>
     public partial class MachineCreationType : Window
     {
-        public int Value { get; set; }
+        public byte? Value { get; set; }
         public MachineCreationType()
         {
             InitializeComponent();
@@ -27,8 +27,19 @@ namespace FrontEnd.Dialogs
 
         private void confirmation_btn_clk(object sender, RoutedEventArgs e)
         {
-            Value = Lst_options.SelectedIndex;
-            DialogResult = true;
+            if (Lst_options.SelectedItem != null)
+            {
+                Value = (byte)Lst_options.SelectedIndex;
+                DialogResult = true;
+            }
+            else
+                DialogResult = false;
+        }
+
+        private void annuler_btn_clk(object sender, RoutedEventArgs e)
+        {
+            Value = null;
+            DialogResult = false;
         }
     }
 }
