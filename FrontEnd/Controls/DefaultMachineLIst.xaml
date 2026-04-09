@@ -117,8 +117,8 @@
                 <TextBox Grid.Column="0"
                          x:Name="SearchBarContent"
                          Style="{StaticResource LLM.TextBox}"
-                         Height="34"
-                         FontSize="13"/>
+                         Height="40"
+                         FontSize="13" CharacterCasing="Upper" MaxLength="10"/>
                 <Button Grid.Column="1"
                         Click="Search_btn_clk"
                         Content="↵"

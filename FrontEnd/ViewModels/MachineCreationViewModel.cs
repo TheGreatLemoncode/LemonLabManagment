@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrontEnd.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO.Packaging;
 using System.Linq;
@@ -9,12 +10,40 @@ using System.Windows.Input;
 
 namespace FrontEnd.ViewModels
 {
-    internal class MachineCreationViewModel: BaseViewModel
+    public class MachineCreationViewModel: BaseViewModel, IMachineCreation
     {
-        public string MachineName { get; set; }
-        public string MachineDescription { get; set; }
-        public string MachineIpAddress { get; set; }
-        public bool CanCommit { get { return (string.IsNullOrEmpty(MachineName) && string.IsNullOrEmpty(MachineDescription)); }} 
+        private string _machineName;
+        private string _machineDescription;
+        private string _machineIpAdresse;
+
+        public string MachineName
+        {
+            get { return _machineName; }
+            set
+            {
+                _machineName = value;
+                OnPropertyChanged(nameof(MachineName));
+            }
+        }
+        public string MachineDescription
+        {
+            get { return _machineDescription; }
+            set
+            {
+                _machineDescription = value;
+                OnPropertyChanged(nameof(MachineDescription));
+            }
+        }
+        public string MachineIpAddress
+        {
+            get { return _machineIpAdresse; }
+            set
+            {
+                _machineIpAdresse = value;
+                OnPropertyChanged(nameof(MachineIpAddress));
+            }
+        }
+        public bool CanCommit { get { return !(string.IsNullOrEmpty(MachineName) && !string.IsNullOrEmpty(MachineDescription)); }} 
 
         public MachineCreationViewModel()
         {
@@ -23,7 +52,7 @@ namespace FrontEnd.ViewModels
             MachineIpAddress = string.Empty;
         }
 
-        public Dictionary<string, string> GetProperties()
+        public virtual Dictionary<string, string> GetProperties()
         {
             Dictionary<string, string> KeyValueInfo = [];
             KeyValueInfo.Add(nameof(MachineName), MachineName);

@@ -56,7 +56,7 @@ namespace FrontEnd.Controls
                 AllItems.Add(new MachineViewModel(m));
             }
 
-            foreach(Machine n in API.RequestMachineByStatus(Status.Utilisé))
+            foreach(Machine n in API.RequestMachineByStatus(Status.Utilisé) )
             {
                 UsedItems.Add(new MachineViewModel(n));
             }

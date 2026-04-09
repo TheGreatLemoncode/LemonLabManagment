@@ -34,7 +34,7 @@
             <TextBox x:Name="txt_content"
                      Style="{StaticResource LLM.TextBox}"
                      Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}"
-                     Height="36"/>
+                     Height="40"/>
         </StackPanel>
 
         <Border Grid.Row="1"
@@ -47,7 +47,7 @@
                         VerticalAlignment="Center">
                 <Button Click="Btn_annuler_clk"
                         Content="Annuler"
-                        Width="90" Height="32"
+                        Width="100" Height="32"
                         Style="{StaticResource LLM.Button.Ghost}"/>
                 <Button Click="Btn_confirmer_clk"
                         Content="Confirmer"

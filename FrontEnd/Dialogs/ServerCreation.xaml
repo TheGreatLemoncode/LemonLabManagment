@@ -59,7 +59,7 @@
                                FontSize="9" FontWeight="Bold"
                                Foreground="{StaticResource LLM.TextMuted}"
                                Margin="0,0,0,4"/>
-                    <TextBox Style="{StaticResource LLM.TextBox}" Height="46"/>
+                    <TextBox Style="{StaticResource LLM.TextBox}" Text="{Binding MachineName, UpdateSourceTrigger=PropertyChanged}" Height="46"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
@@ -68,7 +68,7 @@
                                FontSize="9" FontWeight="Bold"
                                Foreground="{StaticResource LLM.TextMuted}"
                                Margin="0,0,0,4"/>
-                    <TextBox Style="{StaticResource LLM.TextBox}" Height="46"/>
+                    <TextBox Text="{Binding MachineIpAddress, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46"/>
                 </StackPanel>
             </Grid>
 
@@ -87,40 +87,37 @@
                     BorderThickness="1"
                     CornerRadius="3"
                     Padding="8" Margin="0,0,0,-2">
-                <ItemsControl x:Name="Lst_service">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="service" Margin="3" Height="30" Width="100"
-                            Style="{StaticResource LLM.Button.Ghost}"/>
-                    <Button Content="+" Margin="3" Height="26" Width="40">
-
-                        <Button.Style>
-                            <Style TargetType="Button" BasedOn="{StaticResource LLM.Button.Primary}">
-                                <Setter Property="Visibility" Value="Visible"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Items.Count, ElementName=Lst_service}" Value="9">
-                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-                    </Button>
-                </ItemsControl>
+                <ScrollViewer HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+                    <WrapPanel>
+                        <Button Click="Add_Service_clk" Content="+" Margin="3" Height="26" Width="40">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource LLM.Button.Primary}">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Items.Count, ElementName=Lst_service}" Value="9">
+                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <ItemsControl MinWidth="120" ItemsSource="{Binding Services}" x:Name="Lst_service">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Margin="3" Height="26" Width="80" Style="{StaticResource LLM.Button.Ghost}" Click="Service_button_clk">
+                                        <TextBlock Text="{Binding}"/>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </WrapPanel>
+                </ScrollViewer>
+                
             </Border>
         </Grid>
 
@@ -133,11 +130,13 @@
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
                 <Button Content="Annuler"
+                        Click="cancel_btn_clk"
                         Width="102" Height="32"
                         Style="{StaticResource LLM.Button.Ghost}"/>
                 <Button Content="Créer"
                         Width="102" Height="32"
                         Margin="8,0,0,0"
+                        Click="submit_btn_clk"
                         Style="{StaticResource LLM.Button.Primary}"/>
             </StackPanel>
         </Border>

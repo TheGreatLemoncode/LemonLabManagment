@@ -36,7 +36,7 @@ namespace FrontEnd.Dialogs
                 DialogResult = false;
         }
 
-        private void annuler_btn_clk(object sender, RoutedEventArgs e)
+        private void cancel_btn_clk(object sender, RoutedEventArgs e)
         {
             Value = null;
             DialogResult = false;

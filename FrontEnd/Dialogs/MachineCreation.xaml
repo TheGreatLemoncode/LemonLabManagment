@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
         Background="{StaticResource LLM.Base}"
-        Title="Création de machine" Height="350" Width="580" Closing="Window_Closing">
+        Title="Création de machine" Height="350" Width="580">
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>
     </Window.Resources>
@@ -53,7 +53,7 @@
                            FontSize="9" FontWeight="Bold"
                            Foreground="{StaticResource LLM.TextMuted}"
                            Margin="0,0,0,4"/>
-                    <TextBox Text="{Binding MachineName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46"/>
+                    <TextBox Text="{Binding MachineName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46" CharacterCasing="Upper"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
@@ -62,7 +62,7 @@
                            FontSize="9" FontWeight="Bold"
                            Foreground="{StaticResource LLM.TextMuted}"
                            Margin="0,0,0,4"/>
-                    <TextBox Text="{Binding MachineIpAddress, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46"/>
+                    <TextBox Text="{Binding MachineIpAddress, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46" CharacterCasing="Upper"/>
                 </StackPanel>
             </Grid>
 
@@ -95,12 +95,14 @@
                     VerticalAlignment="Center">
                 <Button Content="Annuler"
                     Width="102" Height="32"
+                    Click="Btn_cancel_clk"
                     Style="{StaticResource LLM.Button.Ghost}"/>
                 <Button Content="Créer"
                     Width="102" Height="32"
                     Margin="8,0,0,0" 
                     Click="Commit_btn_clk"
-                    Style="{StaticResource LLM.Button.Primary}"/>
+                    Style="{StaticResource LLM.Button.Primary}"
+                    IsEnabled="{Binding CanCommit}"/>
 
             </StackPanel>
         </Border>

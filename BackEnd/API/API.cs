@@ -87,13 +87,14 @@ namespace BackEnd.API
         public static List<Machine> RequestMachineByStatus(Status pStatus)
         {
             List<Machine> toreturn = [];
-            foreach(Machine m in DataController.MachineDB.Values)
-            {
-                if(m.Status == pStatus && m.Locataire == ConnectedUser?.Name)
-                {
-                    toreturn.Add(m);
-                }
-            }
+            //foreach(Machine m in DataController.MachineDB.Values)
+            //{
+            //    if(m.Status == pStatus && m.Locataire == ConnectedUser?.Name)
+            //    {
+            //        toreturn.Add(m);
+            //    }
+            //}
+            toreturn = DataController.MachineDB.Values.ToList().FindAll(x => x.Status == pStatus);
             return OrderListByStatusName(toreturn);
         }
 
@@ -131,26 +132,31 @@ namespace BackEnd.API
             if(!(MachineInfo.Keys.Count > 0)) { return; }
 
             switch (TypeIndex)
-            {
-                case 0:
-                    nMachine = new Machine();
-                    nMachine.Name = MachineInfo["MachineName"];
-                    MessageBox.Show(MachineInfo["MachineName"]);
-                    nMachine.IP = MachineInfo["MachineIpAddress"];
-                    MessageBox.Show(MachineInfo["MachineIpAddress"]);
-                    nMachine.Description = MachineInfo["MachineDescription"];
-                    MessageBox.Show(MachineInfo["MachineDescription"]);
-                    MessageBox.Show(nMachine.Code);
-                    break;
+            { 
                 case 1:
+                    nMachine = new Computer(MachineInfo["MachineName"], MachineInfo["SystemOS"]);
+                    nMachine.SetUp();
+                    nMachine.IP = MachineInfo["MachineIpAddress"];
                     break;
                 case 2:
+                    nMachine = new Server(MachineInfo["MachineName"], MachineInfo["Services"].Split(',').ToList());
+                    nMachine.SetUp();
+                    nMachine.IP = MachineInfo["MachineIpAddress"];
+                    string description = $"Server créé le {DateTime.Now}\n";
+                    description += $"Adresse IP : {nMachine.IP}\n";
+                    description += "Services : \n";
+                    foreach(string s in ((Server)nMachine).Services)
+                    {
+                        description += $". {s}\n";
+                    }
+                    nMachine.Description = description;
                     break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
+                default:
+                    nMachine = new Machine();
+                    nMachine.SetUp();
+                    nMachine.Name = MachineInfo["MachineName"];
+                    nMachine.IP = MachineInfo["MachineIpAddress"];
+                    nMachine.Description = MachineInfo["MachineDescription"];
                     break;
             }
             DataController.AddMachine(nMachine);

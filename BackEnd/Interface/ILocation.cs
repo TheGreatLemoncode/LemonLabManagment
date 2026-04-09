@@ -10,8 +10,5 @@ namespace BackEnd.Interface
     public interface ILocation
     {
         string? Locataire { get; set; }
-
-        public void Reservation();
-        public void Remise();
     }
 }

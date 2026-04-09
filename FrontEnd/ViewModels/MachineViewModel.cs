@@ -66,12 +66,19 @@ namespace FrontEnd.ViewModels
         {
             if(Status == Status.Disponible)
             {
-                machine.Reservation();
+                Status = Status.Utilisé;
+
+                if (API.ConnectedUser != null)
+                    Locataire = API.ConnectedUser.Name;
+                else
+                    Locataire = "Test locataire";
+                
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine réservée");
             }
             else
             {
-                machine.Remise();
+                Status = Status.Disponible;
+                Locataire = null;
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine remise");
             }
         }

@@ -20,7 +20,7 @@ namespace FrontEnd.Dialogs
     /// </summary>
     public partial class MachineCreation : Window
     {
-        internal MachineCreationViewModel viewModel;
+        private MachineCreationViewModel viewModel;
         public MachineCreation()
         {
             InitializeComponent();
@@ -30,12 +30,19 @@ namespace FrontEnd.Dialogs
 
         private void Commit_btn_clk(object sender, RoutedEventArgs e)
         {
-            DialogResult = viewModel.CanCommit;
+            DialogResult = true;
+            MessageBox.Show(viewModel.CanCommit.ToString());
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public Dictionary<string,string> GetProperties()
+        {
+            return viewModel.GetProperties();
+        }
+
+        private void Btn_cancel_clk(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+            this.Close();
         }
     }
 }

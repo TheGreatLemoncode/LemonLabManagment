@@ -125,7 +125,7 @@
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
-                <Button Click="annuler_btn_clk"
+                <Button Click="cancel_btn_clk"
                         Content="Fermer"
                         Width="90" Height="36"
                         Margin="0,0,8,0"

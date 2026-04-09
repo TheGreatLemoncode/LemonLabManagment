@@ -7,9 +7,9 @@ using System.Web;
 
 namespace BackEnd.Models
 {
-    public class Server(string pName, string pMarque, string pService) : Computer(pName, pMarque)
+    public class Server(string pName, List<string> pServices) : Computer(pName)
     {
-        public List<string> Services { get; } = [pService];
+        public List<string> Services { get; } = pServices;
 
         public void AddService(string pService)
         {
@@ -17,6 +17,6 @@ namespace BackEnd.Models
             {
                 Services.Add(pService);
             }
-        }
+        }   
     }
 }

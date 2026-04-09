@@ -64,6 +64,7 @@
                             Click="All_display_btn_clk"
                             Content="▤ Toutes les machines"/>
                     <Button Style="{StaticResource LLM.NavButton}"
+                            Click="canvas_mode_clk"
                             Content="⬡ Plan de circuit"/>
                 </StackPanel>
 

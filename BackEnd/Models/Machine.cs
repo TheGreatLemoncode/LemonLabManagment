@@ -38,26 +38,8 @@ namespace BackEnd.Models
                 }   
             }
         }
-        public void Reservation()
-        {
-            if (API.API.ConnectedUser != null)
-            {
-                Locataire = API.API.ConnectedUser.Name;
-            }
-            else
-            {
-                Locataire = "Test location";
-            }
-            Status = Status.Utilisé;
-        }
-
-        public void Remise()
-        {
-            Locataire = null;
-            Status = Status.Disponible;
-        }
-
-        public void SetUp()
+       
+        public virtual void SetUp()
         {
             Code = Kitchen.GetRandomString(7);
         }

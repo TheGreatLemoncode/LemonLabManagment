@@ -101,7 +101,7 @@
                         VerticalAlignment="Center">
 
                 <Button Content="Annuler"
-                        Click="annuler_btn_clk"
+                        Click="cancel_btn_clk"
                         Width="100" Height="32"
                         Style="{StaticResource LLM.Button.Ghost}"/>
                 <Button Content="Confirmer"

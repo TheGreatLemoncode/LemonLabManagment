@@ -9,7 +9,17 @@ namespace BackEnd.Models
 {
     public class Computer: Machine
     {
-        public Computer(string pName, string pMarque) : base(pName) { }
-        
+        private string _operatingSystem;
+        public string OperatingSystem
+        {
+            get { return _operatingSystem; }
+            set { _operatingSystem = value; }
+        }
+        public Computer(string pName) : base(pName) { }
+        public Computer(string pName, string OS) : base(pName)
+        {
+            OperatingSystem = OS;
+        }
+        public Computer() : base() { }
     }
 }

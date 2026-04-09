@@ -37,6 +37,7 @@ namespace FrontEnd.Controls
 
         public void Load_default_machine_list()
         {
+            
             MainMenuDisplay.Content = new DefaultMachineLIst();
         }
 
@@ -53,19 +54,14 @@ namespace FrontEnd.Controls
             {
                 switch (box.Value)
                 {
-                    case 0:
-                        //nMachine = new Machine();
-                        API.CreateMachine((byte)box.Value, DefaultMachineCreation());
-                        break;
                     case 1:
+                        API.CreateMachine((byte)box.Value, ComputerMachineCreation());
                         break;
                     case 2:
+                        API.CreateMachine((byte)box.Value, ServerMachineCreation());
                         break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
+                    default:
+                        API.CreateMachine((byte)box.Value, DefaultMachineCreation());
                         break;
                 }
             }
@@ -82,16 +78,42 @@ namespace FrontEnd.Controls
             }
             
         }
+        private void canvas_mode_clk(object sender, RoutedEventArgs e)
+        {
+            CanvasWindow window = new(API.RequestMachineByStatus(BackEnd.Models.Status.Utilisé));
+            window.Owner = Application.Current.MainWindow;
+            window.Show();
+        }
 
-        private static Dictionary<string,string> DefaultMachineCreation()
+        private Dictionary<string,string> DefaultMachineCreation()
         {
             MachineCreation InfoDialog = new();
             if((bool)InfoDialog.ShowDialog())
             {
-                return InfoDialog.viewModel.GetProperties();
+                return InfoDialog.GetProperties();
             }
             else
                 return new Dictionary<string, string>{ };
         } 
+
+        private Dictionary<string,string> ServerMachineCreation()
+        {
+            ServerCreation InfoDialog = new();
+            if ((bool)InfoDialog.ShowDialog())
+            {
+                return InfoDialog.GetProperties();
+            }
+            else
+                return new Dictionary<string, string>{ };
+        }
+
+        private Dictionary<string, string> ComputerMachineCreation()
+        {
+            ComputerCreation InfoDialog = new();
+            if ((bool)InfoDialog.ShowDialog())
+                return InfoDialog.GetProperties();
+            else
+                return new Dictionary<string, string>{ };
+        }
     }
 }
