@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.Dialogs
 {
@@ -87,7 +88,11 @@ namespace FrontEnd.Dialogs
         private void Mode_dessin_Click(object sender, RoutedEventArgs e)
         {
             _drawing = !_drawing;
-            MessageBox.Show(_drawing.ToString());
+            if (_drawing)
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Mode dessin activé");
+            else
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Mode dessin désactivé");
+            //MessageBox.Show(_drawing.ToString());
         }
 
         private void PopulateCanvas(Machine pMAchine, double x, double y)
@@ -213,9 +218,15 @@ namespace FrontEnd.Dialogs
                 Stroke = new SolidColorBrush(Color.FromRgb(0x7C, 0xAA, 0x00)),
                 StrokeThickness = 1.5,
             };
+            line.MouseLeftButtonDown += line_Left_clk;
 
             Panel.SetZIndex(line, -1); // behind the nodes
             MainCanvas.Children.Insert(0, line);
+        }
+
+        private void line_Left_clk(object sender, MouseButtonEventArgs args)
+        {
+            MainCanvas.Children.Remove((Line?)sender);
         }
 
         private Point GetCenter(Border node)

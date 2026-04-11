@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using ToastNotifications.Messages;
 using ToastNotifications.Messages.Core;
 
 namespace FrontEnd.ViewModels
@@ -23,7 +24,8 @@ namespace FrontEnd.ViewModels
                 if (!Services.Contains(service))
                     Services.Add(service);
                 else
-                    MessageBox.Show("le service existe deja");
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("le service existe déjà");
+                    //MessageBox.Show("le service existe deja");
             }
         }
 

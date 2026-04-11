@@ -31,7 +31,7 @@ namespace FrontEnd.Dialogs
         private void Commit_btn_clk(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
-            MessageBox.Show(viewModel.CanCommit.ToString());
+            //MessageBox.Show(viewModel.CanCommit.ToString());
         }
 
         public Dictionary<string,string> GetProperties()

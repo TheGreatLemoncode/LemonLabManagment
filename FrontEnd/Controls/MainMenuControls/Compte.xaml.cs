@@ -64,8 +64,8 @@ namespace FrontEnd.Controls.MainMenuControls
                     }
 
                 }
-                else
-                    MessageBox.Show("Ce code n'existe pas", "Rejoindre une organisation");
+                else { ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Ce code n'existe pas \nVeuillez recommencer"); }
+                    //MessageBox.Show("Ce code n'existe pas", "Rejoindre une organisation");
             }  
         }
 
