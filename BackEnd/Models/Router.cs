@@ -23,6 +23,12 @@ namespace BackEnd.Models
             return DevicesKeys.Contains(pDevice.Code);
         }
 
+        public override void DescriptionSetUp(string? ajout = null)
+        {
+            base.DescriptionSetUp(ajout);
+            Description += ". " + ajout;
+        }
+
         public List<string> GetDevices() { return DevicesKeys; }
     }
 }

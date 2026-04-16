@@ -9,7 +9,7 @@ namespace BackEnd.Models
 {
     public class Computer: Machine
     {
-        private string _operatingSystem;
+        private string _operatingSystem = string.Empty;
         public string OperatingSystem
         {
             get { return _operatingSystem; }
@@ -21,5 +21,12 @@ namespace BackEnd.Models
             OperatingSystem = OS;
         }
         public Computer() : base() { }
+
+        public override void DescriptionSetUp(string? ajout)
+        {
+            base.DescriptionSetUp(ajout);
+            Description += ". " + "Système d'exploitation: " + OperatingSystem + "\n";
+            Description += ajout;
+        }
     }
 }

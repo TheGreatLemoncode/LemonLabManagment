@@ -29,7 +29,7 @@
             <TextBlock Text="CRÉATION D'ORDINATEUR"
                FontFamily="Cascadia Code, Consolas"
                FontSize="11" FontWeight="Bold"
-               Foreground="{StaticResource LLM.TextMuted}"
+               Foreground="{StaticResource LLM.TextSecondary}"
                VerticalAlignment="Center"/>
         </Border>
 
@@ -54,7 +54,7 @@
                     <TextBlock Text="NOM D'AFFICHAGE"
                        FontFamily="Cascadia Code, Consolas"
                        FontSize="9" FontWeight="Bold"
-                       Foreground="{StaticResource LLM.TextMuted}"
+                       Foreground="{StaticResource LLM.TextSecondary}"
                        Margin="0,0,0,4"/>
                     <TextBox Style="{StaticResource LLM.TextBox}" Text="{Binding MachineName, UpdateSourceTrigger=PropertyChanged}" Height="46"/>
                 </StackPanel>
@@ -63,7 +63,7 @@
                     <TextBlock Text="ADRESSE IP"
                        FontFamily="Cascadia Code, Consolas"
                        FontSize="9" FontWeight="Bold"
-                       Foreground="{StaticResource LLM.TextMuted}"
+                       Foreground="{StaticResource LLM.TextSecondary}"
                        Margin="0,0,0,4"/>
                     <TextBox Text="{Binding MachineIpAddress, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46"/>
                 </StackPanel>
@@ -74,7 +74,7 @@
                Text="SYSTÈME D'EXPLOITATION"
                FontFamily="Cascadia Code, Consolas"
                FontSize="9" FontWeight="Bold"
-               Foreground="{StaticResource LLM.TextMuted}"
+               Foreground="{StaticResource LLM.TextSecondary}"
                Margin="0,0,0,6"/>
 
 

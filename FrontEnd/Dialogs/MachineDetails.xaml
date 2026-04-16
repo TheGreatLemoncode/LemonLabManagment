@@ -69,7 +69,7 @@
                 <TextBlock Text="LOCATAIRE"
                            FontFamily="Cascadia Code, Consolas"
                            FontSize="9" FontWeight="Bold"
-                           Foreground="{StaticResource LLM.TextMuted}"
+                           Foreground="{StaticResource LLM.TextSecondary}"
                            Margin="0,0,0,4"/>
                 <TextBlock Text="{Binding Locataire, FallbackValue=—}"
                            FontFamily="Cascadia Code, Consolas"
@@ -80,7 +80,7 @@
                 <TextBlock Text="TYPE"
                            FontFamily="Cascadia Code, Consolas"
                            FontSize="9" FontWeight="Bold"
-                           Foreground="{StaticResource LLM.TextMuted}"
+                           Foreground="{StaticResource LLM.TextSecondary}"
                            Margin="0,0,0,4"/>
                 <Border Background="{StaticResource LLM.Surface2}"
                         BorderBrush="{StaticResource LLM.Border}"

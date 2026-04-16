@@ -17,6 +17,16 @@ namespace BackEnd.Models
             {
                 Services.Add(pService);
             }
-        }   
+        }
+
+        public override void DescriptionSetUp(string? ajout = null)
+        {
+            base.DescriptionSetUp(ajout);
+            Description += "SERVICES : \n";
+            foreach(string s in Services)
+            {
+                Description +=  ". " + s;
+            }
+        }
     }
 }

@@ -67,7 +67,7 @@ namespace FrontEnd.Controls
             MachineDetails DetailsWindow;
             if(string.IsNullOrEmpty(SearchBarContent.Text))
             {
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Object introuvable, réessayez");
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Le champ de recherche est null");
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace FrontEnd.Controls
             }
             else
             {
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Object introuvable, réessayez");
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Object introuvable, réessayez");
             }
 
         }

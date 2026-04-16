@@ -38,11 +38,6 @@ namespace BackEnd.Models
                 }   
             }
         }
-       
-        public virtual void SetUp()
-        {
-            Code = Kitchen.GetRandomString(7);
-        }
 
         public string? Locataire { get; set; } = string.Empty;
 
@@ -56,6 +51,19 @@ namespace BackEnd.Models
         public string Description { get { return _description; } set { _description = value; } }
         private string _ipAddress = string.Empty;
         public string IP { get { if (_ipAddress != null) return _ipAddress; else { return string.Empty; } }  set { if (Kitchen.CheckIpFormat(value)) _ipAddress = value;} }
+
+        public virtual void SetUp()
+        {
+            Code = Kitchen.GetRandomString(7);
+        }
+
+        public virtual void DescriptionSetUp(string? ajout = null)
+        {
+            Description += ". " + this.GetType().Name + "\n";
+            Description += ". Adresse IP: " + IP + "\n";
+            Description += $"Date de création : {DateTime.Today}";
+
+        }
     }
 
     public enum Status

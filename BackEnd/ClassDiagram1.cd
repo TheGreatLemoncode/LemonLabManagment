@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="BackEnd.API.API">
-    <Position X="8" Y="0.5" Width="1.5" />
+  <Class Name="BackEnd.API.API" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAEAEIAAAAAAAABAAIAAAAAAAgAQCAIQA=</HashCode>
+      <HashCode>AAAAAIAAAAAAECEAAAAAAAABBEAoEAAAAAAgBQCAIQA=</HashCode>
       <FileName>API\API.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BackEnd.DATA.DataController">
-    <Position X="9.75" Y="0.75" Width="1.5" />
+  <Class Name="BackEnd.DATA.DataController" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAIAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAiAIAAAIAAAAAAAAAAAAAIAAAAAACAAAACACAABAA=</HashCode>
       <FileName>DATA\DataController.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BackEnd.Models.Account" BaseTypeListCollapsed="true">
-    <Position X="6.25" Y="0.75" Width="1.5" />
+  <Class Name="BackEnd.Models.Account" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAIAAAAAAAAIAAIAAAAAwAgAAAABACAAAAEQAAAAA=</HashCode>
       <FileName>Models\Account.cs</FileName>
@@ -23,64 +23,57 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="BackEnd.Models.Computer">
-    <Position X="1.25" Y="2" Width="1.5" />
+    <Position X="1.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAA=</HashCode>
       <FileName>Models\Computer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BackEnd.Models.DataController">
-    <Position X="8.25" Y="4" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAgAIAAAIAAAAAAAAAAAAAIAAAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>Models\DataController.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="BackEnd.Models.Machine">
-    <Position X="3" Y="0.5" Width="1.5" />
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AEAAKAAEAAAgAAAEAAAAAAQAIAAAAAAAAAAAAABAACA=</HashCode>
+      <HashCode>AEAAKAAEAAAgAAgEAAAgAAQAIAAAAAAAAAAAAAAgACA=</HashCode>
       <FileName>Models\Machine.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
-  <Class Name="BackEnd.Models.Organisation">
-    <Position X="11.5" Y="2.5" Width="1.5" />
+  <Class Name="BackEnd.Models.Organisation" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAgAAQAAQAAAAAAAAAEAAAAACA=</HashCode>
       <FileName>Models\Organisation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BackEnd.Models.Router">
-    <Position X="4.75" Y="2.25" Width="1.5" />
+    <Position X="3.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAQABAAAAAAAAAAAAAAEA=</HashCode>
+      <HashCode>AAAAAAAAAACAAgAAAAAAAAAAAABAAAAAAAAAAAAAAEA=</HashCode>
       <FileName>Models\Router.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BackEnd.Models.Server">
-    <Position X="1.5" Y="3.5" Width="1.5" />
+    <Position X="1.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>Models\Server.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="BackEnd.Security.Kitchen">
-    <Position X="10" Y="3" Width="1.5" />
+  <Class Name="BackEnd.Security.Kitchen" Collapsed="true">
+    <Position X="6" Y="1.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAEAAAAABAEAAQAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <HashCode>AAQEAAAAABAEAAQAAAAAAAAAAAAAEAAAAAAAAAAAQAA=</HashCode>
       <FileName>Security\Kitchen.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="BackEnd.Interface.ILocation">
-    <Position X="6.25" Y="3" Width="1.5" />
+  <Interface Name="BackEnd.Interface.ILocation" Collapsed="true">
+    <Position X="6" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
       <FileName>Interface\ILocation.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Enum Name="BackEnd.Models.Status">
-    <Position X="6.5" Y="4.5" Width="1.5" />
+    <Position X="6" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAABAAAAgAAA=</HashCode>
       <FileName>Models\Machine.cs</FileName>

@@ -30,8 +30,8 @@
                 Padding="20,0">
             <TextBlock Text="TYPE DE MACHINE"
                        FontFamily="Cascadia Code, Consolas"
-                       FontSize="11" FontWeight="Bold"
-                       Foreground="{StaticResource LLM.TextMuted}"
+                       FontSize="13" FontWeight="Bold"
+                       Foreground="{StaticResource LLM.TextSecondary}"
                        VerticalAlignment="Center"/>
         </Border>
 
@@ -84,11 +84,11 @@
                     </Setter>
                 </Style>
             </ListBox.ItemContainerStyle>
-            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Machine"    TextAlignment="Center"/>
-            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Ordinateur" TextAlignment="Center"/>
-            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Serveur"    TextAlignment="Center"/>
-            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Routeur"    TextAlignment="Center"/>
-            <TextBlock FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Imprimante" TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource LLM.TextSecondary}" FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Machine"    TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource LLM.TextSecondary}" FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Ordinateur" TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource LLM.TextSecondary}" FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Serveur"    TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource LLM.TextSecondary}" FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Routeur"    TextAlignment="Center"/>
+            <TextBlock Foreground="{StaticResource LLM.TextSecondary}" FontFamily="Cascadia Code, Consolas" FontSize="12" Text="Imprimante" TextAlignment="Center"/>
         </ListBox>
 
         <Border Grid.Row="2"

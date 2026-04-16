@@ -142,21 +142,14 @@ namespace BackEnd.API
                     nMachine = new Server(MachineInfo["MachineName"], MachineInfo["Services"].Split(',').ToList());
                     nMachine.SetUp();
                     nMachine.IP = MachineInfo["MachineIpAddress"];
-                    string description = $"Server créé le {DateTime.Now}\n";
-                    description += $"Adresse IP : {nMachine.IP}\n";
-                    description += "Services : \n";
-                    foreach(string s in ((Server)nMachine).Services)
-                    {
-                        description += $". {s}\n";
-                    }
-                    nMachine.Description = description;
+                    nMachine.DescriptionSetUp();
                     break;
                 default:
                     nMachine = new Machine();
                     nMachine.SetUp();
                     nMachine.Name = MachineInfo["MachineName"];
                     nMachine.IP = MachineInfo["MachineIpAddress"];
-                    nMachine.Description = MachineInfo["MachineDescription"];
+                    nMachine.DescriptionSetUp(MachineInfo["MachineDescription"]);
                     break;
             }
             DataController.AddMachine(nMachine);
