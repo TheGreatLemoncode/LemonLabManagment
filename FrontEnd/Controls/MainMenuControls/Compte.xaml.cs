@@ -36,8 +36,11 @@ namespace FrontEnd.Controls.MainMenuControls
             DataContext = API.ConnectedUser;
             Lst_buttons.ItemsSource = Buttons.AccountButtons;
             Buttons.AccountButtons[0].Click += join_btn_clk;
+            Buttons.AccountButtons[0].Style = this.FindResource("LLM.Button.Primary") as Style;
             Buttons.AccountButtons[1].Click += create_btn_clk;
+            Buttons.AccountButtons[1].Style = this.FindResource("LLM.Button.Primary") as Style;
             Buttons.AccountButtons[2].Click += disconnect_btn_clk;
+            Buttons.AccountButtons[2].Style = this.FindResource("LLM.Button.Primary") as Style;
         }
 
         public void join_btn_clk(object sender, RoutedEventArgs args)
@@ -106,7 +109,6 @@ namespace FrontEnd.Controls.MainMenuControls
         {
             API.Deconnection();
             ((MainWindow)Application.Current.MainWindow).LoadAccountConnexion();
-            //Color.fr
         }
     }
 }

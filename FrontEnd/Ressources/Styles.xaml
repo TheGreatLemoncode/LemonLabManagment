@@ -12,7 +12,7 @@
     <SolidColorBrush x:Key="LLM.AccentGlow" Color="#30BFFF00"/>
     <SolidColorBrush x:Key="LLM.TextPrimary" Color="#E8EDE8"/>
     <SolidColorBrush x:Key="LLM.TextSecondary" Color="#7A8A7A"/>
-    <SolidColorBrush x:Key="LLM.TextMuted" Color="#445044"/>
+    <SolidColorBrush x:Key="LLM.TextMuted" Color="#FF647864"/>
     <SolidColorBrush x:Key="LLM.StatusOk" Color="#4ADE80"/>
     <SolidColorBrush x:Key="LLM.StatusWarn" Color="#FACC15"/>
     <SolidColorBrush x:Key="LLM.StatusErr" Color="#F87171"/>
@@ -20,7 +20,7 @@
 
     <Style x:Key="LLM.NavButton" TargetType="Button">
         <Setter Property="Background" Value="{StaticResource LLM.Transparent}"/>
-        <Setter Property="Foreground" Value="{StaticResource LLM.TextSecondary}"/>
+        <Setter Property="Foreground" Value="{StaticResource LLM.TextPrimary}"/>
         <Setter Property="BorderThickness"  Value="0"/>
         <Setter Property="Height" Value="44"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>

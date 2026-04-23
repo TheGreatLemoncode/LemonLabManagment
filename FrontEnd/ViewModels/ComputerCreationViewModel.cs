@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.ViewModels
 {
-    public class ComputerCreationViewModel : MachineCreationViewModel, IMachineCreation
+    public class ComputerCreationViewModel : MachineCreationViewModel
     {
         private string _sytemOS;
         public string SystemOS

@@ -12,6 +12,9 @@
     <None Remove="Assets\Images\copy-icon.png" />
     <None Remove="Assets\Images\LemonNoBg.png" />
     <None Remove="Assets\Images\placeholder-image.png" />
+    <None Remove="Ressources\NotificationSound.mp3" />
+    <None Remove="Ressources\UiExitSound.mp3" />
+    <None Remove="Ressources\UiOpenSound.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +38,15 @@
     <Resource Include="Assets\Images\placeholder-image.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Content Include="Assets\Sounds\NotificationSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\UiExitSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Sounds\UiOpenSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

@@ -60,6 +60,9 @@ namespace FrontEnd.Controls
                     case 2:
                         API.CreateMachine((byte)box.Value, ServerMachineCreation());
                         break;
+                    case 3:
+                        API.CreateMachine((byte)box.Value, RouterMachineCreation());
+                        break;
                     default:
                         API.CreateMachine((byte)box.Value, DefaultMachineCreation());
                         break;
@@ -114,6 +117,20 @@ namespace FrontEnd.Controls
                 return InfoDialog.GetProperties();
             else
                 return new Dictionary<string, string>{ };
+        }
+
+        private Dictionary<string, string> RouterMachineCreation()
+        {
+            RouterCreation InfoDialog = new();
+            if ((bool)InfoDialog.ShowDialog())
+                return InfoDialog.GetProperties();
+            else
+                return new Dictionary<string, string>{ };
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).PlayNotificationSound();
         }
     }
 }

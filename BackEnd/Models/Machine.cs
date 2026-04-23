@@ -62,7 +62,6 @@ namespace BackEnd.Models
             Description += ". " + this.GetType().Name + "\n";
             Description += ". Adresse IP: " + IP + "\n";
             Description += $"Date de création : {DateTime.Today}";
-
         }
     }
 

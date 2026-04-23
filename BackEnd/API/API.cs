@@ -1,7 +1,6 @@
 using BackEnd.DATA;
 using BackEnd.Models;
 using BackEnd.Security;
-using System.Net.NetworkInformation;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
 namespace BackEnd.API
@@ -144,15 +143,26 @@ namespace BackEnd.API
                     nMachine.IP = MachineInfo["MachineIpAddress"];
                     nMachine.DescriptionSetUp();
                     break;
+                case 3:
+                    nMachine = new Router(MachineInfo["MachineName"], MachineInfo["Marque"]);
+                    nMachine.SetUp();
+                    nMachine.IP = MachineInfo["MachineIpAddress"];
+                    nMachine.DescriptionSetUp();
+                    break;
                 default:
                     nMachine = new Machine();
-                    nMachine.SetUp();
-                    nMachine.Name = MachineInfo["MachineName"];
-                    nMachine.IP = MachineInfo["MachineIpAddress"];
-                    nMachine.DescriptionSetUp(MachineInfo["MachineDescription"]);
+                    DefaultMachineSetUp(nMachine, MachineInfo);
                     break;
             }
             DataController.AddMachine(nMachine);
+        }
+
+        public static void DefaultMachineSetUp(Machine pMachine, Dictionary<string,string> MachineInfo)
+        {
+            pMachine.SetUp();
+            pMachine.Name = MachineInfo["MachineName"];
+            pMachine.IP = MachineInfo["MachineIpAddress"];
+            pMachine.DescriptionSetUp(MachineInfo["MachineDescription"]);
         }
 
         public static void SaveUserInformation()

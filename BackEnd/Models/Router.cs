@@ -9,6 +9,7 @@ namespace BackEnd.Models
     public class Router(string pName, string pMarque) : Machine(pName)
     {
         private readonly List<string> DevicesKeys = [];
+        public string Marque { get; set; } = pMarque; 
         public bool ConnectDevice(Machine pDevice)
         {
             if (DevicesKeys.Contains(pDevice.Code))
@@ -26,6 +27,7 @@ namespace BackEnd.Models
         public override void DescriptionSetUp(string? ajout = null)
         {
             base.DescriptionSetUp(ajout);
+            Description += ". " + Marque;
             Description += ". " + ajout;
         }
 

@@ -19,20 +19,14 @@ namespace FrontEnd.ViewModels
         {
             AccountButtons.Add(new Button
             {
-                Background = new SolidColorBrush(Color.FromArgb(100, 244, 196, 48)),
-                MouseOverBackground = new SolidColorBrush(Color.FromArgb(100, 230, 144, 0)),
-                PressedBackground = new SolidColorBrush(Color.FromArgb(100, 183, 147, 4)),
                 Content = "REJOINDRE ORGANISATION",
-                Margin = new Thickness(0,10,0,0),
+                Margin = new Thickness(0, 10, 0, 0),
                 Height = 56,
                 Width = 210
             });
 
             AccountButtons.Add(new Button
             {
-                Background = new SolidColorBrush(Color.FromArgb(100, 244, 196, 48)),
-                MouseOverBackground = new SolidColorBrush(Color.FromArgb(100, 230, 144, 0)),
-                PressedBackground = new SolidColorBrush(Color.FromArgb(100, 183, 147, 4)),
                 Content = "CRÉER ORGANISATION",
                 Margin = new Thickness(0, 10, 0, 0),
                 Height = 56,
@@ -41,9 +35,6 @@ namespace FrontEnd.ViewModels
 
             AccountButtons.Add(new Button
             {
-                Background = new SolidColorBrush(Color.FromArgb(100, 244, 196, 48)),
-                MouseOverBackground = new SolidColorBrush(Color.FromArgb(100, 230, 144, 0)),
-                PressedBackground = new SolidColorBrush(Color.FromArgb(100, 183, 147, 4)),
                 Content = "DÉCONNEXION",
                 Margin = new Thickness(0, 10, 0, 0),
                 Height = 56,

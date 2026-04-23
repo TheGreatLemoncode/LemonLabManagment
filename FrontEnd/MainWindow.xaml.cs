@@ -16,6 +16,8 @@ using BackEnd.API;
 using System.Security.Policy;
 using FrontEnd.Controls.MainMenuControls;
 using BackEnd.Models;
+using System.IO;
+using System.Media;
 
 namespace FrontEnd
 {
@@ -25,15 +27,15 @@ namespace FrontEnd
     public partial class MainWindow : Window
     {
         public Notifier _notifier { get; set; }
-        public UserControl CurrentView;
+        public MediaPlayer mediaPlayer { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             API.Initialisation();
             CreationCompte.ControlUsed += LoadMainMenu;
             Connection.ControlUsed += LoadMainMenu;
-            MainView.Content = new Connection();
-
+            MainView.Content = new MainMenu();
+            mediaPlayer = new MediaPlayer();
             _notifier = new(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
@@ -44,26 +46,7 @@ namespace FrontEnd
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(1), MaximumNotificationCount.FromCount(2));
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
-        }
-
-        public void ServerCreation(Machine nMachine)
-        {
-
-        }
-        public void RouterCreation(Machine nMachine)
-        {
-
-        }
-        public void MachineCreation(Machine nMachine)
-        {
-
-        }
-        public void PrinterCreation(Machine nMachine)
-        {
-
-        }
-        public void ComputerCreation(Machine nMachine)
-        {
+            mediaPlayer = new();
 
         }
 
@@ -80,6 +63,12 @@ namespace FrontEnd
         public void LoadAccountConnexion()
         {
             MainView.Content = new Connection();
+        }
+
+        public void PlayNotificationSound()
+        {
+            mediaPlayer.Open(new Uri(@"pack://application:,,,/Assets/Sounds/NotificationSound.mp3"));
+            mediaPlayer.Play();
         }
 
         private void Window_Closed(object sender, EventArgs e)

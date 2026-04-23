@@ -66,6 +66,7 @@
                     <Button Style="{StaticResource LLM.NavButton}"
                             Click="canvas_mode_clk"
                             Content="⬡ Plan de circuit"/>
+                    <Button Content="lol" Style="{StaticResource LLM.Button.Primary}" Click="Button_Click"/>
                 </StackPanel>
 
                 <TextBlock DockPanel.Dock="Bottom"
