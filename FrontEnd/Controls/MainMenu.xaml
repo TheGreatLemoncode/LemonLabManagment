@@ -66,11 +66,11 @@
                     <Button Style="{StaticResource LLM.NavButton}"
                             Click="canvas_mode_clk"
                             Content="⬡ Plan de circuit"/>
-                    <Button Content="lol" Style="{StaticResource LLM.Button.Primary}" Click="Button_Click"/>
+                    <Button Content="À propos" Style="{StaticResource LLM.Button.Primary}" Click="Button_Click"/>
                 </StackPanel>
 
                 <TextBlock DockPanel.Dock="Bottom"
-                           Text="v0.1 — LLM"
+                           Text="v1.0 — LLM"
                            FontFamily="Cascadia Code, Consolas"
                            FontSize="9"
                            Foreground="{StaticResource LLM.TextMuted}"

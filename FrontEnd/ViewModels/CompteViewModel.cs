@@ -8,12 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows;
+using BackEnd.API;
 
 namespace FrontEnd.ViewModels
 {
     public class AccountViewModel
     {
         public ObservableCollection<Button> AccountButtons { get; set; } = new ObservableCollection<Button>();
+        public string? Name
+        {
+            get { return API.ConnectedUser?.Name; }
+        }
+
+        public string? Group
+        {
+            get { return API.ConnectedUser.Organisation?.Name; }
+        }
 
         public AccountViewModel()
         {
@@ -21,24 +31,24 @@ namespace FrontEnd.ViewModels
             {
                 Content = "REJOINDRE ORGANISATION",
                 Margin = new Thickness(0, 10, 0, 0),
-                Height = 56,
-                Width = 210
+                Height = 60,
+                Width = 230
             });
 
             AccountButtons.Add(new Button
             {
                 Content = "CRÉER ORGANISATION",
                 Margin = new Thickness(0, 10, 0, 0),
-                Height = 56,
-                Width = 210
+                Height = 60,
+                Width = 230
             });
 
             AccountButtons.Add(new Button
             {
                 Content = "DÉCONNEXION",
                 Margin = new Thickness(0, 10, 0, 0),
-                Height = 56,
-                Width = 210
+                Height = 60,
+                Width = 230
             });
         }
     }

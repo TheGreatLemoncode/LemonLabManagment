@@ -15,10 +15,10 @@ namespace BackEnd.Security
         private static RandomNumberGenerator rng = RandomNumberGenerator.Create();
         private static string IpPatern = @"^(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)\.(25[0-5]|2[0-4]\d|1\d\d|[1-9]?\d)$";
 
-        internal static bool CompareHashClear(string clear, byte[] hash ,byte[] salt)
+        internal static bool CompareHashClear(string clear, string hash ,byte[] salt)
         {
             string nHash = HashPassword(clear, salt);
-            return Encoding.UTF8.GetBytes(nHash).SequenceEqual(hash);
+            return Encoding.UTF8.GetBytes(nHash).SequenceEqual(Encoding.UTF8.GetBytes(hash));
         }
 
         internal static string HashPassword(string pwd, byte[] salt)

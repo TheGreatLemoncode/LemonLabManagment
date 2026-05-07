@@ -13,14 +13,6 @@ namespace BackEnd.Models
 {
     public class Machine : ILocation
     {
-
-        public Machine(string pName)
-        {
-            _name = pName;
-            Code = Kitchen.GetRandomString(7);
-        }
-        public Machine() { }
-
         private string _code = string.Empty;
         public string Code
         {
@@ -51,6 +43,15 @@ namespace BackEnd.Models
         public string Description { get { return _description; } set { _description = value; } }
         private string _ipAddress = string.Empty;
         public string IP { get { if (_ipAddress != null) return _ipAddress; else { return string.Empty; } }  set { if (Kitchen.CheckIpFormat(value)) _ipAddress = value;} }
+        private string _createur = string.Empty;
+        public string Createur { get { return _createur; } set { _createur = value; } }
+
+        public Machine(string pName)
+        {
+            _name = pName;
+            Code = Kitchen.GetRandomString(7);
+        }
+        public Machine() { }
 
         public virtual void SetUp()
         {
@@ -61,7 +62,7 @@ namespace BackEnd.Models
         {
             Description += ". " + this.GetType().Name + "\n";
             Description += ". Adresse IP: " + IP + "\n";
-            Description += $"Date de création : {DateTime.Today}";
+            Description += $". Date de création : {DateTime.Today}\n";
         }
     }
 

@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:FrontEnd"
         mc:Ignorable="d"
         Title="L·L·M — Lemon Lab Management"
-        Height="450" Width="800"
+        Height="450" Width="900"
         Closed="Window_Closed"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Background="#0E0F0E">
+        Background="#0E0F0E" Icon="/Assets/Images/app_icon.ico">
     <ContentControl x:Name="MainView" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
 </Window>

@@ -18,6 +18,7 @@ using FrontEnd.Controls.MainMenuControls;
 using BackEnd.Models;
 using System.IO;
 using System.Media;
+using System.Security.RightsManagement;
 
 namespace FrontEnd
 {
@@ -27,15 +28,15 @@ namespace FrontEnd
     public partial class MainWindow : Window
     {
         public Notifier _notifier { get; set; }
-        public MediaPlayer mediaPlayer { get; set; }
+        private MediaPlayer mediaPlayer { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             API.Initialisation();
             CreationCompte.ControlUsed += LoadMainMenu;
             Connection.ControlUsed += LoadMainMenu;
-            MainView.Content = new MainMenu();
-            mediaPlayer = new MediaPlayer();
+            mediaPlayer = new();
+            MainView.Content = new Connection();
             _notifier = new(cfg =>
             {
                 cfg.PositionProvider = new WindowPositionProvider(
@@ -46,8 +47,6 @@ namespace FrontEnd
                 cfg.LifetimeSupervisor = new TimeAndCountBasedLifetimeSupervisor(TimeSpan.FromSeconds(1), MaximumNotificationCount.FromCount(2));
                 cfg.Dispatcher = Application.Current.Dispatcher;
             });
-            mediaPlayer = new();
-
         }
 
         public void LoadAccountCreation(object sender, EventArgs e)
@@ -60,15 +59,27 @@ namespace FrontEnd
             MainView.Content = new MainMenu();
         }
 
+        public void LoadAllMachineList()
+        {
+            MainView.Content = new DefaultMachineLIst();
+        }
+
         public void LoadAccountConnexion()
         {
             MainView.Content = new Connection();
         }
 
-        public void PlayNotificationSound()
+        public void PlayWindowSound()
         {
-            mediaPlayer.Open(new Uri(@"pack://application:,,,/Assets/Sounds/NotificationSound.mp3"));
+            mediaPlayer.Open(new Uri(@"Assets/Sounds/NotificationSound.mp3", UriKind.RelativeOrAbsolute));
             mediaPlayer.Play();
+        }
+
+        public void PlayInformationVideo()
+        {
+            Dialogs.VideoPlayer box = new();
+            box.Show();
+            PlayWindowSound();
         }
 
         private void Window_Closed(object sender, EventArgs e)

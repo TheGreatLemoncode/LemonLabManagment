@@ -28,13 +28,10 @@ namespace FrontEnd.Controls
     public partial class DefaultMachineLIst : UserControl, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        private LayoutMode _layout = LayoutMode.Default;
-
         public int conter = 0;
-
         public ObservableCollection<MachineViewModel> AllItems { get; } = [];
         public ObservableCollection<MachineViewModel> UsedItems { get; } = [];
+        private LayoutMode _layout = LayoutMode.Default;
 
         public LayoutMode CurrentLayout
         {
@@ -67,18 +64,19 @@ namespace FrontEnd.Controls
             MachineDetails DetailsWindow;
             if(string.IsNullOrEmpty(SearchBarContent.Text))
             {
-                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Le champ de recherche est null");
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Le champ de recherche est vide");
                 return;
             }
 
-            if(API.RequestByName(SearchBarContent.Text) != null)
+            Machine? request = API.RequestMachineByName(SearchBarContent.Text);
+            if (request != null)
             {
-                DetailsWindow = new MachineDetails(new(API.RequestByName(SearchBarContent.Text)));
+                DetailsWindow = new MachineDetails(new(request));
                 DetailsWindow.Show();
             }
-            else if(API.RequestByCode(SearchBarContent.Text) != null)
+            else if(API.RequestMachineByCode(SearchBarContent.Text) != null)
             {
-                DetailsWindow = new MachineDetails(new(API.RequestByCode(SearchBarContent.Text)));
+                DetailsWindow = new MachineDetails(new(API.RequestMachineByCode(SearchBarContent.Text)));
                 DetailsWindow.Show();
             }
             else

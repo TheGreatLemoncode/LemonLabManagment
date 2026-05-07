@@ -6,11 +6,12 @@
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Type de machine"
         Height="280" Width="380"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Background="#0E0F0E">
+        Title="L.L.M sélection type de machine"
+        Foreground="{StaticResource LLM.TextPrimary}"
+        Background="#0E0F0E" Icon="/Assets/Images/app_icon.ico">
 
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>

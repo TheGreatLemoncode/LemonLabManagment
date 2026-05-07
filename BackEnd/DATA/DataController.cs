@@ -13,12 +13,28 @@ namespace BackEnd.DATA
 {
     internal static class DataController
     {
+        private static readonly string AppName = "LemonLabManagment";
         public static Dictionary<string, Account> Accounts = [];
+        private static readonly string AccountFile = "Accounts.lemon";
         public static Dictionary<string, byte[]> Salts = [];
+        private static readonly string SaltsFile = "Salts.lemon";
         public static Dictionary<string, Organisation> Organisations = [];
+        private static readonly string OrganisationsFile = "Organisations.lemon";
         public static Dictionary<string, Machine> MachineDB = [];
+        private static readonly string MachinesFile = "Machines.lemon";
         private static JsonSerializerSettings SerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
 
+
+        private static string GetPathForFile(string filename)
+        {
+            string pathdata = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
+            string folderpath = Path.Combine(pathdata, AppName);
+            string filepath = Path.Combine(folderpath, filename);
+            if(!Directory.Exists(folderpath))
+                Directory.CreateDirectory(folderpath);
+            return filepath;
+
+        }
         internal static void AddMachine(Machine pMachine)
         {
             if(!MachineDB.ContainsKey(pMachine.Code))
@@ -37,9 +53,9 @@ namespace BackEnd.DATA
 
         internal static void load() 
         {
-            if (File.Exists("DATA/Accounts.lemon"))
+            if (File.Exists(GetPathForFile(AccountFile)))
             {
-                using (StreamReader rd = new StreamReader("DATA/Accounts.lemon"))
+                using (StreamReader rd = new StreamReader(GetPathForFile(AccountFile)))
                 {
                     string json = rd.ReadToEnd();
                     if (!string.IsNullOrEmpty(json))
@@ -50,9 +66,9 @@ namespace BackEnd.DATA
             }
 
 
-            if (File.Exists("DATA/Salts.lemon"))
+            if (File.Exists(GetPathForFile(SaltsFile)))
             {
-                using (StreamReader slt = new("DATA/Salts.lemon"))
+                using (StreamReader slt = new(GetPathForFile(SaltsFile)))
                 {
                     string text = slt.ReadToEnd();
                     if (!string.IsNullOrEmpty(text))
@@ -63,9 +79,9 @@ namespace BackEnd.DATA
             }
 
 
-            if (File.Exists("DATA/Organisations.lemon"))
+            if (File.Exists(GetPathForFile(OrganisationsFile)))
             {
-                using (StreamReader orgs = new("DATA/Organisations.lemon"))
+                using (StreamReader orgs = new(GetPathForFile(OrganisationsFile)))
                 {
                     string text = orgs.ReadToEnd();
                     if (!string.IsNullOrEmpty(text))
@@ -76,9 +92,9 @@ namespace BackEnd.DATA
             }
 
 
-            if (File.Exists("DATA/Machines.lemon"))
+            if (File.Exists(GetPathForFile(MachinesFile)))
             {
-                using (StreamReader orgs = new("DATA/Machines.lemon"))
+                using (StreamReader orgs = new(GetPathForFile(MachinesFile)))
                 {
                     string text = orgs.ReadToEnd();
                     if (!string.IsNullOrEmpty(text))
@@ -92,26 +108,25 @@ namespace BackEnd.DATA
 
         internal static void Save()
         {
-            DirectoryInfo di = Directory.CreateDirectory("DATA");
-            using (StreamWriter wr = new StreamWriter("DATA/Accounts.lemon"))
+            using (StreamWriter wr = new StreamWriter(GetPathForFile(AccountFile)))
             {
                 string json = JsonConvert.SerializeObject(Accounts, SerializerSettings);
                 wr.Write(json);
             }
 
-            using (StreamWriter wr2 = new("DATA/Salts.lemon"))
+            using (StreamWriter wr2 = new(GetPathForFile(SaltsFile)))
             {
                 string text = JsonConvert.SerializeObject(Salts, SerializerSettings);
                 wr2.Write(text);
             }
 
-            using (StreamWriter wr3 = new StreamWriter("DATA/Organisations.lemon"))
+            using (StreamWriter wr3 = new StreamWriter(GetPathForFile(OrganisationsFile)))
             {
                 string text = JsonConvert.SerializeObject(Organisations, SerializerSettings);
                 wr3.Write(text);
             }
 
-            using (StreamWriter wr4 = new StreamWriter("DATA/Machines.lemon"))
+            using (StreamWriter wr4 = new StreamWriter(GetPathForFile(MachinesFile)))
             {
                 string text = JsonConvert.SerializeObject(MachineDB, SerializerSettings);
                 wr4.Write(text);

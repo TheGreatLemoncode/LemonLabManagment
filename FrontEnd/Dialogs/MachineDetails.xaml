@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
-        Title="Détails machine"
         Height="450" Width="680"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Background="#0E0F0E">
+        Title="L.L.M détails de la machine"
+        Foreground="{StaticResource LLM.TextPrimary}"
+        Background="#0E0F0E" Icon="/Assets/Images/app_icon.ico">
 
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>
@@ -69,7 +70,7 @@
                 <TextBlock Text="LOCATAIRE"
                            FontFamily="Cascadia Code, Consolas"
                            FontSize="9" FontWeight="Bold"
-                           Foreground="{StaticResource LLM.TextSecondary}"
+                           Foreground="{StaticResource LLM.TextPrimary}"
                            Margin="0,0,0,4"/>
                 <TextBlock Text="{Binding Locataire, FallbackValue=—}"
                            FontFamily="Cascadia Code, Consolas"
@@ -80,7 +81,7 @@
                 <TextBlock Text="TYPE"
                            FontFamily="Cascadia Code, Consolas"
                            FontSize="9" FontWeight="Bold"
-                           Foreground="{StaticResource LLM.TextSecondary}"
+                           Foreground="{StaticResource LLM.TextPrimary}"
                            Margin="0,0,0,4"/>
                 <Border Background="{StaticResource LLM.Surface2}"
                         BorderBrush="{StaticResource LLM.Border}"
@@ -88,7 +89,7 @@
                         CornerRadius="2"
                         Padding="8,4"
                         HorizontalAlignment="Left">
-                    <TextBlock Text="{Binding TypeFormat}"
+                    <TextBlock Text="{Binding MachineType}"
                                FontFamily="Cascadia Code, Consolas"
                                FontSize="12"
                                Foreground="{StaticResource LLM.Accent}"/>
@@ -110,7 +111,7 @@
                     <TextBlock Text="{Binding Description, FallbackValue=Aucune description.}"
                                FontFamily="Cascadia Code, Consolas"
                                FontSize="12"
-                               Foreground="{StaticResource LLM.TextSecondary}"
+                               Foreground="{StaticResource LLM.TextPrimary}"
                                TextWrapping="Wrap"/>
                 </Border>
             </StackPanel>

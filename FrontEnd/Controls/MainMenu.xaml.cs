@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ToastNotifications.Messages;
 
 namespace FrontEnd.Controls
 {
@@ -24,10 +25,11 @@ namespace FrontEnd.Controls
     /// </summary>
     public partial class MainMenu : UserControl
     {
+        private bool WasCreated;
         public MainMenu()
         {
             InitializeComponent();
-            Load_default_machine_list();
+            All_display_btn_clk(this, new RoutedEventArgs());
         }
 
         public void account_btn_clk(object sender, RoutedEventArgs args)
@@ -37,7 +39,6 @@ namespace FrontEnd.Controls
 
         public void Load_default_machine_list()
         {
-            
             MainMenuDisplay.Content = new DefaultMachineLIst();
         }
 
@@ -50,6 +51,7 @@ namespace FrontEnd.Controls
         {
             MachineCreationType box = new();
             box.ShowDialog();
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
             if ((bool)box.DialogResult)
             {
                 switch (box.Value)
@@ -66,7 +68,15 @@ namespace FrontEnd.Controls
                     default:
                         API.CreateMachine((byte)box.Value, DefaultMachineCreation());
                         break;
+                    
                 }
+                All_display_btn_clk(this, new RoutedEventArgs());
+                if (WasCreated)
+                {
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess("Machine créé avec succès");
+                    WasCreated = false;
+                }
+                
             }
         }
 
@@ -86,13 +96,16 @@ namespace FrontEnd.Controls
             CanvasWindow window = new(API.RequestMachineByStatus(BackEnd.Models.Status.Utilisé));
             window.Owner = Application.Current.MainWindow;
             window.Show();
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
         }
 
         private Dictionary<string,string> DefaultMachineCreation()
         {
             MachineCreation InfoDialog = new();
-            if((bool)InfoDialog.ShowDialog())
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
+            if ((bool)InfoDialog.ShowDialog())
             {
+                WasCreated = true;
                 return InfoDialog.GetProperties();
             }
             else
@@ -102,8 +115,10 @@ namespace FrontEnd.Controls
         private Dictionary<string,string> ServerMachineCreation()
         {
             ServerCreation InfoDialog = new();
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
             if ((bool)InfoDialog.ShowDialog())
             {
+                WasCreated = true;
                 return InfoDialog.GetProperties();
             }
             else
@@ -113,8 +128,12 @@ namespace FrontEnd.Controls
         private Dictionary<string, string> ComputerMachineCreation()
         {
             ComputerCreation InfoDialog = new();
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
             if ((bool)InfoDialog.ShowDialog())
+            {
+                WasCreated = true;
                 return InfoDialog.GetProperties();
+            }
             else
                 return new Dictionary<string, string>{ };
         }
@@ -122,15 +141,19 @@ namespace FrontEnd.Controls
         private Dictionary<string, string> RouterMachineCreation()
         {
             RouterCreation InfoDialog = new();
+            ((MainWindow)Application.Current.MainWindow).PlayWindowSound();
             if ((bool)InfoDialog.ShowDialog())
+            {
+                WasCreated = true;
                 return InfoDialog.GetProperties();
+            }            
             else
                 return new Dictionary<string, string>{ };
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ((MainWindow)Application.Current.MainWindow).PlayNotificationSound();
+            ((MainWindow)Application.Current.MainWindow).PlayInformationVideo();
         }
     }
 }

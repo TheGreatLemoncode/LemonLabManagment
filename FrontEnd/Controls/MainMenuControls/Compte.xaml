@@ -16,7 +16,7 @@
             <Style x:Key="CopyTrigger" TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
                 <Setter Property="Visibility" Value="Visible"/>
                 <Style.Triggers>
-                    <DataTrigger Binding="{Binding Organisation}" Value="{x:Null}">
+                    <DataTrigger Binding="{Binding Group}" Value="{x:Null}">
                         <Setter Property="Visibility" Value="Hidden"/>
                     </DataTrigger>
                 </Style.Triggers>
@@ -25,8 +25,8 @@
     </UserControl.Resources>
     <Canvas Background="{StaticResource LLM.Surface}">
         <StackPanel HorizontalAlignment="Center" Canvas.Left="150" VerticalAlignment="Center">
-            <ui:Image Height="100" Width="154" Margin="0,20,0,0" Source="/Assets/Images/placeholder-image.png"/>
-            <ui:TextBlock Text="{Binding Name}" FontSize="24" HorizontalAlignment="Center"/>
+            <ui:Image Height="100" Width="154" Margin="0,20,0,0" Source="/Assets/Images/LemonHD.png"/>
+            <ui:TextBlock Foreground="{StaticResource LLM.TextPrimary}" Text="{Binding Name}" FontSize="24" HorizontalAlignment="Center"/>
 
             <ItemsControl x:Name="Lst_buttons">
                 <ItemsControl.ItemsPanel>
@@ -40,7 +40,7 @@
             <ui:Button Width="38" Click="copy_btn_clk" Style="{StaticResource CopyTrigger}" DockPanel.Dock="Right" ToolTip="Copier le code" Height="31">
                 <ui:Image Source="/Assets/Images/copy-icon.png" Height="19"/>
             </ui:Button>
-            <ui:TextBlock Foreground="{StaticResource LLM.TextPrimary}" TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" Text="{Binding Organisation.Name, FallbackValue=Affiliation: \ Indépendant, StringFormat=Organisation: \{0\}}" Width="152"/>
+            <ui:TextBlock Foreground="{StaticResource LLM.TextPrimary}" TextAlignment="Center" TextWrapping="Wrap" FontFamily="Cascadia Code" Text="{Binding Group, FallbackValue=Affiliation: \ Indépendant, StringFormat=Organisation: \{0\}}" Width="152"/>
         </DockPanel>
 
     </Canvas>

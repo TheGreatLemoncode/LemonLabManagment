@@ -10,14 +10,14 @@
     <UserControl.Resources>
         <Style x:Key="CheckField" TargetType="ui:TextBox" BasedOn="{StaticResource {x:Type ui:TextBox}}">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding isCorrect}" Value="False">
+                <DataTrigger Binding="{Binding IsCorrect}" Value="False">
                     <Setter Property="Effect">
                         <Setter.Value>
                             <DropShadowEffect Color="#FFF03636" Opacity="0.8" BlurRadius="10" ShadowDepth="10"/>
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding isCorrect}" Value="True">
+                <DataTrigger Binding="{Binding IsCorrect}" Value="True">
                     <Setter Property="Effect" Value="{x:Null}"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -43,11 +43,11 @@
 
             <StackPanel Margin="0,12,0,0">
                 <Label FontFamily="Cascadia Code" FontSize="18" Content="Courriel" Width="357" Foreground="#66705F" Opacity="0.9"/>
-                <ui:TextBox FontSize="18" Style="{DynamicResource CheckField}" FontFamily="Cascadia Code" x:Name="txt_mail" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Width="358" LostKeyboardFocus="TextBox_LostKeyboardFocus" Height="40" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
+                <ui:TextBox FontSize="18" Style="{DynamicResource CheckField}" FontFamily="Cascadia Code" x:Name="txt_mail" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" Width="358" LostKeyboardFocus="Mail_LostKeyboardFocus" Height="40" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
             </StackPanel>
             <StackPanel Margin="0,12,0,0">
                 <Label FontFamily="Cascadia Code" FontSize="18" Content="Nom d'affichage" Width="357" Foreground="#66705F" Opacity="0.9"/>
-                <ui:TextBox FontSize="18" Style="{DynamicResource CheckField}" Text="{Binding Content, UpdateSourceTrigger=PropertyChanged}" FontFamily="Cascadia Code" x:Name="txt_name" Width="358" Height="40" LostKeyboardFocus="Name_TextBox_LostKeyboardFocus" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
+                <ui:TextBox FontSize="18" FontFamily="Cascadia Code" x:Name="txt_name" Width="358" Height="40" LostKeyboardFocus="Name_TextBox_LostKeyboardFocus" BorderBrush="#FFE6EBD9" Foreground="#FF2E2E2E" SelectionBrush="#FFF4C430"/>
             </StackPanel>
             <StackPanel Margin="0,18,0,0">
                 <Label FontFamily="Cascadia Code" FontSize="18" Content="Mot de passe" Width="357" Foreground="#66705F" Opacity="0.9"/>

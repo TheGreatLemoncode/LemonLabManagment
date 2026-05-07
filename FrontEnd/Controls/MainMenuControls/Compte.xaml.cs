@@ -28,19 +28,19 @@ namespace FrontEnd.Controls.MainMenuControls
     /// </summary>
     public partial class Compte : UserControl, IUserControlEvent
     {
-        public AccountViewModel Buttons { get; set; } = new AccountViewModel();
+        public AccountViewModel viewmodel { get; set; } = new AccountViewModel();
         public static event EventHandler ControlUsed;
         public Compte()
         {
             InitializeComponent();
-            DataContext = API.ConnectedUser;
-            Lst_buttons.ItemsSource = Buttons.AccountButtons;
-            Buttons.AccountButtons[0].Click += join_btn_clk;
-            Buttons.AccountButtons[0].Style = this.FindResource("LLM.Button.Primary") as Style;
-            Buttons.AccountButtons[1].Click += create_btn_clk;
-            Buttons.AccountButtons[1].Style = this.FindResource("LLM.Button.Primary") as Style;
-            Buttons.AccountButtons[2].Click += disconnect_btn_clk;
-            Buttons.AccountButtons[2].Style = this.FindResource("LLM.Button.Primary") as Style;
+            DataContext = viewmodel;
+            Lst_buttons.ItemsSource = viewmodel.AccountButtons;
+            viewmodel.AccountButtons[0].Click += join_btn_clk;
+            viewmodel.AccountButtons[0].Style = this.FindResource("LLM.Button.Primary") as Style;
+            viewmodel.AccountButtons[1].Click += create_btn_clk;
+            viewmodel.AccountButtons[1].Style = this.FindResource("LLM.Button.Primary") as Style;
+            viewmodel.AccountButtons[2].Click += disconnect_btn_clk;
+            viewmodel.AccountButtons[2].Style = this.FindResource("LLM.Button.Primary") as Style;
         }
 
         public void join_btn_clk(object sender, RoutedEventArgs args)
@@ -68,14 +68,12 @@ namespace FrontEnd.Controls.MainMenuControls
 
                 }
                 else { ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Ce code n'existe pas \nVeuillez recommencer"); }
-                    //MessageBox.Show("Ce code n'existe pas", "Rejoindre une organisation");
             }  
         }
 
         public void create_btn_clk(object sender, RoutedEventArgs args)
         {
 
-            //string pName = Interaction.InputBox("Entrer le nom de l'organisation", Title: "Créer une organisation");
             IntakeBox Box = new("création d'une organisation", "Entrez le nom de l'organisation");
             Box.Owner = Application.Current.MainWindow;
             string pName = string.Empty;

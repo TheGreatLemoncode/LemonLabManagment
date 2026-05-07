@@ -18,7 +18,7 @@ namespace BackEnd.API
             if (!DataController.Salts.ContainsKey(pMail))
             {
                 byte[] nSalt = Kitchen.CreateSalt();
-                Account nUser = new Account(pName, Kitchen.HashPassword(pPassword, nSalt), null);
+                Account nUser = new Account(pName, Kitchen.HashPassword(pPassword, nSalt));
                 nUser.Mail = pMail;
                 DataController.AddAccount(nUser, nSalt);
                 ConnectedUser = nUser;
@@ -33,7 +33,7 @@ namespace BackEnd.API
             {
                 byte[] nsalt = DataController.Salts[pMail];
                 Account nUser = DataController.Accounts[pMail];
-                if (Kitchen.CompareHashClear(pPword, nUser.GetHashPwd(), nsalt)){
+                if (Kitchen.CompareHashClear(pPword, nUser.Password, nsalt)){
                     ConnectedUser = nUser;
                     return true;
                 }
@@ -43,19 +43,20 @@ namespace BackEnd.API
             return false;
         }
 
+        public static void Deconnection()
+        {
+            SaveUserInformation();
+            ConnectedUser = null;
+        }
+
         public static bool OrganisationExist(string pCode)
         {
             return DataController.Organisations.ContainsKey(pCode);
         }
 
-        public static Organisation GetOrganisation(string pCode)
-        {
-            return DataController.Organisations[pCode];
-        }
-
         public static bool OrganisationExistByName(string pName)
         {
-            foreach(Organisation p in DataController.Organisations.Values)
+            foreach (Organisation p in DataController.Organisations.Values)
             {
                 if (p.Name == pName)
                     return true;
@@ -63,10 +64,9 @@ namespace BackEnd.API
             return false;
         }
 
-        public static void Deconnection()
+        public static Organisation GetOrganisation(string pCode)
         {
-            SaveUserInformation();
-            ConnectedUser = null;
+            return DataController.Organisations[pCode];
         }
 
         public static bool NewOrganisation(Organisation pOrg)
@@ -80,24 +80,21 @@ namespace BackEnd.API
 
         public static List<Machine> RequestAllMachines()
         {
-            return OrderListByStatusName(DataController.MachineDB.Values.ToList());
+            if(ConnectedUser.Organisation == null)
+            {
+                return OrderMachineByStatusName(DataController.MachineDB.Values.ToList());
+            }
+            return OrderMachineByStatusName(GetMachinesByCodes(ConnectedUser.Organisation.Machines));
         }
 
         public static List<Machine> RequestMachineByStatus(Status pStatus)
         {
             List<Machine> toreturn = [];
-            //foreach(Machine m in DataController.MachineDB.Values)
-            //{
-            //    if(m.Status == pStatus && m.Locataire == ConnectedUser?.Name)
-            //    {
-            //        toreturn.Add(m);
-            //    }
-            //}
             toreturn = DataController.MachineDB.Values.ToList().FindAll(x => x.Status == pStatus);
-            return OrderListByStatusName(toreturn);
+            return OrderMachineByStatusName(toreturn);
         }
 
-        public static Machine? RequestByName(string pName)
+        public static Machine? RequestMachineByName(string pName)
         {
             foreach (Machine m in DataController.MachineDB.Values)
             {
@@ -109,33 +106,35 @@ namespace BackEnd.API
             return null;
         }
 
-        public static Machine? RequestByCode(string code)
+        public static Machine? RequestMachineByCode(string code)
         {
-            //if (DataController.MachineDB.ContainsKey(code))
-            //{
-            //    //MessageBox.Show("Hello world");
-            //}
             return DataController.MachineDB.ContainsKey(code) ? DataController.MachineDB[code] : null;
         }
 
-        private static List<Machine> OrderListByStatusName(List<Machine> pList)
+        public static List<string> RequestUserCreatedMachineCode()
         {
-            List<Machine> nList = pList.OrderBy(m => m.Status).ThenBy(m => m.Name).ToList();
-            return nList;
+            List<string> codes = [];
+            foreach (Machine m in DataController.MachineDB.Values)
+            {
+                if (m.Createur == ConnectedUser.Mail)
+                    codes.Add(m.Code);
+            }
+            return codes;
         }
 
         public static void CreateMachine(byte TypeIndex, Dictionary<string, string> MachineInfo)
         {
             Machine nMachine = new();
 
-            if(!(MachineInfo.Keys.Count > 0)) { return; }
+            if (!(MachineInfo.Keys.Count > 0)) { return; }
 
             switch (TypeIndex)
-            { 
+            {
                 case 1:
                     nMachine = new Computer(MachineInfo["MachineName"], MachineInfo["SystemOS"]);
                     nMachine.SetUp();
                     nMachine.IP = MachineInfo["MachineIpAddress"];
+                    nMachine.DescriptionSetUp();
                     break;
                 case 2:
                     nMachine = new Server(MachineInfo["MachineName"], MachineInfo["Services"].Split(',').ToList());
@@ -154,10 +153,26 @@ namespace BackEnd.API
                     DefaultMachineSetUp(nMachine, MachineInfo);
                     break;
             }
+            nMachine.Createur = ConnectedUser.Mail;
             DataController.AddMachine(nMachine);
         }
 
-        public static void DefaultMachineSetUp(Machine pMachine, Dictionary<string,string> MachineInfo)
+        private static List<Machine> OrderMachineByStatusName(List<Machine> pList)
+        {
+            List<Machine> nList = pList.OrderBy(m => m.Status).ThenBy(m => m.Name).ToList();
+            return nList;
+        }
+
+        
+
+        public static void SaveUserInformation()
+        {
+            DataController.Save();
+        }
+
+        
+
+        private static void DefaultMachineSetUp(Machine pMachine, Dictionary<string,string> MachineInfo)
         {
             pMachine.SetUp();
             pMachine.Name = MachineInfo["MachineName"];
@@ -165,10 +180,14 @@ namespace BackEnd.API
             pMachine.DescriptionSetUp(MachineInfo["MachineDescription"]);
         }
 
-        public static void SaveUserInformation()
+        private static List<Machine> GetMachinesByCodes(List<string> codes)
         {
-            DataController.Save();
-        }
+            List<Machine> machines = [];
+            foreach(string s in codes)
+            {
+                machines.Add(RequestMachineByCode(s));
+            }
+            return machines;
+        }   
     }
-
 }

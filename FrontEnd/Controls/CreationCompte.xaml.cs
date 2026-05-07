@@ -35,7 +35,7 @@ namespace FrontEnd.Controls
         }
 
         #region evenement input fields
-        private void TextBox_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        private void Mail_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
         {
             ((MailViewModel)txt_mail.DataContext).CheckContent();
         }
@@ -53,20 +53,20 @@ namespace FrontEnd.Controls
         private void creation_btn_clk(object sender, RoutedEventArgs arg)
         {
                
-            if (!((MailViewModel)StackField.DataContext).isCorrect)
+            if (!((MailViewModel)StackField.DataContext).IsCorrect)
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le format du courriel n'est pas valide");
-
-            if (string.IsNullOrEmpty(txt_name.Text) || string.IsNullOrEmpty(pwd_user.Password))
+            else if (string.IsNullOrEmpty(txt_name.Text) || string.IsNullOrEmpty(pwd_user.Password))
             {
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Inscription refusée");
             }
+            else if (API.UserCreation(txt_name.Text, txt_mail.Text, pwd_user.Password))
+            {
+                ControlUsed?.Invoke(this, new EventArgs());
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name}");   
+            }
             else
             {
-                if (API.UserCreation(txt_name.Text, txt_mail.Text, pwd_user.Password))
-                {
-                    ControlUsed?.Invoke(this, new EventArgs());
-                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name}");
-                }
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Courriel déjà existant");
             }
         }
         #endregion

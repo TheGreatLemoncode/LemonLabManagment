@@ -5,11 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
-        Title="Création de serveur"
         Height="350" Width="580"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Background="#0E0F0E">
+        Background="#0E0F0E" Icon="/Assets/Images/app_icon.ico" >
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>
     </Window.Resources>

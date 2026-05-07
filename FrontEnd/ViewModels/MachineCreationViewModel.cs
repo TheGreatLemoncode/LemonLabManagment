@@ -47,9 +47,9 @@ namespace FrontEnd.ViewModels
 
         public MachineCreationViewModel()
         {
-            MachineName = string.Empty;
-            MachineDescription = string.Empty;
-            MachineIpAddress = string.Empty;
+            MachineName = "Machine";
+            MachineDescription = "Description";
+            MachineIpAddress = "0.0.0.0";
         }
 
         public virtual Dictionary<string, string> GetProperties()

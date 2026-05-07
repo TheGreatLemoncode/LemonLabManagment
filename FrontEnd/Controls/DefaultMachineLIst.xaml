@@ -121,10 +121,11 @@
                          FontSize="13" CharacterCasing="Upper" MaxLength="10"/>
                 <Button Grid.Column="1"
                         Click="Search_btn_clk"
-                        Content="↵"
                         Height="34" Width="40"
                         Margin="4,0,0,0"
-                        Style="{StaticResource LLM.Button.Primary}"/>
+                        Background="{StaticResource LLM.Accent}">
+                    <Image Source="pack://siteoforigin:,,,/Assets/Images/loop-removebg.png"/>
+                </Button>
             </Grid>
         </Border>
         <ItemsControl Grid.Row="2"

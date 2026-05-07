@@ -34,6 +34,8 @@ namespace FrontEnd.Dialogs
             {
                 PopulateMachineList(machine);
             }
+
+
         }
 
         private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
@@ -89,10 +91,12 @@ namespace FrontEnd.Dialogs
         {
             _drawing = !_drawing;
             if (_drawing)
+            {
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Mode dessin activé");
+            }
+
             else
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Mode dessin désactivé");
-            //MessageBox.Show(_drawing.ToString());
         }
 
         private void PopulateCanvas(Machine pMAchine, double x, double y)

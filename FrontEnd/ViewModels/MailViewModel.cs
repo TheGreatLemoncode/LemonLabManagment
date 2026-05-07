@@ -11,8 +11,7 @@ namespace FrontEnd.ViewModels
     internal class MailViewModel : BaseViewModel
     {
         private readonly string Patern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-        internal string? _Content;
-        internal bool _isCorrect { get; set; } = true;
+        internal string _Content = string.Empty;
 
         public string Content
         {
@@ -20,21 +19,18 @@ namespace FrontEnd.ViewModels
             set { _Content = value; OnPropertyChanged(nameof(Content)); } 
         }
 
-        public bool isCorrect
+        public bool IsCorrect
         {
-            get { return _isCorrect; }
-            set { _isCorrect = value; OnPropertyChanged(nameof(isCorrect)); }
+            get { return CheckContent(); }
         }
 
-        internal bool CheckContent()
+        public bool CheckContent()
         {
             if (string.IsNullOrEmpty(Content))
             {
-                isCorrect = false;
                 return false;
             }
-            isCorrect = Regex.IsMatch(Content, Patern);
-            return isCorrect;
+            return Regex.IsMatch(Content, Patern);
         }
 
 

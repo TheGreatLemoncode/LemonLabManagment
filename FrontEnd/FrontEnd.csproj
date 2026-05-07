@@ -9,9 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\app_icon.ico" />
     <None Remove="Assets\Images\copy-icon.png" />
+    <None Remove="Assets\Images\LemonHD.png" />
     <None Remove="Assets\Images\LemonNoBg.png" />
+    <None Remove="Assets\Images\loop.png" />
     <None Remove="Assets\Images\placeholder-image.png" />
+    <None Remove="Assets\Video\Placeholder.mpg" />
     <None Remove="Ressources\NotificationSound.mp3" />
     <None Remove="Ressources\UiExitSound.mp3" />
     <None Remove="Ressources\UiOpenSound.mp3" />
@@ -29,11 +33,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Images\app_icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\copy-icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\Images\LemonHD.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\Images\LemonNoBg.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\Images\loop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\Images\placeholder-image.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -45,6 +58,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Sounds\UiOpenSound.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Video\Placeholder.mpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

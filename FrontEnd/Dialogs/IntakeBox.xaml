@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Saisie"
         Height="200" Width="360"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
+        Title="L.L.M dialogue"
+        Foreground="{StaticResource LLM.TextPrimary}"
         Background="#0E0F0E"
-        Closed="Window_Closed">
+        Closed="Window_Closed" Icon="/Assets/Images/app_icon.ico">
 
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>

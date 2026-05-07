@@ -4,6 +4,8 @@ using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BackEnd.API;
+using BackEnd.DATA;
 using BackEnd.Security;
 
 namespace BackEnd.Models
@@ -13,6 +15,7 @@ namespace BackEnd.Models
         public string Code { get; set; }
         public string Name { get; set; }
         public List<string> Members { get; set; } = [];
+        public List<string> Machines { get; set; } = [];
         public string Owner { get; set; }
         public bool AddMember(Account p)
         {
@@ -20,6 +23,7 @@ namespace BackEnd.Models
                 return true;
             Members.Add(p.Mail);
             p.Organisation = this;
+            Machines.AddRange(API.API.RequestUserCreatedMachineCode());
             return Members.Contains(p.Mail);
         }
 

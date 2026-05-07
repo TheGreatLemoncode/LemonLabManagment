@@ -30,12 +30,12 @@ namespace FrontEnd.ViewModels
         public string Name
         {
             get { return machine.Name; }
-            set {  machine.Name = value; }
+            set {  machine.Name = value; OnPropertyChanged(nameof(Name)); }
         }
         public string Description
         {
             get { return machine.Description; }
-            set { machine.Description = value; }
+            set { machine.Description = value; OnPropertyChanged(nameof(Description)); }
         }
 
         public string Locataire
@@ -56,7 +56,7 @@ namespace FrontEnd.ViewModels
             set { machine.Code = value; }
         }
 
-        public string TypeFormat
+        public string MachineType
         {
             get { return machine.GetType().Name; }
         }
@@ -78,7 +78,7 @@ namespace FrontEnd.ViewModels
             else
             {
                 Status = Status.Disponible;
-                Locataire = null;
+                Locataire = string.Empty;
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowInformation("Machine remise");
             }
         }

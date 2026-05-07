@@ -5,10 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
-                Height="350" Width="580"
+        Height="350" Width="580"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        Background="#0E0F0E">
+        Title="L.L.M création de routeur"
+        Foreground="{StaticResource LLM.TextPrimary}"
+        Background="#0E0F0E" Icon="/Assets/Images/app_icon.ico">
     <Window.Resources>
         <ResourceDictionary Source="/Ressources/Styles.xaml"/>
     </Window.Resources>
@@ -25,10 +27,10 @@
         BorderBrush="{StaticResource LLM.Border}"
         BorderThickness="0,0,0,1"
         Padding="20,0">
-            <TextBlock Text="CRÉATION D'ORDINATEUR"
+            <TextBlock Text="CRÉATION DE ROUTEUR"
                FontFamily="Cascadia Code, Consolas"
                FontSize="11" FontWeight="Bold"
-               Foreground="{StaticResource LLM.TextSecondary}"
+               Foreground="{StaticResource LLM.TextPrimary}"
                VerticalAlignment="Center"/>
         </Border>
 
@@ -53,7 +55,7 @@
                     <TextBlock Text="NOM D'AFFICHAGE"
                        FontFamily="Cascadia Code, Consolas"
                        FontSize="9" FontWeight="Bold"
-                       Foreground="{StaticResource LLM.TextSecondary}"
+                       Foreground="{StaticResource LLM.TextPrimary}"
                        Margin="0,0,0,4"/>
                     <TextBox Style="{StaticResource LLM.TextBox}" Text="{Binding MachineName, UpdateSourceTrigger=PropertyChanged}" Height="46"/>
                 </StackPanel>
@@ -62,7 +64,7 @@
                     <TextBlock Text="ADRESSE IP"
                        FontFamily="Cascadia Code, Consolas"
                        FontSize="9" FontWeight="Bold"
-                       Foreground="{StaticResource LLM.TextSecondary}"
+                       Foreground="{StaticResource LLM.TextPrimary}"
                        Margin="0,0,0,4"/>
                     <TextBox Text="{Binding MachineIpAddress, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LLM.TextBox}" Height="46"/>
                 </StackPanel>
@@ -73,7 +75,7 @@
                Text="MARQUE DU ROUTEUR"
                FontFamily="Cascadia Code, Consolas"
                FontSize="9" FontWeight="Bold"
-               Foreground="{StaticResource LLM.TextSecondary}"
+               Foreground="{StaticResource LLM.TextPrimary}"
                Margin="0,0,0,6"/>
 
 

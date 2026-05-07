@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36915.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11723.231 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrontEnd", "FrontEnd\FrontEnd.csproj", "{225464E0-DA41-4C5C-ABD0-4582C7740D8D}"
 EndProject
@@ -31,6 +31,7 @@ Global
 		{E00F39B1-2A6B-465A-B3E3-0041232E01B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22EDA213-7690-2F22-5EF2-1030227D1ABE}.Debug|Any CPU.ActiveCfg = Debug
 		{22EDA213-7690-2F22-5EF2-1030227D1ABE}.Release|Any CPU.ActiveCfg = Release
+		{22EDA213-7690-2F22-5EF2-1030227D1ABE}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

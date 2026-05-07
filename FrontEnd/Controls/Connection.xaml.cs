@@ -39,16 +39,16 @@ namespace FrontEnd.Controls
 
         private void Btn_Connection_clk(object sender, RoutedEventArgs e)
         {
-            if (!((MailViewModel)StackField.DataContext).isCorrect)
+            if (!((MailViewModel)StackField.DataContext).IsCorrect)
                 ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Le courriel n'est pas valide");
             else
             {
-                if( ((MailViewModel)txt_mail.DataContext).Content != null && API.Connection(pwd_user.Password, ((MailViewModel)txt_mail.DataContext).Content))
+                if( ((MailViewModel)txt_mail.DataContext).IsCorrect && API.Connection(pwd_user.Password, ((MailViewModel)txt_mail.DataContext).Content))
                 {
                     ControlUsed?.Invoke(this, EventArgs.Empty);
-                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser.Name ??= "Compte vide"}");
+                    ((MainWindow)Application.Current.MainWindow)._notifier.ShowSuccess($"Bienvenu {API.ConnectedUser?.Name}");
                 }
-                else { ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Connexion refusé !"); }
+                else { ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Connexion refusée !"); }
             }
         }
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BackEnd.Models
 {
-    public class Account(string pName, string pPwd ,string? pData) : INotifyPropertyChanged
+    public class Account(string pName, string pPwd ) 
     {
         public string _name = pName;
         public string Name
@@ -16,12 +16,10 @@ namespace BackEnd.Models
             set
             {
                 _name = value;
-                NotifyPropertyChanged(nameof(Name));
             }
         }
         public string Mail { get; set; }
         public string Password { get; set; } = pPwd;
-        public string Data { get; set; } = pData;
         private Organisation _organisation;
         public Organisation Organisation
         {
@@ -29,17 +27,5 @@ namespace BackEnd.Models
             set { _organisation = value; }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void NotifyPropertyChanged(string PropertyName)
-        {
-            if (PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
-        }
-
-        public byte[] GetHashPwd()
-        {
-            return Encoding.UTF8.GetBytes(Password);
-        }
     }
 }

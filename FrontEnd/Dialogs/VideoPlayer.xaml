@@ -1,0 +1,24 @@
+﻿<Window x:Class="FrontEnd.Dialogs.VideoPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FrontEnd.Dialogs"
+        mc:Ignorable="d"
+        Closed="Window_Closed"
+        Title="L.L.M Tutoriel " ResizeMode="NoResize" SizeToContent="Width" Height="439" Width="581">
+    <Grid Background="{StaticResource LLM.Surface}" Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <MediaElement x:Name="mediaPlayer" Grid.Row="0" Source="pack://siteoforigin:,,,/Assets/Video/Tuto.mpg" LoadedBehavior="Manual"/>
+        <TextBlock Grid.Row="1" x:Name="txt_duration" HorizontalAlignment="Center" Foreground="{StaticResource LLM.TextPrimary}" />
+        <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
+            <Button Style="{StaticResource LLM.Button.Primary}" Margin="10,10" Width="90" Height="75" Content="⏮" Click="Beginning_Button_Click"/>
+            <Button Style="{StaticResource LLM.Button.Primary}" Margin="10,10" Width="90" Height="75" Content="▶" x:Name="MainButton" Click="Main_Button_Click"/>
+            <Button Style="{StaticResource LLM.Button.Primary}" Margin="10,10" Width="90" Height="75" Content="⏭" Click="End_Button_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
