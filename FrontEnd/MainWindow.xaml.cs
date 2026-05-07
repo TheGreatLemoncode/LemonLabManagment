@@ -78,6 +78,7 @@ namespace FrontEnd
         public void PlayInformationVideo()
         {
             Dialogs.VideoPlayer box = new();
+            box.Owner = Application.Current.MainWindow;
             box.Show();
             PlayWindowSound();
         }

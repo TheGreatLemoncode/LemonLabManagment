@@ -16,6 +16,8 @@
     <None Remove="Assets\Images\loop.png" />
     <None Remove="Assets\Images\placeholder-image.png" />
     <None Remove="Assets\Video\Placeholder.mpg" />
+    <None Remove="Assets\Video\Tuto\Data\audio.wav" />
+    <None Remove="Assets\Video\Tuto\Data\output.1.avi" />
     <None Remove="Ressources\NotificationSound.mp3" />
     <None Remove="Ressources\UiExitSound.mp3" />
     <None Remove="Ressources\UiOpenSound.mp3" />
@@ -63,12 +65,24 @@
     <Content Include="Assets\Video\Placeholder.mpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Video\Tuto\Data\audio.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Video\Tuto\Data\output.1.avi">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Controls\CreationCompte.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\Video\Tuto.mpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

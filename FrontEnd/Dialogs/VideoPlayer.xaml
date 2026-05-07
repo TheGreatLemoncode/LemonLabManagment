@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:FrontEnd.Dialogs"
         mc:Ignorable="d"
         Closed="Window_Closed"
-        Title="L.L.M Tutoriel " ResizeMode="NoResize" SizeToContent="Width" Height="439" Width="581">
+        Title="L.L.M Tutoriel" Icon="/Assets/Images/app_icon.ico" ResizeMode="NoResize" SizeToContent="Width" Height="439" Width="581">
     <Grid Background="{StaticResource LLM.Surface}" Margin="0,0,0,-6">
         <Grid.RowDefinitions>
             <RowDefinition Height="60*"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <MediaElement x:Name="mediaPlayer" Grid.Row="0" Source="pack://siteoforigin:,,,/Assets/Video/Tuto.mpg" LoadedBehavior="Manual"/>
+        <MediaElement x:Name="mediaPlayer" Grid.Row="0" Source="pack://siteoforigin:,,,/Assets/Video/Tuto/Data/output.1.avi" LoadedBehavior="Manual"/>
         <TextBlock Grid.Row="1" x:Name="txt_duration" HorizontalAlignment="Center" Foreground="{StaticResource LLM.TextPrimary}" />
         <StackPanel HorizontalAlignment="Center" Grid.Row="2" Orientation="Horizontal">
             <Button Style="{StaticResource LLM.Button.Primary}" Margin="10,10" Width="90" Height="75" Content="⏮" Click="Beginning_Button_Click"/>
