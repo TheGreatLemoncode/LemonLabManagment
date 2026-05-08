@@ -34,7 +34,7 @@ namespace FrontEnd.Dialogs
             cbox_status.ItemsSource = Enum.GetValues(typeof(Status));
         }
 
-        public void cancel_btn_clk(object sender, RoutedEventArgs e)
+        private void cancel_btn_clk(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

@@ -32,11 +32,15 @@ namespace FrontEnd.Controls
             All_display_btn_clk(this, new RoutedEventArgs());
         }
 
-        public void account_btn_clk(object sender, RoutedEventArgs args)
+        private void account_btn_clk(object sender, RoutedEventArgs args)
         {
             MainMenuDisplay.Content = new MainMenuControls.Compte();
         }
 
+        /// <summary>
+        /// Method that change the this window display property to the 
+        /// the DefaultMachineList control
+        /// </summary>
         public void Load_default_machine_list()
         {
             MainMenuDisplay.Content = new DefaultMachineLIst();
@@ -93,7 +97,7 @@ namespace FrontEnd.Controls
         }
         private void canvas_mode_clk(object sender, RoutedEventArgs e)
         {
-            CanvasWindow window = new(API.RequestMachineByStatus(BackEnd.Models.Status.Utilisé));
+            CanvasWindow window = new(API.RequestMachinesByStatus(BackEnd.Models.Status.Utilisé));
             window.Owner = Application.Current.MainWindow;
             window.Show();
             ((MainWindow)Application.Current.MainWindow).PlayWindowSound();

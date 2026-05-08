@@ -8,6 +8,10 @@ using System.Windows.Media.Animation;
 
 namespace FrontEnd
 {
+
+    /// <summary>
+    /// Create a command for the viewmodel to be use in the view
+    /// </summary>
     public class RelayCommand: ICommand
     {
         public readonly Action _execute;

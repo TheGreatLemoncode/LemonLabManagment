@@ -11,6 +11,9 @@ using BackEnd.Models;
 
 namespace BackEnd.DATA
 {
+    /// <summary>
+    /// Static class that handles the json data and the serialization
+    /// </summary>
     internal static class DataController
     {
         private static readonly string AppName = "LemonLabManagment";
@@ -35,13 +38,23 @@ namespace BackEnd.DATA
             return filepath;
 
         }
-        internal static void AddMachine(Machine pMachine)
+
+        /// <summary>
+        /// Method that add a machine in the database if the machine is not currently in it
+        /// </summary>
+        /// <param name="pMachine">the machine to add</param>
+        public static void AddMachine(Machine pMachine)
         {
             if(!MachineDB.ContainsKey(pMachine.Code))
                 MachineDB.Add(pMachine.Code, pMachine);
         } 
 
-        internal static void AddAccount(Account pAccount, byte[] pSalt)
+        /// <summary>
+        /// Method that adds a user to the database and stores he's salt 
+        /// </summary>
+        /// <param name="pAccount"></param>
+        /// <param name="pSalt"></param>
+        public static void AddAccount(Account pAccount, byte[] pSalt)
         {
             if (!Accounts.ContainsKey(pAccount.Mail))
             {
@@ -50,8 +63,10 @@ namespace BackEnd.DATA
             }
                 
         }
-
-        internal static void load() 
+        /// <summary>
+        /// Load all the data from the json files in the user's appdata directory
+        /// </summary>
+        public static void load() 
         {
             if (File.Exists(GetPathForFile(AccountFile)))
             {
@@ -106,7 +121,10 @@ namespace BackEnd.DATA
 
         }
 
-        internal static void Save()
+        /// <summary>
+        /// Save all the data in the user's appdata directory
+        /// </summary>
+        public static void Save()
         {
             using (StreamWriter wr = new StreamWriter(GetPathForFile(AccountFile)))
             {

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.ViewModels
 {
+    /// <summary>
+    /// Base viewmodel class that contains the notify property changed
+    /// </summary>
     public abstract class BaseViewModel: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;

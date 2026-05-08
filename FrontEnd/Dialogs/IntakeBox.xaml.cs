@@ -23,7 +23,7 @@ namespace FrontEnd.Dialogs
         public string Message { get; set; }
         public string Result
         {
-            get { return ((InputViewModel)txt_content.DataContext).Content; } 
+            get { return ((IntakeViewModel)txt_content.DataContext).Content; } 
         }
 
         public IntakeBox(string pTitle, string pMessage)

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace FrontEnd.ViewModels
 {
+    /// <summary>
+    /// Viewmodel used for textbox field.
+    /// </summary>
     class InputViewModel:BaseViewModel
     {
         internal string? _Content;
@@ -24,11 +27,15 @@ namespace FrontEnd.ViewModels
             set { _isCorrect = value; OnPropertyChanged(nameof(isCorrect));}
         }
 
-        internal void CheckContent()
+        /// <summary>
+        /// Method that verify the content properties and update the 
+        /// isCorrect properties
+        /// </summary>
+        public void CheckContent()
         {
             isCorrect = !string.IsNullOrEmpty(Content);
         }
 
-
+    
     }
 }

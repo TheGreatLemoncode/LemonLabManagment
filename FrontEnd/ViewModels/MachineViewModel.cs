@@ -13,6 +13,9 @@ using FrontEnd;
 
 namespace FrontEnd.ViewModels
 {
+    /// <summary>
+    /// Viewmodel used for detailsmachinewindow and defaultmachinelist
+    /// </summary>
     public class MachineViewModel : BaseViewModel
     {
         public Machine machine { get; set; }
@@ -20,6 +23,10 @@ namespace FrontEnd.ViewModels
         public ICommand DefaultButtonCommand { get; }
         public ICommand Command { get; }
         
+        /// <summary>
+        /// Create an instance of the MachineViewModel using a machine instance
+        /// </summary>
+        /// <param name="pMachine">the machine that need to be used by the view</param>
         public MachineViewModel(Machine pMachine)
         {
             machine = pMachine;

@@ -8,10 +8,13 @@ using System.Windows.Input;
 
 namespace FrontEnd.ViewModels
 {
+    /// <summary>
+    /// Viewmodel used for the accountcreation and accountconnexion windows. Inherits from the baseviewmodel class
+    /// </summary>
     internal class MailViewModel : BaseViewModel
     {
         private readonly string Patern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-        internal string _Content = string.Empty;
+        private string _Content = string.Empty;
 
         public string Content
         {
@@ -24,6 +27,11 @@ namespace FrontEnd.ViewModels
             get { return CheckContent(); }
         }
 
+        /// <summary>
+        /// A method that check the value of _content and return true if it 
+        /// matches the patern 
+        /// </summary>
+        /// <returns>True if it matches the paterns. else, false</returns>
         public bool CheckContent()
         {
             if (string.IsNullOrEmpty(Content))

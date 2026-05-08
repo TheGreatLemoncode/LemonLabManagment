@@ -34,8 +34,6 @@ namespace FrontEnd.Dialogs
             {
                 PopulateMachineList(machine);
             }
-
-
         }
 
         private void MainCanvas_MouseMove(object sender, MouseEventArgs e)

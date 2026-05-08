@@ -12,7 +12,11 @@ using BackEnd.API;
 
 namespace FrontEnd.ViewModels
 {
-    public class AccountViewModel
+    /// <summary>
+    /// Viewmodel used for the account window. Inherits from the base viewmodel class;
+    /// Contains all the main button used in the window
+    /// </summary>
+    public class AccountViewModel : BaseViewModel
     {
         public ObservableCollection<Button> AccountButtons { get; set; } = new ObservableCollection<Button>();
         public string? Name

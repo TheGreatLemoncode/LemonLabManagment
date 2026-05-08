@@ -9,7 +9,7 @@ namespace BackEnd.Models
 {
     public class Account(string pName, string pPwd ) 
     {
-        public string _name = pName;
+        private string _name = pName;
         public string Name
         {
             get { return _name; }

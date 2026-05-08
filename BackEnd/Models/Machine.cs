@@ -53,19 +53,33 @@ namespace BackEnd.Models
         }
         public Machine() { }
 
+        /// <summary>
+        /// Method that setup the machine code attribute with
+        /// a random string
+        /// </summary>
         public virtual void SetUp()
         {
             Code = Kitchen.GetRandomString(7);
         }
 
+        /// <summary>
+        /// Method that set up the machine description with it's properties 
+        /// and add an additional information
+        /// </summary>
+        /// <param name="ajout"></param>
         public virtual void DescriptionSetUp(string? ajout = null)
         {
             Description += ". " + this.GetType().Name + "\n";
             Description += ". Adresse IP: " + IP + "\n";
             Description += $". Date de création : {DateTime.Today}\n";
         }
-    }
+    } 
 
+
+    /// <summary>
+    /// Enumeration that represent the actual status of
+    /// a machine
+    /// </summary>
     public enum Status
     {
         Utilisé,

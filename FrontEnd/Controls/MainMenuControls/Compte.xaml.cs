@@ -26,10 +26,9 @@ namespace FrontEnd.Controls.MainMenuControls
     /// <summary>
     /// Logique d'interaction pour Compte.xaml
     /// </summary>
-    public partial class Compte : UserControl, IUserControlEvent
+    public partial class Compte : UserControl
     {
         public AccountViewModel viewmodel { get; set; } = new AccountViewModel();
-        public static event EventHandler ControlUsed;
         public Compte()
         {
             InitializeComponent();
@@ -43,9 +42,16 @@ namespace FrontEnd.Controls.MainMenuControls
             viewmodel.AccountButtons[2].Style = this.FindResource("LLM.Button.Primary") as Style;
         }
 
-        public void join_btn_clk(object sender, RoutedEventArgs args)
+        private void join_btn_clk(object sender, RoutedEventArgs args)
         {
             string code = string.Empty;
+
+            if(API.ConnectedUser.Organisation != null)
+            {
+                ((MainWindow)Application.Current.MainWindow)._notifier.ShowError("Déjà dans une organisation");
+                return;
+            }
+
             IntakeBox Box = new("Rejoindre une organisation", "Entrez le code de l'organisation");
             Box.Owner = Application.Current.MainWindow;
             if ((bool)Box.ShowDialog())
@@ -71,7 +77,7 @@ namespace FrontEnd.Controls.MainMenuControls
             }  
         }
 
-        public void create_btn_clk(object sender, RoutedEventArgs args)
+        private void create_btn_clk(object sender, RoutedEventArgs args)
         {
 
             IntakeBox Box = new("création d'une organisation", "Entrez le nom de l'organisation");

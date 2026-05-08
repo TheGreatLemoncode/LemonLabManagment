@@ -53,13 +53,13 @@ namespace FrontEnd.Controls
                 AllItems.Add(new MachineViewModel(m));
             }
 
-            foreach(Machine n in API.RequestMachineByStatus(Status.Utilisé) )
+            foreach(Machine n in API.RequestMachinesByStatus(Status.Utilisé) )
             {
                 UsedItems.Add(new MachineViewModel(n));
             }
         }
 
-        public void Search_btn_clk(object sender, RoutedEventArgs e)
+        private void Search_btn_clk(object sender, RoutedEventArgs e)
         {
             MachineDetails DetailsWindow;
             if(string.IsNullOrEmpty(SearchBarContent.Text))

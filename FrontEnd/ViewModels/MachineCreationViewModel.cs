@@ -10,6 +10,9 @@ using System.Windows.Input;
 
 namespace FrontEnd.ViewModels
 {
+    /// <summary>
+    /// Viewmodel used for the MachineCreationViewModel. Inherits from the baseviewmodel class
+    /// </summary>
     public class MachineCreationViewModel: BaseViewModel, IMachineCreation
     {
         private string _machineName;
@@ -52,6 +55,13 @@ namespace FrontEnd.ViewModels
             MachineIpAddress = "0.0.0.0";
         }
 
+
+        /// <summary>
+        /// Transform the informations about the machine currently being create into a 
+        /// [string, string] dictionary.
+        /// </summary>
+        /// <returns>A string, string dictionary that contains all the
+        /// properties of the machine being created</returns>
         public virtual Dictionary<string, string> GetProperties()
         {
             Dictionary<string, string> KeyValueInfo = [];

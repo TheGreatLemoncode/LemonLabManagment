@@ -49,32 +49,58 @@ namespace FrontEnd
             });
         }
 
+        /// <summary>
+        /// method that change the content of the mainview
+        /// for the accountcreation view
+        /// </summary>
+        /// <param name="sender">The instance that called the event or method</param>
+        /// <param name="e">the arguments passed to the function</param>
         public void LoadAccountCreation(object sender, EventArgs e)
         {
             MainView.Content = new CreationCompte();
         }
 
+        /// <summary>
+        /// method that change the content of the mainview
+        /// for the MainMenu view
+        /// </summary>
+        /// <param name="sender">The instance that called the event or method</param>
+        /// <param name="e">the arguments passed to the function</param>
         public void LoadMainMenu(object sender, EventArgs e)
         {
             MainView.Content = new MainMenu();
         }
 
-        public void LoadAllMachineList()
+        private void LoadAllMachineList()
         {
             MainView.Content = new DefaultMachineLIst();
         }
 
+        /// <summary>
+        /// method that change the content of the mainview
+        /// for the accountconnexion view
+        /// </summary>
+        /// <param name="sender">The instance that called the event or method</param>
+        /// <param name="e">the arguments passed to the function</param>
         public void LoadAccountConnexion()
         {
             MainView.Content = new Connection();
         }
 
+        /// <summary>
+        /// method that play the sound of a window from the assets
+        /// using a mediaplayer
+        /// </summary>
         public void PlayWindowSound()
         {
             mediaPlayer.Open(new Uri(@"Assets/Sounds/NotificationSound.mp3", UriKind.RelativeOrAbsolute));
             mediaPlayer.Play();
         }
 
+        /// <summary>
+        /// method that open a separate window to play the 
+        /// tutorial video of the app
+        /// </summary>
         public void PlayInformationVideo()
         {
             Dialogs.VideoPlayer box = new();
@@ -83,6 +109,12 @@ namespace FrontEnd
             PlayWindowSound();
         }
 
+        /// <summary>
+        /// Method that is called when the window is about to close. Used to 
+        /// save the user's information using the API
+        /// </summary>
+        /// <param name="sender">the instance that called the method</param>
+        /// <param name="e">the arguments given by the instance</param>
         private void Window_Closed(object sender, EventArgs e)
         {
             API.SaveUserInformation();
